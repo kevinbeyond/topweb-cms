@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,35 +67,27 @@
     </div>
 </div>
 
-
-
-
-
-
 <div class="row-fluid">
     <div class="dialog">
         <div class="block">
-            <p class="block-heading">Sign In</p>
+            <p class="block-heading">管理员登录</p>
             <div class="block-body">
-                <form>
-                    <label>Username</label>
-                    <input type="text" class="span12">
-                    <label>Password</label>
-                    <input type="password" class="span12">
-                    <a href="index.html" class="btn btn-primary pull-right">Sign In</a>
+                <form:form modelAttribute="user" method="post" action="/result.html">
+                    <label>用户名</label>
+                    <form:input path="username" class="span12" />
+                    <label>密码</label>
+                    <form:password path="password" class="span12" />
+                    <input type="submit" class="btn btn-primary pull-right" value="登录" />
+                    <%--<a href="index.html" class="btn btn-primary pull-right">登录</a>--%>
                     <label class="remember-me"><input type="checkbox"> Remember me</label>
                     <div class="clearfix"></div>
-                </form>
+                </form:form>
             </div>
         </div>
         <p class="pull-right" style=""><a href="#" target="blank">Theme by Portnine</a></p>
         <p><a href="reset-password.html">Forgot your password?</a></p>
     </div>
 </div>
-
-
-
-
 
 <script src="lib/bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript">
