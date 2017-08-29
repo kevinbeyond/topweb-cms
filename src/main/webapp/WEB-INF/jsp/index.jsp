@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Bootstrap Admin</title>
+    <title>托普威CMS</title>
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -89,7 +89,7 @@
     <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>Dashboard</a>
     <ul id="dashboard-menu" class="nav nav-list collapse in">
         <li><a href="index.html">Home</a></li>
-        <li ><a href="users.html">Sample List</a></li>
+        <li ><a href="users.html">栏目管理</a></li>
         <li ><a href="user.html">Sample Item</a></li>
         <li ><a href="media.html">Media</a></li>
         <li ><a href="calendar.html">Calendar</a></li>

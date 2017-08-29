@@ -16,6 +16,12 @@
     from cms_column
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="selectColumnLists" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from cms_column
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from cms_column
     where id = #{id,jdbcType=INTEGER}
