@@ -1,353 +1,142 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 <head>
-    <meta charset="utf-8">
-    <title>托普威CMS</title>
-    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="stylesheets/theme.css">
-    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css">
-    <script src="lib/jquery-1.7.2.min.js" type="text/javascript"></script>
-    <!-- Demo page code -->
-    <style type="text/css">
-        #line-chart {
-            height:300px;
-            width:800px;
-            margin: 0px auto;
-            margin-top: 1em;
-        }
-        .brand { font-family: georgia, serif; }
-        .brand .first {
-            color: #ccc;
-            font-style: italic;
-        }
-        .brand .second {
-            color: #fff;
-            font-weight: bold;
-        }
-    </style>
-
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+    <title>MetInfo企业网站管理系统</title>
+    <meta name="renderer" content="webkit">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="/css/box.css" />
+    <link rel="stylesheet" href="/css/font-awesome.min.css" />
+    <script>
+        var langtxt = {
+                    "checkupdatetips":"对不起！您的权限不够，无法操作在线升级。",
+                    "detection":"检测中",
+                    "try_again":"重试"
+                },
+                anyid="",
+                own_form="/admin/index.php?lang=cn&anyid=&n=index&c=index&",
+                own_name="/admin/index.php?lang=cn&anyid=&n=index&",
+                tem="/app/system/admin/templates/web/index/",
+                adminurl="/admin/index.php?lang=cn&",
+                renewable="",
+                apppath="http://app.metinfo.cn/index.php?lang=cn&",
+                jsrand="53175"
+                ;
+    </script>
+    <!--[if IE]><script src="/js/html5.js" type="text/javascript"></script><![endif]-->
 </head>
-
-<!--[if lt IE 7 ]> <body class="ie ie6"> <![endif]-->
-<!--[if IE 7 ]> <body class="ie ie7 "> <![endif]-->
-<!--[if IE 8 ]> <body class="ie ie8 "> <![endif]-->
-<!--[if IE 9 ]> <body class="ie ie9 "> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!-->
-<body class="">
-<!--<![endif]-->
-
-<div class="navbar">
-    <div class="navbar-inner">
-        <ul class="nav pull-right">
-
-            <li><a href="#" class="hidden-phone visible-tablet visible-desktop" role="button">Settings</a></li>
-            <li id="fat-menu" class="dropdown">
-                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="icon-user"></i> Jack Smith
-                    <i class="icon-caret-down"></i>
-                </a>
-
-                <ul class="dropdown-menu">
-                    <li><a tabindex="-1" href="#">My Account</a></li>
-                    <li class="divider"></li>
-                    <li><a tabindex="-1" class="visible-phone" href="#">Settings</a></li>
-                    <li class="divider visible-phone"></li>
-                    <li><a tabindex="-1" href="sign-in.html">Logout</a></li>
-                </ul>
-            </li>
-
-        </ul>
-        <a class="brand" href="index.html"><span class="first">托普威</span> <span class="second">CMS</span></a>
-    </div>
-</div>
-
-
-
-<div class="copyrights">Collect from <a href="http://www.cssmoban.com/"  title="网站模板">网站模板</a></div>
-<div class="sidebar-nav">
-    <form class="search form-inline">
-        <input type="text" placeholder="Search...">
-    </form>
-
-    <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>Dashboard</a>
-    <ul id="dashboard-menu" class="nav nav-list collapse in">
-        <li><a href="index.html">Home</a></li>
-        <li ><a href="users.html">栏目管理</a></li>
-        <li ><a href="user.html">Sample Item</a></li>
-        <li ><a href="media.html">Media</a></li>
-        <li ><a href="calendar.html">Calendar</a></li>
-
-    </ul>
-
-    <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>Account<span class="label label-info">+3</span></a>
-    <ul id="accounts-menu" class="nav nav-list collapse">
-        <li ><a href="sign-in.html">Sign In</a></li>
-        <li ><a href="sign-up.html">Sign Up</a></li>
-        <li ><a href="reset-password.html">Reset Password</a></li>
-    </ul>
-
-    <a href="#error-menu" class="nav-header collapsed" data-toggle="collapse"><i class="icon-exclamation-sign"></i>Error Pages <i class="icon-chevron-up"></i></a>
-    <ul id="error-menu" class="nav nav-list collapse">
-        <li ><a href="403.html">403 page</a></li>
-        <li ><a href="404.html">404 page</a></li>
-        <li ><a href="500.html">500 page</a></li>
-        <li ><a href="503.html">503 page</a></li>
-    </ul>
-
-    <a href="#legal-menu" class="nav-header" data-toggle="collapse"><i class="icon-legal"></i>Legal</a>
-    <ul id="legal-menu" class="nav nav-list collapse">
-        <li ><a href="privacy-policy.html">Privacy Policy</a></li>
-        <li ><a href="terms-and-conditions.html">Terms and Conditions</a></li>
-    </ul>
-
-    <a href="help.html" class="nav-header" ><i class="icon-question-sign"></i>Help</a>
-    <a href="faq.html" class="nav-header" ><i class="icon-comment"></i>Faq</a>
-</div>
-
-
-
-<div class="content">
-
-    <div class="header">
-        <div class="stats">
-            <p class="stat"><span class="number">53</span>tickets</p>
-            <p class="stat"><span class="number">27</span>tasks</p>
-            <p class="stat"><span class="number">15</span>waiting</p>
+<body>
+<input id="met_automatic_upgrade" type="hidden" value="1" />
+<div class="metcms_cont v52fmbx" id="metcmsbox" data-metcms_v="5.3.17" data-patch="5">
+    <div class="metcms_cont_left hidden-xs">
+        <div class="metlogo">
+            <a href="/" hidefocus="true">
+                <img src="/images/logo.png" alt="TopWeb CMS" title="TopWeb CMS"/>
+            </a>
         </div>
+        <%--<dl class="jslist">
+            <dt><a target="_blank" href="/index.php?lang=cn" title="网站首页"><i class="fa fa-home"></i>网站首页</a></dt>
+        </dl>--%>
 
-        <h1 class="page-title">Dashboard</h1>
+        <dl >
+            <dt>内容</dt>
+            <dd>
+                <a href="/admin/index.php?n=content&c=content&a=doadd&anyid=68&lang=cn"  title="发布"  id="metinfo_metnav_68"><i class="fa fa-plus"></i>发布</a>
+                <a href="/admin/content/content.php?anyid=29&lang=cn"  title="管理"  id="metinfo_metnav_29"><i class="fa fa-th-large"></i>管理</a>
+            </dd>
+        </dl>
+
+        <dl class="jslist">
+            <dt><i class="fa fa-money"></i>营销<i class="fa fa-angle-right"></i></dt>
+            <dd>
+                <a href="/admin/app/stat/index.php?anyid=34&lang=cn"  title="访问统计"  id="metinfo_metnav_34"><i class="fa fa-line-chart"></i>访问统计</a>
+
+                <a href="/admin/interface/online/index.php?anyid=71&lang=cn"  title="客服"  id="metinfo_metnav_71"><i class="fa fa-comments-o"></i>客服</a>
+
+                <a href="/admin/index.php?n=seo&c=seo&a=doindex&anyid=37&lang=cn"  title="SEO"  id="metinfo_metnav_37"><i class="fa fa-check"></i>SEO</a>
+
+                <a href="/admin/seo/link/index.php?anyid=39&lang=cn"  title="友情链接"  id="metinfo_metnav_39"><i class="fa fa-link"></i>友情链接</a>
+
+            </dd>
+        </dl>
+
+        <dl class="jslist">
+            <dt><i class="fa fa-tachometer"></i>外观<i class="fa fa-angle-right"></i></dt>
+            <dd>
+                <a href="/admin/index.php?n=theme&c=theme&a=doindex&anyid=18&lang=cn"  title="电脑" target="_blank" id="metinfo_metnav_18"><i class="fa fa-desktop"></i>电脑</a>
+                <a href="/admin/index.php?n=theme&c=theme&a=doindex&mobile=1&anyid=70&lang=cn"  title="手机" target="_blank" id="metinfo_metnav_70"><i class="fa fa-mobile"></i>手机</a>
+            </dd>
+        </dl>
+
+        <%--<dl >
+            <dt>应用</dt>
+            <dd>
+                <a href="/admin/index.php?n=myapp&c=myapp&&a=doindex&anyid=44&lang=cn"  title="我的应用"  id="metinfo_metnav_44"><i class="fa fa-paper-plane"></i>我的应用</a>
+
+                <a href="/admin/index.php?n=appstore&c=appstore&a=doindex&anyid=65&lang=cn"  title="应用商店"  id="metinfo_metnav_65"><i class="fa fa-cube"></i>应用商店</a>
+
+            </dd>
+        </dl>--%>
+
+        <%--<dl class="jslist">
+            <dt><i class="fa fa-user"></i>用户<i class="fa fa-angle-right"></i></dt>
+            <dd>
+
+                <a href="/admin/index.php?n=user&c=admin_user&a=doindex&anyid=73&lang=cn"  title="会员"  id="metinfo_metnav_73"><i class="fa fa-users"></i>会员</a>
+
+            </dd>
+        </dl>--%>
+
+        <%--<dl class="jslist">
+            <dt><i class="fa fa-shield"></i>安全<i class="fa fa-angle-right"></i></dt>
+            <dd>
+
+                <a href="/admin/system/safe.php?anyid=12&lang=cn"  title="安全与效率"  id="metinfo_metnav_12"><i class="fa fa-shield"></i>安全与效率</a>
+
+            </dd>
+        </dl>--%>
+
+        <dl class="jslist">
+            <dt><i class="fa fa-sliders"></i>设置<i class="fa fa-angle-right"></i></dt>
+            <dd>
+
+                <a href="/setting/baseWebInfo.html"  title="基本信息"  id="metinfo_metnav_57"><i class="fa fa-newspaper-o"></i>基本信息</a>
+
+                <a href="/admin/app/wap/wap.php?anyid=77&lang=cn"  title="手机版"  id="metinfo_metnav_77"><i class="fa fa-mobile"></i>手机版</a>
+
+                <a href="/admin/column/index.php?anyid=25&lang=cn"  title="栏目"  id="metinfo_metnav_25"><i class="fa fa-sitemap"></i>栏目</a>
+
+                <a href="/admin/system/lang/lang.php?anyid=10&lang=cn"  title="语言"  id="metinfo_metnav_10"><i class="fa fa-language"></i>语言</a>
+
+                <a href="/admin/system/img.php?anyid=11&lang=cn"  title="缩略图/水印"  id="metinfo_metnav_11"><i class="fa fa-picture-o"></i>缩略图/水印</a>
+
+            </dd>
+        </dl>
+
     </div>
-
-    <ul class="breadcrumb">
-        <li><a href="index.html">Home</a> <span class="divider">/</span></li>
-        <li class="active">Dashboard</li>
-    </ul>
-
-    <div class="container-fluid">
-        <div class="row-fluid">
-
-
-            <div class="row-fluid">
-
-                <div class="alert alert-info">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <strong>Just a quick note:</strong> Hope you like the theme!
-                </div>
-
-                <div class="block">
-                    <a href="#page-stats" class="block-heading" data-toggle="collapse">Latest Stats</a>
-                    <div id="page-stats" class="block-body collapse in">
-
-                        <div class="stat-widget-container">
-                            <div class="stat-widget">
-                                <div class="stat-button">
-                                    <p class="title">2,500</p>
-                                    <p class="detail">Accounts</p>
-                                </div>
-                            </div>
-
-                            <div class="stat-widget">
-                                <div class="stat-button">
-                                    <p class="title">3,299</p>
-                                    <p class="detail">Subscribers</p>
-                                </div>
-                            </div>
-
-                            <div class="stat-widget">
-                                <div class="stat-button">
-                                    <p class="title">$1,500</p>
-                                    <p class="detail">Pending</p>
-                                </div>
-                            </div>
-
-                            <div class="stat-widget">
-                                <div class="stat-button">
-                                    <p class="title">$12,675</p>
-                                    <p class="detail">Completed</p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row-fluid">
-                <div class="block span6">
-                    <a href="#tablewidget" class="block-heading" data-toggle="collapse">Users<span class="label label-warning">+10</span></a>
-                    <div id="tablewidget" class="block-body collapse in">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>Mark</td>
-                                <td>Tompson</td>
-                                <td>the_mark7</td>
-                            </tr>
-                            <tr>
-                                <td>Ashley</td>
-                                <td>Jacobs</td>
-                                <td>ash11927</td>
-                            </tr>
-                            <tr>
-                                <td>Audrey</td>
-                                <td>Ann</td>
-                                <td>audann84</td>
-                            </tr>
-                            <tr>
-                                <td>John</td>
-                                <td>Robinson</td>
-                                <td>jr5527</td>
-                            </tr>
-                            <tr>
-                                <td>Aaron</td>
-                                <td>Butler</td>
-                                <td>aaron_butler</td>
-                            </tr>
-                            <tr>
-                                <td>Chris</td>
-                                <td>Albert</td>
-                                <td>cab79</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <p><a href="users.html">More...</a></p>
-                    </div>
-                </div>
-                <div class="block span6">
-                    <a href="#widget1container" class="block-heading" data-toggle="collapse">Collapsible </a>
-                    <div id="widget1container" class="block-body collapse in">
-                        <h2>Using Ruby?</h2>
-                        <p>This template was developed with <a href="http://middlemanapp.com/" target="_blank">Middleman</a> and includes .erb layouts and views.</p>
-                        <p>All of the views you see here (sign in, sign up, users, etc) are already split up so you don't have to waste your time doing it yourself!</p>
-                        <p>The layout.erb file includes the header, footer, and side navigation and all of the views are broken out into their own files.</p>
-                        <p>If you aren't using Ruby, there is also a set of plain HTML files for each page, just like you would expect.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row-fluid">
-                <div class="block span6">
-                    <div class="block-heading">
-            <span class="block-icon pull-right">
-                <a href="#" class="demo-cancel-click" rel="tooltip" title="Click to refresh"><i class="icon-refresh"></i></a>
-            </span>
-
-                        <a href="#widget2container" data-toggle="collapse">History</a>
-                    </div>
-                    <div id="widget2container" class="block-body collapse in">
-                        <table class="table list">
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <p><i class="icon-user"></i> Mark Otto</p>
-                                </td>
-                                <td>
-                                    <p>Amount: $1,247</p>
-                                </td>
-                                <td>
-                                    <p>Date: 7/19/2012</p>
-                                    <a href="#">View Transaction</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p><i class="icon-user"></i> Audrey Ann</p>
-                                </td>
-                                <td>
-                                    <p>Amount: $2,793</p>
-                                </td>
-                                <td>
-                                    <p>Date: 7/12/2012</p>
-                                    <a href="#">View Transaction</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p><i class="icon-user"></i> Mark Tompson</p>
-                                </td>
-                                <td>
-                                    <p>Amount: $2,349</p>
-                                </td>
-                                <td>
-                                    <p>Date: 3/10/2012</p>
-                                    <a href="#">View Transaction</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p><i class="icon-user"></i> Ashley Jacobs</p>
-                                </td>
-                                <td>
-                                    <p>Amount: $1,192</p>
-                                </td>
-                                <td>
-                                    <p>Date: 1/19/2012</p>
-                                    <a href="#">View Transaction</a>
-                                </td>
-                            </tr>
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="block span6">
-                    <p class="block-heading">Not Collapsible</p>
-                    <div class="block-body">
-                        <h2>Tip of the Day</h2>
-                        <p>Fava bean jícama seakale beetroot courgette shallot amaranth pea garbanzo carrot radicchio peanut leek pea sprouts arugula brussels sprout green bean. Spring onion broccoli chicory shallot winter purslane pumpkin gumbo cabbage squash beet greens lettuce celery. Gram zucchini swiss chard mustard burdock radish brussels sprout groundnut. Asparagus horseradish beet greens broccoli brussels sprout bitterleaf groundnut cress sweet pepper leek bok choy shallot celtuce scallion chickpea radish pea sprouts.</p>
-                        <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <footer>
-                <hr>
-
-                <p class="pull-right">Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
-
-
-                <p>&copy; 2012 <a href="#" target="_blank">Portnine</a></p>
-            </footer>
-
+    <%--嵌入iframe--%>
+    <div class="metcms_cont_right">
+        <div class="metcms_cont_right_box">
+            <iframe src="/admin/index.php?lang=cn&anyid=&n=index&c=index&a=dohome" frameborder="0"></iframe>
         </div>
     </div>
+    <div class="clear"></div>
 </div>
-
-
-
-<script src="lib/bootstrap/js/bootstrap.js"></script>
-<script type="text/javascript">
-    $("[rel=tooltip]").tooltip();
-    $(function() {
-        $('.demo-cancel-click').click(function(){return false;});
-    });
+<script>
+    var indexbox = 1;
+    //手机版关闭时隐藏电脑外观
+    if(1==0)
+    {
+        document.getElementById("metinfo_metnav_18").style.display="none";
+    }
 </script>
-
+<script src="/js/sea.js"></script>
 </body>
 </html>

@@ -1,101 +1,95 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!DOCTYPE html>
-<html lang="en">
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8">
-    <title>TopWebCMS</title>
-    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css">
-
-    <link rel="stylesheet" type="text/css" href="stylesheets/theme.css">
-    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css">
-
-    <script src="lib/jquery-1.7.2.min.js" type="text/javascript"></script>
-
-    <!-- Demo page code -->
-
-    <style type="text/css">
-        #line-chart {
-            height:300px;
-            width:800px;
-            margin: 0px auto;
-            margin-top: 1em;
-        }
-        .brand { font-family: georgia, serif; }
-        .brand .first {
-            color: #ccc;
-            font-style: italic;
-        }
-        .brand .second {
-            color: #fff;
-            font-weight: bold;
-        }
-    </style>
-
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+    <title>后台登录 - MetInfo企业网站管理系统</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="zh-cn"/>
+    <meta name="author" content="www.metinfo.cn"/>
+    <meta name="copyright" content="www.metinfo.cn"/>
+    <meta content="MetInfo企业网站管理系统后台登录"/>
+    <link rel="stylesheet" type="text/css" href="/css/topweb.css">
+    <script type="text/javascript" src="../../public/js/metinfo-min.js"></script>
 </head>
-
-<!--[if lt IE 7 ]> <body class="ie ie6"> <![endif]-->
-<!--[if IE 7 ]> <body class="ie ie7 "> <![endif]-->
-<!--[if IE 8 ]> <body class="ie ie8 "> <![endif]-->
-<!--[if IE 9 ]> <body class="ie ie9 "> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!-->
-<body class="">
-<!--<![endif]-->
-
-<div class="navbar">
-    <div class="navbar-inner">
-        <ul class="nav pull-right">
-
-        </ul>
-        <a class="brand" href="index.html"><span class="first">托普威</span> <span class="second">CMS</span></a>
-    </div>
-</div>
-
-<div class="row-fluid">
-    <div class="dialog">
-        <div class="block">
-            <p class="block-heading">管理员登录</p>
-            <div class="block-body">
-                <form:form modelAttribute="user" method="post" action="/result.html">
-                    <label>用户名</label>
-                    <form:input path="username" class="span12" />
-                    <label>密码</label>
-                    <form:password path="password" class="span12" />
-                    <input type="submit" class="btn btn-primary pull-right" value="登录" />
-                    <%--<a href="index.html" class="btn btn-primary pull-right">登录</a>--%>
-                    <label class="remember-me"><input type="checkbox"> Remember me</label>
-                    <div class="clearfix"></div>
-                </form:form>
-            </div>
-        </div>
-        <p class="pull-right" style=""><a href="#" target="blank">Theme by Portnine</a></p>
-        <p><a href="reset-password.html">Forgot your password?</a></p>
-    </div>
-</div>
-
-<script src="lib/bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript">
-    $("[rel=tooltip]").tooltip();
-    $(function() {
-        $('.demo-cancel-click').click(function(){return false;});
-    });
+    function check_main_login(){
+        var name = $("input[name='login_name']");
+        var pass = $("input[name='login_pass']");
+        if(name.val() == ''){
+            alert('用户名不能为空');
+            name.focus();
+            return false;
+        }
+        if(pass.val() == ''){
+            alert('密码不能为空');
+            pass.focus();
+            return false;
+        }
+    }
+    function pressCaptcha(obj){
+        obj.value = obj.value.toUpperCase();
+    }
+    function metfocus(intext){
+        intext.focus(function(){
+            $(this).addClass('metfocus');
+        });
+        intext.focusout(function(){
+            $(this).removeClass('metfocus');
+        });
+    }
 </script>
+<style>
+    html,body{  background:#fbfbfb;}
+</style>
+<body id="login">
+<div class="login-min">
+    <div class="login-left">
+        <div style=" border-right:1px solid #fff; padding:0px 0px 20px;">
 
+            <a href="http://www.metinfo.cn" style="font-size:0px;" target="_blank" title="MetInfo企业网站管理系统" class="img">
+
+                <img src="/images/login-logo.png" alt="MetInfo企业网站管理系统" title="MetInfo企业网站管理系统" />
+            </a>
+            <p>打造具有营销价值的企业网站</p>
+        </div>
+    </div>
+    <div class="login-right">
+        <h1 class="login-title">管理员登录</h1>
+        <div>
+            <%--<form method="post" action="login_check.php?langset=cn" name="main_login" onSubmit="return check_main_login()">--%>
+
+            <form:form modelAttribute="user" method="post" action="/result.html">
+                <%--<input type="hidden" name="action" value="login" />--%>
+                <p style="height:22px; margin-top:0px;">
+
+                </p>
+                <p>
+                    <label>用户名</label>
+                    <form:input path="username" class="text" />
+                </p>
+                <p>
+                    <label>密码</label>
+                    <form:password path="password" class="text" />
+                </p>
+                <p class="login-code">
+
+                </p>
+                <p class="login-submit">
+                    <input type="submit" name="Submit" value="登录" />
+                    <a href="../admin/getpassword.php">忘记密码?</a>
+                </p>
+            </form:form>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="footer" style="margin-top:80px; display:block!important;">Powered by <b><a href=http://www.metinfo.cn target=_blank>metinfo 5.3.17</a></b> &copy;2008-2017 &nbsp;<a href=http://www.metinfo.cn target=_blank>MetInfo Inc.</a></div>
+<!--[if IE 6]>
+<script src="../templates/met/images/js/IE6-png.js" type="text/javascript"></script>
+<script type="text/javascript">DD_belatedPNG.fix('.bg,img');</script>
+<![endif]-->
 </body>
 </html>
+
