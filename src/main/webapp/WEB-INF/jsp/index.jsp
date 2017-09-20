@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>MetInfo企业网站管理系统</title>
+    <title托普威CMS</title>
     <meta name="renderer" content="webkit">
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -13,7 +13,7 @@
     <meta content="telephone=no" name="format-detection" />
     <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="/css/box.css" />
-    <link rel="stylesheet" href="/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/css/font-awesome/font-awesome.min.css" />
     <script>
         var langtxt = {
                     "checkupdatetips":"对不起！您的权限不够，无法操作在线升级。",
@@ -53,7 +53,7 @@
             </dd>
         </dl>
 
-        <dl class="jslist">
+        <%--<dl class="jslist">
             <dt><i class="fa fa-money"></i>营销<i class="fa fa-angle-right"></i></dt>
             <dd>
                 <a href="/admin/app/stat/index.php?anyid=34&lang=cn"  title="访问统计"  id="metinfo_metnav_34"><i class="fa fa-line-chart"></i>访问统计</a>
@@ -65,15 +65,15 @@
                 <a href="/admin/seo/link/index.php?anyid=39&lang=cn"  title="友情链接"  id="metinfo_metnav_39"><i class="fa fa-link"></i>友情链接</a>
 
             </dd>
-        </dl>
+        </dl>--%>
 
-        <dl class="jslist">
+        <%--<dl class="jslist">
             <dt><i class="fa fa-tachometer"></i>外观<i class="fa fa-angle-right"></i></dt>
             <dd>
                 <a href="/admin/index.php?n=theme&c=theme&a=doindex&anyid=18&lang=cn"  title="电脑" target="_blank" id="metinfo_metnav_18"><i class="fa fa-desktop"></i>电脑</a>
                 <a href="/admin/index.php?n=theme&c=theme&a=doindex&mobile=1&anyid=70&lang=cn"  title="手机" target="_blank" id="metinfo_metnav_70"><i class="fa fa-mobile"></i>手机</a>
             </dd>
-        </dl>
+        </dl>--%>
 
         <%--<dl >
             <dt>应用</dt>
@@ -106,17 +106,11 @@
         <dl class="jslist">
             <dt><i class="fa fa-sliders"></i>设置<i class="fa fa-angle-right"></i></dt>
             <dd>
-
                 <a href="/setting/baseWebInfo.html"  title="基本信息"  id="metinfo_metnav_57"><i class="fa fa-newspaper-o"></i>基本信息</a>
-
-                <a href="/admin/app/wap/wap.php?anyid=77&lang=cn"  title="手机版"  id="metinfo_metnav_77"><i class="fa fa-mobile"></i>手机版</a>
-
+                <%--<a href="/admin/app/wap/wap.php?anyid=77&lang=cn"  title="手机版"  id="metinfo_metnav_77"><i class="fa fa-mobile"></i>手机版</a>--%>
                 <a href="/admin/column/index.php?anyid=25&lang=cn"  title="栏目"  id="metinfo_metnav_25"><i class="fa fa-sitemap"></i>栏目</a>
-
-                <a href="/admin/system/lang/lang.php?anyid=10&lang=cn"  title="语言"  id="metinfo_metnav_10"><i class="fa fa-language"></i>语言</a>
-
-                <a href="/admin/system/img.php?anyid=11&lang=cn"  title="缩略图/水印"  id="metinfo_metnav_11"><i class="fa fa-picture-o"></i>缩略图/水印</a>
-
+                <%--<a href="/admin/system/lang/lang.php?anyid=10&lang=cn"  title="语言"  id="metinfo_metnav_10"><i class="fa fa-language"></i>语言</a>--%>
+                <%--<a href="/admin/system/img.php?anyid=11&lang=cn"  title="缩略图/水印"  id="metinfo_metnav_11"><i class="fa fa-picture-o"></i>缩略图/水印</a>--%>
             </dd>
         </dl>
 
@@ -124,7 +118,7 @@
     <%--嵌入iframe--%>
     <div class="metcms_cont_right">
         <div class="metcms_cont_right_box">
-            <iframe src="/admin/index.php?lang=cn&anyid=&n=index&c=index&a=dohome" frameborder="0"></iframe>
+            <iframe src="" frameborder="0"></iframe>
         </div>
     </div>
     <div class="clear"></div>

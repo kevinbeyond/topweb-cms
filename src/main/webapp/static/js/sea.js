@@ -20,8 +20,14 @@ function HrefUrl(){
 /*MetInfo*/
 
 var editorname;
-var lang = getQueryString('lang'),ret = HrefUrl(),siteurl = ret['url'],basepath = siteurl+ret['admin']+'/',pubjspath = siteurl + 'app/system/include/public/',table;
-var metn = getQueryString('n'),metc = getQueryString('c'),meta = getQueryString('a');
+var lang = getQueryString('lang'),
+	ret = HrefUrl(),
+	siteurl = ret['url'] + 'js/',
+	basepath = siteurl+ret['admin']+'/',
+	pubjspath = siteurl + 'app/system/include/public/',table;
+var metn = getQueryString('n'),
+	metc = getQueryString('c'),
+	meta = getQueryString('a');
 seajs.config({
   paths: {
     'pub': pubjspath.substring(0,pubjspath.length-1),
