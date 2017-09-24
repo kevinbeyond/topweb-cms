@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" href="http://localhost:88/metinfo/app/system/include/public/bootstrap/css/bootstrap.min.css?53185" />
+    <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css?53185" />
     <link rel="stylesheet" type="text/css" href="/css/images/metinfo.css" />
     <link rel="stylesheet" type="text/css" href="/css/newstyle.css" />
     <link rel="stylesheet" type="text/css" href="/css/font-awesome/font-awesome.min.css" />
@@ -29,9 +29,9 @@
         window.onerror = killErrors;
     </SCRIPT>
     <![endif]-->
-    <script src="http://localhost:88/metinfo/app/system/include/public/js/seajs.js"></script>
+    <script src="/js/app/system/include/public/js/seajs.js"></script>
     <script>
-        var pub = 'http://localhost:88/metinfo/app/system/include/public/',siteurl='http://localhost:88/metinfo/',basepath='http://localhost:88/metinfo/admin/',apppath='http://app.metinfo.cn/index.php?lang=cn&',editorname='ueditor';
+        var pub = '/js/app/system/include/public/',siteurl='http://localhost:88/metinfo/',basepath='http://localhost:88/metinfo/admin/',apppath='http://app.metinfo.cn/index.php?lang=cn&',editorname='ueditor';
         seajs.config({
             paths: {
                 'epl': 'examples',
