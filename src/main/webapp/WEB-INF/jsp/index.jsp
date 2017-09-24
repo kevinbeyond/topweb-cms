@@ -53,19 +53,15 @@
             </dd>
         </dl>
 
-        <%--<dl class="jslist">
+        <dl class="jslist">
             <dt><i class="fa fa-money"></i>营销<i class="fa fa-angle-right"></i></dt>
             <dd>
-                <a href="/admin/app/stat/index.php?anyid=34&lang=cn"  title="访问统计"  id="metinfo_metnav_34"><i class="fa fa-line-chart"></i>访问统计</a>
-
+                <%--<a href="/admin/app/stat/index.php?anyid=34&lang=cn"  title="访问统计"  id="metinfo_metnav_34"><i class="fa fa-line-chart"></i>访问统计</a>
                 <a href="/admin/interface/online/index.php?anyid=71&lang=cn"  title="客服"  id="metinfo_metnav_71"><i class="fa fa-comments-o"></i>客服</a>
-
-                <a href="/admin/index.php?n=seo&c=seo&a=doindex&anyid=37&lang=cn"  title="SEO"  id="metinfo_metnav_37"><i class="fa fa-check"></i>SEO</a>
-
-                <a href="/admin/seo/link/index.php?anyid=39&lang=cn"  title="友情链接"  id="metinfo_metnav_39"><i class="fa fa-link"></i>友情链接</a>
-
+                <a href="/admin/index.php?n=seo&c=seo&a=doindex&anyid=37&lang=cn"  title="SEO"  id="metinfo_metnav_37"><i class="fa fa-check"></i>SEO</a>--%>
+                <a href="/market/friendshiplink.html"  title="友情链接"  id="metinfo_metnav_39"><i class="fa fa-link"></i>友情链接</a>
             </dd>
-        </dl>--%>
+        </dl>
 
         <%--<dl class="jslist">
             <dt><i class="fa fa-tachometer"></i>外观<i class="fa fa-angle-right"></i></dt>

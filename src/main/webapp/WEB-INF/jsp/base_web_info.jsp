@@ -5,7 +5,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>MetInfo企业网站管理系统</title>
+    <title>托普威CMS</title>
     <meta name="renderer" content="webkit">
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -13,9 +13,9 @@
     <meta content="yes" name="apple-mobile-web-app-capable" />
     <meta content="black" name="apple-mobile-web-app-status-bar-style" />
     <meta content="telephone=no" name="format-detection" />
-    <link href="http://localhost:88/metinfo/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <%--<link href="http://localhost:88/metinfo/favicon.ico" rel="shortcut icon" type="image/x-icon" />--%>
     <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/metinfo.css" />
+    <link rel="stylesheet" href="/css/setting/metinfo.css" />
     <link rel="stylesheet" href="/css/font-awesome/font-awesome.min.css" />
     <script>
         var langtxt = {
@@ -46,27 +46,14 @@
                 editorname="ueditor"
                 ;
     </script>
-    <!--[if IE]><script src="http://localhost:88/metinfo/public/js/html5.js" type="text/javascript"></script><![endif]-->
+    <!--[if IE]><script src="/js/html5.js" type="text/javascript"></script><![endif]-->
 </head>
 <body>
 <div id="metcmsbox">
-
-    <script>
-        function valid(){
-            if(1){
-                location.href = 'http://localhost:88/metinfo/admin/system/lang/lang.php?anyid=10&langaction=add&lang=cn&cs=1';
-            }else{
-                alert("您没有此操作权限请联系管理员");
-            }
-        }
-
-    </script>
-
     <div class="metcms_top_right">
         <div class="metcms_top_right_box">
             <div class="metcms_top_right_box_div clearfix">
                 <ol class="breadcrumb position hidden-xs">
-                    <li>简体中文</li>
                     <li>设置</li>
                     <li><a href="/setting/baseWebInfo.html">基本信息</a></li>
                 </ol>
@@ -80,46 +67,38 @@
                         <li class="met-tool-list"><a target="_top" href="http://localhost:88/metinfo/admin/login/login_out.php">退出</a></li>
                     </ul>
                 </div>
-                <div class="btn-group pull-right met-tool met-msecount-tool">
+                <%--<div class="btn-group pull-right met-tool met-msecount-tool">
                     <button class="btn btn-default text-center dropdown-toggle msecount" type="button" onclick="location.href = 'http://localhost:88/metinfo/admin/index.php?n=system&c=news&a=doindex&lang=cn';">
                         <i class="fa fa-bell-o"></i>
                         <span class="label label-danger">0</span>
                     </button>
-                </div>
-                <div class="btn-group pull-right met-tool">
+                </div>--%>
+                <%--<div class="btn-group pull-right met-tool">
                     <button class="btn btn-default dropdown-toggle" type="button" id="langlistbox" data-toggle="dropdown" aria-expanded="true">
                         <i class="fa fa-globe"></i><span class="hidden-xs">简体中文</span>
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="langlistbox">
-
                         <li class="met-tool-list"><a href="http://localhost:88/metinfo/admin/index.php?n=webset&c=webset&a=doindex&anyid=57&lang=cn">简体中文</a></li>
-
                         <li class="met-tool-list"><a href="http://localhost:88/metinfo/admin/index.php?n=webset&c=webset&a=doindex&anyid=57&lang=en">English</a></li>
-
                         <li class="met-tool-list"><a href="http://localhost:88/metinfo/admin/index.php?n=webset&c=webset&a=doindex&anyid=57&lang=tc">繁体中文</a></li>
-
-
                         <li class="met-tool-list">
                             <button class="btn btn-success" type="submit" onclick="valid()"><i class="fa fa-plus"></i>新增网站语言</button>
                         </li>
                     </ul>
-                </div>
-                <div class="btn-group pull-right met-tool" >
+                </div>--%>
+                <%--<div class="btn-group pull-right met-tool" >
                     <button class="btn btn-default dropdown-toggle" type="button" id="shouquan" data-toggle="dropdown" aria-expanded="true">
                         <i class="fa fa-bookmark"></i><span class="hidden-xs">商业授权</span>
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="shouquan">
-
                         <li class="met-tool-list text-center"><a target="_blank" class="liaojie" href="http://www.metinfo.cn/web/product.htm">了解商业授权</a></li>
                         <li class="met-tool-list text-center">
                             <button class="btn btn-primary" type="submit" onclick="location.href = 'http://localhost:88/metinfo/admin/index.php?lang=cn&&n=system&c=authcode&a=doindex';">录入商业授权</button>
                         </li>
-
-
                     </ul>
-                </div>
+                </div>--%>
 
                 <div class="btn-group pull-right met-tool supportbox" >
                     <!--<a href="http://www.metinfo.cn/bangzhu/index.php?ver=metcms" class="btn btn-success dropdown-toggle" target="_blank">技术支持<a>
@@ -149,100 +128,6 @@
             </div>
         </div>
     </div>
-    <div class="navbar-collapse collapse metinfo_nav" role="navigation" aria-expanded="false">
-        <ul class="nav navbar-nav visible-xs-block">
-
-            <li class="dropdown">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">内容<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-
-                    <li><a href="http://localhost:88/metinfo/admin/index.php?n=content&c=content&a=doadd&anyid=68&lang=cn"  title="发布"><i class="fa fa-plus"></i>发布</a></li>
-
-                    <li><a href="http://localhost:88/metinfo/admin/content/content.php?anyid=29&lang=cn"  title="管理"><i class="fa fa-th-large"></i>管理</a></li>
-
-                </ul>
-            </li>
-
-            <li class="dropdown">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-money"></i>营销<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-
-                    <li><a href="http://localhost:88/metinfo/admin/app/stat/index.php?anyid=34&lang=cn"  title="访问统计"><i class="fa fa-line-chart"></i>访问统计</a></li>
-
-                    <li><a href="http://localhost:88/metinfo/admin/interface/online/index.php?anyid=71&lang=cn"  title="客服"><i class="fa fa-comments-o"></i>客服</a></li>
-
-                    <li><a href="http://localhost:88/metinfo/admin/index.php?n=seo&c=seo&a=doindex&anyid=37&lang=cn"  title="SEO"><i class="fa fa-check"></i>SEO</a></li>
-
-                    <li><a href="http://localhost:88/metinfo/admin/seo/link/index.php?anyid=39&lang=cn"  title="友情链接"><i class="fa fa-link"></i>友情链接</a></li>
-
-                </ul>
-            </li>
-
-            <li class="dropdown">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-tachometer"></i>外观<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-
-                    <li><a href="http://localhost:88/metinfo/admin/index.php?n=theme&c=theme&a=doindex&anyid=18&lang=cn"  title="电脑"><i class="fa fa-desktop"></i>电脑</a></li>
-
-                    <li><a href="http://localhost:88/metinfo/admin/index.php?n=theme&c=theme&a=doindex&mobile=1&anyid=70&lang=cn"  title="手机"><i class="fa fa-mobile"></i>手机</a></li>
-
-                </ul>
-            </li>
-
-            <li class="dropdown">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">应用<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-
-                    <li><a href="http://localhost:88/metinfo/admin/index.php?n=myapp&c=myapp&&a=doindex&anyid=44&lang=cn"  title="我的应用"><i class="fa fa-paper-plane"></i>我的应用</a></li>
-
-                    <li><a href="http://localhost:88/metinfo/admin/index.php?n=appstore&c=appstore&a=doindex&anyid=65&lang=cn"  title="应用商店"><i class="fa fa-cube"></i>应用商店</a></li>
-
-                </ul>
-            </li>
-
-            <li class="dropdown">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>用户<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-
-                    <li><a href="http://localhost:88/metinfo/admin/index.php?n=user&c=admin_user&a=doindex&anyid=73&lang=cn"  title="会员"><i class="fa fa-users"></i>会员</a></li>
-
-                    <li><a href="http://localhost:88/metinfo/admin/admin/index.php?anyid=47&lang=cn"  title="管理员"><i class="fa fa-users"></i>管理员</a></li>
-
-                </ul>
-            </li>
-
-            <li class="dropdown">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-shield"></i>安全<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-
-                    <li><a href="http://localhost:88/metinfo/admin/system/safe.php?anyid=12&lang=cn"  title="安全与效率"><i class="fa fa-shield"></i>安全与效率</a></li>
-
-                    <li><a href="http://localhost:88/metinfo/admin/system/database/index.php?anyid=13&lang=cn"  title="备份与恢复"><i class="fa fa-database"></i>备份与恢复</a></li>
-
-                </ul>
-            </li>
-
-            <li class="dropdown">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-sliders"></i>设置<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-
-                    <li><a href="http://localhost:88/metinfo/admin/index.php?n=webset&c=webset&a=doindex&anyid=57&lang=cn"  title="基本信息"><i class="fa fa-newspaper-o"></i>基本信息</a></li>
-
-                    <li><a href="http://localhost:88/metinfo/admin/app/wap/wap.php?anyid=77&lang=cn"  title="手机版"><i class="fa fa-mobile"></i>手机版</a></li>
-
-                    <li><a href="http://localhost:88/metinfo/admin/column/index.php?anyid=25&lang=cn"  title="栏目"><i class="fa fa-sitemap"></i>栏目</a></li>
-
-                    <li><a href="http://localhost:88/metinfo/admin/system/lang/lang.php?anyid=10&lang=cn"  title="语言"><i class="fa fa-language"></i>语言</a></li>
-
-                    <li><a href="http://localhost:88/metinfo/admin/system/img.php?anyid=11&lang=cn"  title="缩略图/水印"><i class="fa fa-picture-o"></i>缩略图/水印</a></li>
-
-                    <li><a href="http://localhost:88/metinfo/admin/index.php?n=about&c=about&a=doindex&anyid=75&lang=cn"  title="检测更新"><i class="fa fa-info-circle"></i>检测更新</a></li>
-
-                </ul>
-            </li>
-
-        </ul>
-    </div>
 
     <div class="metappcontentbox">
         <div class="metinfotop">
@@ -258,7 +143,6 @@
         </div>
         <div class="clear"></div>
 
-        <%--action="/setting/submitBaseSetting.html"--%>
         <form method="POST" class="ui-from" id="myform" name="myform"  target="_self">
             <div class="v52fmbx" data-gent="" data-webset-record="">
                 <h3 class="v52fmbx_hr">网站基本信息设置</h3>
@@ -295,7 +179,7 @@
                     </dd>
                 </dl>
 
-                <dl>
+                <%--<dl>
                     <dt>网站网址</dt>
                     <dd class="ftype_input">
                         <div class="fbox">
@@ -303,7 +187,7 @@
                         </div>
                         <span class="tips">建议填写检测到的网址：http://localhost:88/metinfo/</span>
                     </dd>
-                </dl>
+                </dl>--%>
 
                 <dl>
                     <dt>网站关键词</dt>
