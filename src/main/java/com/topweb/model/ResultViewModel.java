@@ -9,6 +9,8 @@ public class ResultViewModel {
 
     private String message;
 
+    private Object object;
+
     public int getCode() {
         return code;
     }
@@ -25,11 +27,20 @@ public class ResultViewModel {
         this.message = message;
     }
 
+    public Object getObject() {
+        return object;
+    }
+
+    public void setObject(Object object) {
+        this.object = object;
+    }
+
     @Override
     public String toString() {
         return "ResultViewModel{" +
                 "code=" + code +
                 ", message='" + message + '\'' +
+                ", object=" + object +
                 '}';
     }
 }

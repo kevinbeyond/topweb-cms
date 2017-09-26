@@ -31,7 +31,7 @@ var metn = getQueryString('n'),
 seajs.config({
   paths: {
     'pub': pubjspath.substring(0,pubjspath.length-1),
-    'epl': 'examples',
+    'epl': '/js/examples',
 	'own': siteurl+'app/app/'+getQueryString('n'),
 	'tem': tem.substring(0,tem.length-1),
 	'edturl': siteurl+'app/app/'+editorname

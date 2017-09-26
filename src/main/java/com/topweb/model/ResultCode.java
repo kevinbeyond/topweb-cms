@@ -24,4 +24,24 @@ public interface ResultCode {
      * 错误返回信息
      */
     String ERROR_MSG = "FAIL";
+
+    /**
+     * 图片上传成功
+     */
+    Integer UPLOAD_SUCCESS = 10;
+
+    /**
+     * 图片上传成功返回信息
+     */
+    String UPLOAD_SUCCESS_MSG = "UPLOAD SUCCESS";
+
+    /**
+     * 上传失败错误码
+     */
+    Integer UPLOAD_FAIL = 20;
+
+    /**
+     * 上传失败返回信息
+     */
+    String UPLOAD_FAIL_MSG = "UPLOAD FAIL";
 }

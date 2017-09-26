@@ -7,7 +7,8 @@ define(function(require, exports, module) {
 			var uploader = WebUploader.create({
 				auto: true,
 				swf: siteurl + 'app/system/include/public/js/examples/upload/Uploader.swf',
-				server: basepath + 'index.php?c=uploadify&m=include&a=doupimg&lang='+lang,
+				//server: basepath + 'index.php?c=uploadify&m=include&a=doupimg&lang='+lang,
+				server:'/setting/upload',
 				pick: '#filePicker',
 				compress:{
 					width: 2000,
@@ -209,8 +210,10 @@ define(function(require, exports, module) {
 					var srcs = src.split('|'),isrc='';
 					for(var i=0;i<srcs.length;i++){
 						if(srcs[i]!=''){
-							isrc = srcs[i].split('../');
-							isrc = siteurl + isrc[1];
+							//isrc = srcs[i].split('../');
+							isrc = srcs[i];
+							// isrc = siteurl + isrc[1];
+							// isrc = isrc[1];
 							imgadd(dom,isrc,srcs[i]);
 							isrc = '';
 						}
@@ -220,7 +223,8 @@ define(function(require, exports, module) {
 					var uploaders = WebUploader.create({
 						auto: true,
 						swf: siteurl + 'app/system/include/public/js/examples/upload/Uploader.swf',
-						server: basepath + 'index.php?c=uploadify&m=include&a='+doaction+'&lang='+lang + '&data_key=' +data_key,
+						// server: basepath + 'index.php?c=uploadify&m=include&a='+doaction+'&lang='+lang + '&data_key=' +data_key,
+						server:'/setting/upload',
 						pick: {
 						id:'#filePicker_'+name,
 						multiple :false
@@ -238,14 +242,15 @@ define(function(require, exports, module) {
 					});
 					//文件上传成功时
 					uploaders.on( 'uploadSuccess', function( file, response ) {
-						if(response.error!='0'){
-							alert(response.errorcode);
+						if(response.code!=10){//上传失败
+							alert(response.message);
 						}else{
 							if(!dom.data('upload-many')){
 								if(dom.next().find('li.sort').length)dom.next().find('li.sort').remove();
 							}
-							var path = siteurl + response.path;
-							imgadd(dom,path,response.original);
+							//var path = siteurl + response.path;
+							var path =  response.object.filepath;
+							imgadd(dom, path , path);
 							imgvalue(dom);
 						}
 					});
