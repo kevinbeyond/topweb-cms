@@ -51,6 +51,7 @@ public class SettingController {
      * @return
      */
     @RequestMapping(value = "submitBaseSetting.html", method = RequestMethod.POST)
+    @ResponseBody
     public ResultViewModel submitBaseWebInfoSetting(@RequestBody List<CMSConfig> configList){
         ResultViewModel result = new ResultViewModel();
 

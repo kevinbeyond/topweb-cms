@@ -291,10 +291,13 @@ function submitConfigInfos() {
         type: "POST",
         contentType : 'application/json;charset=utf-8', //设置请求头信息
         dataType:"json",
-        data: JSON.stringify(jsonArray),    //将Json对象序列化成Json字符串，JSON.stringify()原生态方法
-//        data: $.toJSON(customerArray),            //将Json对象序列化成Json字符串，toJSON()需要引用jquery.json.min.js
+        data: JSON.stringify(jsonArray), //将Json对象序列化成Json字符串，JSON.stringify()原生态方法
+//        data: $.toJSON(customerArray), //将Json对象序列化成Json字符串，toJSON()需要引用jquery.json.min.js
         success: function(data){
-            alert(data);
+            if (data.code==0) {
+                alert('操作成功');//提示操作成功
+            }
+
         },
         error: function(res){
             alert(res.responseText);
