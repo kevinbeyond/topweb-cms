@@ -168,7 +168,7 @@
                                                 <div class="none columnmorediv">
                                                     <div><a href="add.php?anyid=25&amp;lang=cn&amp;id=1&amp;type=2&amp;action=add" onclick="return addcolumn($(this),'1',2);">添加子栏目</a></div>
 
-                                                    <div><a href="delete.php?anyid=25&amp;lang=cn&amp;module=1&amp;id=1" onclick="return linkSmit($(this),1);">删除</a></div>
+                                                    <div><a class="perColumnDel" data-id="${column.id}">删除</a></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -501,5 +501,5 @@ $(document).ready(function() {
     });
 </script>
 </body>
-<script src="/js/topweb/column.js"></script>
+<script src="/js/topweb/column.js?v0.11"></script>
 </html>

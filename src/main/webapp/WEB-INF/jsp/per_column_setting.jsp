@@ -375,5 +375,5 @@
 </form>
 <div class="footer">Powered by <b><a href="#" target=_blank>TopWeb CMS</a></b> &copy;2008-2017 &nbsp;<a href="#" target=_blank>TopWeb CMS</a></div>
 </body>
-<script src="/js/topweb/column.js?v0.4"></script>
+<script src="/js/topweb/column.js?v0.11"></script>
 </html>

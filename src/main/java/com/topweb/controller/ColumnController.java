@@ -152,6 +152,28 @@ public class ColumnController {
         return result;
     }
 
+    /**
+     * 删除单个栏目
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/delPerColumn", method = RequestMethod.POST)
+    @ResponseBody
+    public ResultViewModel delPerColumn(@RequestBody Integer id) {
+        ResultViewModel result = new ResultViewModel();
+
+        try{
+            columnMapper.deleteByPrimaryKey(id);
+            result.setCode(ResultCode.SUCCESS);
+            result.setMessage(ResultCode.SUCCESS_MSG);
+        } catch (Exception e) {
+            result.setCode(ResultCode.ERROR);
+            result.setMessage(ResultCode.ERROR_MSG);
+            throw e;
+        }
+        return result;
+    }
+
 
     /**
      * 栏目添加或更新

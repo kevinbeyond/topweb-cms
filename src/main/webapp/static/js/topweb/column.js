@@ -48,7 +48,7 @@ $(function () {
             error: function(res){
                 alert(res.responseText);
             }
-        })
+        });
     });
 
     //点击删除按钮
@@ -81,9 +81,10 @@ $(function () {
             error: function(res){
                 alert(res.responseText);
             }
-        })
+        });
     });
-
+    
+    //单个栏目设置
     $('#perColumnSubmit').on('click', function () {
         var _column = $("#perColumnForm").serializeJson();
         $.ajax({
@@ -101,6 +102,31 @@ $(function () {
             error: function(res){
                 alert(res.responseText);
             }
-        })
-    })
+        });
+    });
+    
+    //单个栏目删除
+    $('.perColumnDel').each(function () {
+        $(this).on('click', function () {
+            var _id = $(this).data('id');
+
+            $.ajax({
+                url: "/setting/delPerColumn/",
+                type: "POST",
+                contentType : 'application/json;charset=utf-8', //设置请求头信息
+                dataType:"json",
+                data: JSON.stringify(_id), //将Json对象序列化成Json字符串，JSON.stringify()原生态方法
+                success: function(data){
+                    if (data.code==0) {
+                        alert('操作成功');//提示操作成功
+                        document.location.reload();//当前页面
+                    }
+                },
+                error: function(res){
+                    alert(res.responseText);
+                }
+            });
+        });
+    });
+    
 })
