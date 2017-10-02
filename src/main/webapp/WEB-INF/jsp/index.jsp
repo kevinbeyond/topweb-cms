@@ -108,7 +108,7 @@
             <dd>
                 <a href="/setting/baseWebInfo.html"  title="基本信息"  id="metinfo_metnav_57"><i class="fa fa-newspaper-o"></i>基本信息</a>
                 <%--<a href="/admin/app/wap/wap.php?anyid=77&lang=cn"  title="手机版"  id="metinfo_metnav_77"><i class="fa fa-mobile"></i>手机版</a>--%>
-                <a href="/columns.html"  title="栏目"  id="metinfo_metnav_25"><i class="fa fa-sitemap"></i>栏目</a>
+                <a href="/setting/columns.html"  title="栏目"  id="metinfo_metnav_25"><i class="fa fa-sitemap"></i>栏目</a>
                 <%--<a href="/admin/system/lang/lang.php?anyid=10&lang=cn"  title="语言"  id="metinfo_metnav_10"><i class="fa fa-language"></i>语言</a>--%>
                 <%--<a href="/admin/system/img.php?anyid=11&lang=cn"  title="缩略图/水印"  id="metinfo_metnav_11"><i class="fa fa-picture-o"></i>缩略图/水印</a>--%>
             </dd>

@@ -1338,6 +1338,7 @@ function addcolumn(my, id, tp) {
 		url: url,
 		type: "POST",
 		data: 'lp=' + lp,
+		scriptCharset: 'utf-8',
 		success: function(data) {
 			if (comnn && comnn.length > 0) {
 				var cnum = comnn.length - 1;
