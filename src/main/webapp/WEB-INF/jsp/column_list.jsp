@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="/css/app/system/include/public/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/css/admin/templates/met/images/css/metinfo.css" />
-    <link rel="stylesheet" type="text/css" href="/css/admin/templates/met/images/css/newstyle.css?53185" />
+    <link rel="stylesheet" type="text/css" href="/css/admin/templates/met/images/css/newstyle.css" />
     <link rel="stylesheet" href="/css/app/system/include/public/font-awesome/css/font-awesome.min.css" />
     <script type="text/javascript">
         var basepath='/images?53185',
@@ -85,7 +85,7 @@
     }
 </script>
     <div class="metinfotop">
-        <div class="position">简体中文 > 设置 > <a href="columns.html">栏目</a></div>
+        <div class="position">简体中文 > 设置 > <a href="/setting/columns.html">栏目</a></div>
     </div>
     <div class="clear"></div>
 
@@ -128,9 +128,10 @@
                                     <td class="list-text">
                                         <input type="text" class="text no_order" value="${column.noOrder}" name="noOrder">
                                         <div style="display:none;">
-                                            <input type="hidden" value="${column.bigclass}" name="bigclass">
-                                            <input type="hidden" value="${column.classtype}" name="classtype">
-                                            <input type="hidden" value="${column.module}" name="module">
+                                            <input type="hidden" value="${column.bigclass}" name="bigclass" />
+                                            <input type="hidden" value="${column.classtype}" name="classtype" />
+                                            <input type="hidden" value="${column.module}" name="module" />
+                                            <input type="hidden" value="${column.display}" name="display" />
                                             <%--<input type="hidden" value="about" name="foldername_1">
                                             <input type="hidden" value="1" name="module_1">
                                             <input type="hidden" value="1" name="classtype_1">
@@ -161,7 +162,7 @@
                                     </td>
                                     <td width="100" class="list-text">
                                         <div style=" position:relative; z-index:1;">
-                                            <a href="editor.php?anyid=25&amp;lang=cn&amp;id=1" style="float:left; margin-left:10px;">设置</a>
+                                            <a href="/setting/perColumnSetting.html?id=${column.id}" style="float:left; margin-left:10px;">设置</a>
                                             <div class="columnmore">
                                                 <span class="text">更多&nbsp;<img src="/images/metcolumn12.gif" style="position:relative; bottom:2px;"></span>
                                                 <div class="none columnmorediv">

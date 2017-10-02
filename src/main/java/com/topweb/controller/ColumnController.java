@@ -71,7 +71,7 @@ public class ColumnController {
                     .append("<input type=\"text\" class=\"text no_order\" value=\"0\" name=\"noOrder\">")//同级栏目排序
                     .append("<input type=\"hidden\" value=\"1\" name=\"classtype\">")//栏目级别
                     .append("<input type=\"hidden\" value=\"0\" name=\"bigclass\">")//上级栏目id
-                    //.append("<input type=\"hidden\" value=\"0\" name=\"access_new_0\">")
+                    .append("<input type=\"hidden\" value=\"0\" name=\"display\">")//是否在前台显示
                     .append("</td>")
                     .append("<td class=\"list-text\" style=\"text-align:left; \">")
                     .append("<div style=\"width:22px; height:10px; overflow:hidden; float:left;\"></div>")
@@ -115,6 +115,43 @@ public class ColumnController {
 
         return columnDiv.toString();
     }
+
+    /**
+     * 单个栏目设置
+     * @param columnId
+     * @return
+     */
+    @RequestMapping(value = "/perColumnSetting.html")
+    public ModelAndView perColumnSetting(@RequestParam(value = "id") int columnId) {
+        ModelAndView view = new ModelAndView("per_column_setting");
+
+        CMSColumn column = columnMapper.selectByPrimaryKey(columnId);
+        view.addObject("column", column);
+        return view;
+    }
+
+    /**
+     * 单个栏目更新
+     * @param column
+     * @return
+     */
+    @RequestMapping(value = "/updatePerColumn", method = RequestMethod.POST)
+    @ResponseBody
+    public ResultViewModel updatePerColumn(@RequestBody CMSColumn column) {
+        ResultViewModel result = new ResultViewModel();
+
+        try{
+            columnMapper.updateByPrimaryKey(column);
+            result.setCode(ResultCode.SUCCESS);
+            result.setMessage(ResultCode.SUCCESS_MSG);
+        } catch (Exception e) {
+            result.setCode(ResultCode.ERROR);
+            result.setMessage(ResultCode.ERROR_MSG);
+            throw e;
+        }
+        return result;
+    }
+
 
     /**
      * 栏目添加或更新
