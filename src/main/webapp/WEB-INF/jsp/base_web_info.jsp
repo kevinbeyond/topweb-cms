@@ -39,7 +39,7 @@
                 anyid="57",
                 own_form="http://localhost:88/metinfo/admin/index.php?lang=cn&anyid=57&n=webset&c=webset&",
                 own_name="http://localhost:88/metinfo/admin/index.php?lang=cn&anyid=57&n=webset&",
-                tem="/js/app/system/admin/templates/web/webset/",
+                tem="http://localhost:88/metinfo/app/system/admin/templates/web/webset/",
                 adminurl="http://localhost:88/metinfo/admin/index.php?lang=cn&",
                 apppath="http://app.metinfo.cn/index.php?lang=cn&",
                 jsrand="53185",
@@ -291,13 +291,10 @@ function submitConfigInfos() {
         type: "POST",
         contentType : 'application/json;charset=utf-8', //设置请求头信息
         dataType:"json",
-        data: JSON.stringify(jsonArray), //将Json对象序列化成Json字符串，JSON.stringify()原生态方法
-//        data: $.toJSON(customerArray), //将Json对象序列化成Json字符串，toJSON()需要引用jquery.json.min.js
+        data: JSON.stringify(jsonArray),    //将Json对象序列化成Json字符串，JSON.stringify()原生态方法
+//        data: $.toJSON(customerArray),            //将Json对象序列化成Json字符串，toJSON()需要引用jquery.json.min.js
         success: function(data){
-            if (data.code==0) {
-                alert('操作成功');//提示操作成功
-            }
-
+            alert(data);
         },
         error: function(res){
             alert(res.responseText);
