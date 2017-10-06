@@ -909,6 +909,11 @@ div.showimg {
 .login-right p {
 	margin:20px 0px;
 }
+.login-right .error-tip {
+	display: block;
+	color: red;
+	margin: 0 85px;
+}
 .login-right form label {
 	float:left;
 	width:76px;

@@ -1,9 +1,11 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.topweb.common.WebBaseConfig" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>MetInfo企业网站管理系统</title>
+    <title>托普威CMS</title>
     <meta name="renderer" content="webkit">
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -11,10 +13,10 @@
     <meta content="yes" name="apple-mobile-web-app-capable" />
     <meta content="black" name="apple-mobile-web-app-status-bar-style" />
     <meta content="telephone=no" name="format-detection" />
-    <link href="http://localhost:88/metinfo/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link rel="stylesheet" href="http://localhost:88/metinfo/app/system/include/public/bootstrap/css/bootstrap.min.css?53185" />
-    <link rel="stylesheet" href="http://localhost:88/metinfo/app/system/include/public/ui/admin/css/metinfo.css?53185" />
-    <link rel="stylesheet" href="http://localhost:88/metinfo/app/system/include/public/font-awesome/css/font-awesome.min.css?53185" />
+    <%--<link href="http://localhost:88/metinfo/favicon.ico" rel="shortcut icon" type="image/x-icon" />--%>
+    <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/setting/metinfo.css" />
+    <link rel="stylesheet" href="/css/font-awesome/font-awesome.min.css" />
     <script>
         var langtxt = {
                     "jsx15":"上传",
@@ -37,39 +39,23 @@
                 anyid="57",
                 own_form="http://localhost:88/metinfo/admin/index.php?lang=cn&anyid=57&n=webset&c=webset&",
                 own_name="http://localhost:88/metinfo/admin/index.php?lang=cn&anyid=57&n=webset&",
-                tem="http://localhost:88/metinfo/app/system/admin/templates/web/webset/",
+                tem="/js/app/system/admin/templates/web/webset/",
                 adminurl="http://localhost:88/metinfo/admin/index.php?lang=cn&",
                 apppath="http://app.metinfo.cn/index.php?lang=cn&",
                 jsrand="53185",
                 editorname="ueditor"
                 ;
     </script>
-    <!--[if IE]><script src="http://localhost:88/metinfo/public/js/html5.js" type="text/javascript"></script><![endif]-->
+    <!--[if IE]><script src="/js/html5.js" type="text/javascript"></script><![endif]-->
 </head>
 <body>
 <div id="metcmsbox">
-
-    <script>
-        function valid(){
-            if(1){
-                location.href = 'http://localhost:88/metinfo/admin/system/lang/lang.php?anyid=10&langaction=add&lang=cn&cs=1';
-            }else{
-                alert("您没有此操作权限请联系管理员");
-            }
-        }
-
-    </script>
-
     <div class="metcms_top_right">
         <div class="metcms_top_right_box">
             <div class="metcms_top_right_box_div clearfix">
-
                 <ol class="breadcrumb position hidden-xs">
-                    <li>简体中文</li>
-
                     <li>设置</li>
-
-                    <li><a href="http://localhost:88/metinfo/admin/index.php?n=webset&c=webset&a=doindex&anyid=57&lang=cn">基本信息</a></li>
+                    <li><a href="/setting/baseWebInfo.html">基本信息</a></li>
                 </ol>
                 <div class="btn-group pull-right met-tool">
                     <button class="btn btn-default dropdown-toggle" type="button" id="adminuser" data-toggle="dropdown" aria-expanded="true">
@@ -81,46 +67,38 @@
                         <li class="met-tool-list"><a target="_top" href="http://localhost:88/metinfo/admin/login/login_out.php">退出</a></li>
                     </ul>
                 </div>
-                <div class="btn-group pull-right met-tool met-msecount-tool">
+                <%--<div class="btn-group pull-right met-tool met-msecount-tool">
                     <button class="btn btn-default text-center dropdown-toggle msecount" type="button" onclick="location.href = 'http://localhost:88/metinfo/admin/index.php?n=system&c=news&a=doindex&lang=cn';">
                         <i class="fa fa-bell-o"></i>
                         <span class="label label-danger">0</span>
                     </button>
-                </div>
-                <div class="btn-group pull-right met-tool">
+                </div>--%>
+                <%--<div class="btn-group pull-right met-tool">
                     <button class="btn btn-default dropdown-toggle" type="button" id="langlistbox" data-toggle="dropdown" aria-expanded="true">
                         <i class="fa fa-globe"></i><span class="hidden-xs">简体中文</span>
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="langlistbox">
-
                         <li class="met-tool-list"><a href="http://localhost:88/metinfo/admin/index.php?n=webset&c=webset&a=doindex&anyid=57&lang=cn">简体中文</a></li>
-
                         <li class="met-tool-list"><a href="http://localhost:88/metinfo/admin/index.php?n=webset&c=webset&a=doindex&anyid=57&lang=en">English</a></li>
-
                         <li class="met-tool-list"><a href="http://localhost:88/metinfo/admin/index.php?n=webset&c=webset&a=doindex&anyid=57&lang=tc">繁体中文</a></li>
-
-
                         <li class="met-tool-list">
                             <button class="btn btn-success" type="submit" onclick="valid()"><i class="fa fa-plus"></i>新增网站语言</button>
                         </li>
                     </ul>
-                </div>
-                <div class="btn-group pull-right met-tool" >
+                </div>--%>
+                <%--<div class="btn-group pull-right met-tool" >
                     <button class="btn btn-default dropdown-toggle" type="button" id="shouquan" data-toggle="dropdown" aria-expanded="true">
                         <i class="fa fa-bookmark"></i><span class="hidden-xs">商业授权</span>
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="shouquan">
-
                         <li class="met-tool-list text-center"><a target="_blank" class="liaojie" href="http://www.metinfo.cn/web/product.htm">了解商业授权</a></li>
                         <li class="met-tool-list text-center">
                             <button class="btn btn-primary" type="submit" onclick="location.href = 'http://localhost:88/metinfo/admin/index.php?lang=cn&&n=system&c=authcode&a=doindex';">录入商业授权</button>
                         </li>
-
-
                     </ul>
-                </div>
+                </div>--%>
 
                 <div class="btn-group pull-right met-tool supportbox" >
                     <!--<a href="http://www.metinfo.cn/bangzhu/index.php?ver=metcms" class="btn btn-success dropdown-toggle" target="_blank">技术支持<a>
@@ -150,148 +128,49 @@
             </div>
         </div>
     </div>
-    <div class="navbar-collapse collapse metinfo_nav" role="navigation" aria-expanded="false">
-        <ul class="nav navbar-nav visible-xs-block">
-
-            <li class="dropdown">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">内容<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-
-                    <li><a href="http://localhost:88/metinfo/admin/index.php?n=content&c=content&a=doadd&anyid=68&lang=cn"  title="发布"><i class="fa fa-plus"></i>发布</a></li>
-
-                    <li><a href="http://localhost:88/metinfo/admin/content/content.php?anyid=29&lang=cn"  title="管理"><i class="fa fa-th-large"></i>管理</a></li>
-
-                </ul>
-            </li>
-
-            <li class="dropdown">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-money"></i>营销<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-
-                    <li><a href="http://localhost:88/metinfo/admin/app/stat/index.php?anyid=34&lang=cn"  title="访问统计"><i class="fa fa-line-chart"></i>访问统计</a></li>
-
-                    <li><a href="http://localhost:88/metinfo/admin/interface/online/index.php?anyid=71&lang=cn"  title="客服"><i class="fa fa-comments-o"></i>客服</a></li>
-
-                    <li><a href="http://localhost:88/metinfo/admin/index.php?n=seo&c=seo&a=doindex&anyid=37&lang=cn"  title="SEO"><i class="fa fa-check"></i>SEO</a></li>
-
-                    <li><a href="http://localhost:88/metinfo/admin/seo/link/index.php?anyid=39&lang=cn"  title="友情链接"><i class="fa fa-link"></i>友情链接</a></li>
-
-                </ul>
-            </li>
-
-            <li class="dropdown">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-tachometer"></i>外观<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-
-                    <li><a href="http://localhost:88/metinfo/admin/index.php?n=theme&c=theme&a=doindex&anyid=18&lang=cn"  title="电脑"><i class="fa fa-desktop"></i>电脑</a></li>
-
-                    <li><a href="http://localhost:88/metinfo/admin/index.php?n=theme&c=theme&a=doindex&mobile=1&anyid=70&lang=cn"  title="手机"><i class="fa fa-mobile"></i>手机</a></li>
-
-                </ul>
-            </li>
-
-            <li class="dropdown">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">应用<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-
-                    <li><a href="http://localhost:88/metinfo/admin/index.php?n=myapp&c=myapp&&a=doindex&anyid=44&lang=cn"  title="我的应用"><i class="fa fa-paper-plane"></i>我的应用</a></li>
-
-                    <li><a href="http://localhost:88/metinfo/admin/index.php?n=appstore&c=appstore&a=doindex&anyid=65&lang=cn"  title="应用商店"><i class="fa fa-cube"></i>应用商店</a></li>
-
-                </ul>
-            </li>
-
-            <li class="dropdown">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>用户<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-
-                    <li><a href="http://localhost:88/metinfo/admin/index.php?n=user&c=admin_user&a=doindex&anyid=73&lang=cn"  title="会员"><i class="fa fa-users"></i>会员</a></li>
-
-                    <li><a href="http://localhost:88/metinfo/admin/admin/index.php?anyid=47&lang=cn"  title="管理员"><i class="fa fa-users"></i>管理员</a></li>
-
-                </ul>
-            </li>
-
-            <li class="dropdown">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-shield"></i>安全<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-
-                    <li><a href="http://localhost:88/metinfo/admin/system/safe.php?anyid=12&lang=cn"  title="安全与效率"><i class="fa fa-shield"></i>安全与效率</a></li>
-
-                    <li><a href="http://localhost:88/metinfo/admin/system/database/index.php?anyid=13&lang=cn"  title="备份与恢复"><i class="fa fa-database"></i>备份与恢复</a></li>
-
-                </ul>
-            </li>
-
-            <li class="dropdown">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-sliders"></i>设置<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-
-                    <li><a href="http://localhost:88/metinfo/admin/index.php?n=webset&c=webset&a=doindex&anyid=57&lang=cn"  title="基本信息"><i class="fa fa-newspaper-o"></i>基本信息</a></li>
-
-                    <li><a href="http://localhost:88/metinfo/admin/app/wap/wap.php?anyid=77&lang=cn"  title="手机版"><i class="fa fa-mobile"></i>手机版</a></li>
-
-                    <li><a href="http://localhost:88/metinfo/admin/column/index.php?anyid=25&lang=cn"  title="栏目"><i class="fa fa-sitemap"></i>栏目</a></li>
-
-                    <li><a href="http://localhost:88/metinfo/admin/system/lang/lang.php?anyid=10&lang=cn"  title="语言"><i class="fa fa-language"></i>语言</a></li>
-
-                    <li><a href="http://localhost:88/metinfo/admin/system/img.php?anyid=11&lang=cn"  title="缩略图/水印"><i class="fa fa-picture-o"></i>缩略图/水印</a></li>
-
-                    <li><a href="http://localhost:88/metinfo/admin/index.php?n=about&c=about&a=doindex&anyid=75&lang=cn"  title="检测更新"><i class="fa fa-info-circle"></i>检测更新</a></li>
-
-                </ul>
-            </li>
-
-        </ul>
-    </div>
 
     <div class="metappcontentbox">
-
         <div class="metinfotop">
-
             > 网站信息
-
-
         </div>
         <div class="clear"></div>
 
         <div class="stat_list">
-
             <%--<a class='now' title="网站信息" href="http://localhost:88/metinfo/admin/index.php?lang=cn&anyid=57&n=webset&c=webset&&a=doindex">网站信息</a>--%>
-
             <a class='now' title="网站信息" href="/setting/baseWebInfo.html">网站信息</a>
             <%--<a  title="邮件发送设置" href="http://localhost:88/metinfo/admin/index.php?lang=cn&anyid=57&n=webset&c=webset&&a=doemailset">邮件发送设置</a>--%>
-
             <a title="第三方代码" href="/setting/base3rdInfo.html">第三方代码</a>
-
         </div>
         <div class="clear"></div>
 
-        <form method="POST" class="ui-from" name="myform" action="//localhost:88/metinfo/admin/index.php?lang=cn&anyid=57&n=webset&c=webset&a=doseteditor" target="_self">
+        <form method="POST" class="ui-from" id="myform" name="myform"  target="_self">
             <div class="v52fmbx" data-gent="" data-webset-record="">
                 <h3 class="v52fmbx_hr">网站基本信息设置</h3>
+
                 <dl>
                     <dt>网站名称</dt>
                     <dd class="ftype_input">
                         <div class="fbox">
-                            <input name="met_webname" type="text" value="test" />
+                            <input name="<%=WebBaseConfig.webName%>" type="text" value="${topweb_webname}" />
                         </div>
                     </dd>
                 </dl>
+
                 <dl>
                     <dt>网站LOGO</dt>
                     <dd class="ftype_upload">
                         <div class="fbox">
-                            <input name="met_logo" type="text" data-upload-type="doupimg" class="text" value="../upload/201207/1342516529.png">
+                            <input name="<%=WebBaseConfig.logo%>" type="text" data-upload-type="doupimg" class="text" value="${topweb_logo}">
                         </div>
                         <span class="tips">建议尺寸 180 * 60 (像素)</span>
                     </dd>
                 </dl>
+
                 <dl>
                     <dt>地址栏图标</dt>
                     <dd class="ftype_upload">
                         <div class="fbox">
-                            <input name="met_ico" type="text" data-upload-key="98f1186331177ab93815c253ada6a011" data-upload-type="doupico" class="text" value="../favicon.ico?1505114771">
+                            <input name="<%=WebBaseConfig.icon%>" type="text" data-upload-key="98f1186331177ab93815c253ada6a011" data-upload-type="doupico" class="text" value="">
                         </div>
 			<span class="tips">建议尺寸 32 * 32 (像素)的.ico文件。<a href="https://www.baidu.com/s?wd=ico%E5%9B%BE%E6%A0%87%E5%88%B6%E4%BD%9C" target="_blank">点击制作ICO</a>
 			<br />
@@ -299,77 +178,93 @@
 			</span>
                     </dd>
                 </dl>
-                <dl>
+
+                <%--<dl>
                     <dt>网站网址</dt>
                     <dd class="ftype_input">
                         <div class="fbox">
-                            <input name="met_weburl" type="text" value="http://localhost:88/metinfo/"  />
+                            <input name="<%=WebBaseConfig.url%>" type="text" value="${topweb_url}"  />
                         </div>
                         <span class="tips">建议填写检测到的网址：http://localhost:88/metinfo/</span>
                     </dd>
-                </dl>
+                </dl>--%>
+
                 <dl>
                     <dt>网站关键词</dt>
                     <dd class="ftype_input">
                         <div class="fbox">
-                            <input name="met_keywords" type="text" value="故事|记忆|往事" />
+                            <input name="<%=WebBaseConfig.keywords%>" type="text" value="${topweb_keywords}" />
                         </div>
                         <span class="tips">多个关键词请用竖线|隔开，建议3到4个关键词。</span>
                     </dd>
                 </dl>
+
                 <dl>
                     <dt>网站描述</dt>
                     <dd class="ftype_textarea">
                         <div class="fbox">
-                            <textarea name="met_description">网站描述，一般显示在搜索引擎搜索结果中的描述文字，用于介绍网站，吸引浏览者点击。</textarea>
+                            <c:choose>
+                                <c:when test="${not empty topweb_description}">
+                                    <textarea name="<%=WebBaseConfig.description%>">${topweb_description}</textarea>
+                                </c:when>
+                                <c:otherwise>
+                                    <textarea name="<%=WebBaseConfig.description%>">网站描述，一般显示在搜索引擎搜索结果中的描述文字，用于介绍网站，吸引浏览者点击。</textarea>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                         <span class="tips">100字以内（（当前已输入 <span class="met_description_tips"></span> 个字符））</span>
 
                     </dd>
                 </dl>
+
                 <h3 class="v52fmbx_hr">底部信息设置（显示在网站前台底部）</h3>
                 <dl>
                     <dt>版权信息</dt>
                     <dd class="ftype_input">
                         <div class="fbox">
-                            <input name="met_footright" type="text" value="8888888888888888" />
+                            <input name="<%=WebBaseConfig.footright%>" type="text" value="${topweb_footright}" />
                         </div>
                     </dd>
                 </dl>
+
                 <dl>
                     <dt>地址邮编</dt>
                     <dd class="ftype_input">
                         <div class="fbox">
-                            <input name="met_footaddress" type="text" value="888888888888888888888" />
+                            <input name="<%=WebBaseConfig.footaddress%>" type="text" value="${topweb_footaddress}" />
                         </div>
                     </dd>
                 </dl>
+
                 <dl>
                     <dt>联系方式</dt>
                     <dd class="ftype_input">
                         <div class="fbox">
-                            <input name="met_foottel" type="text" value="" />
+                            <input name="<%=WebBaseConfig.foottel%>" type="text" value="${topweb_foottel}" />
                         </div>
                     </dd>
                 </dl>
+
                 <dl>
                     <dt>其他信息</dt>
                     <dd class="ftype_ckeditor">
                         <div class="fbox">
-                            <textarea name="met_footother" data-ckeditor-type="2" data-ckeditor-y="100"><p>122222222222</p></textarea>
+                            <textarea name="<%=WebBaseConfig.footother%>" data-ckeditor-type="2" data-ckeditor-y="100">${topweb_footother}</textarea>
                         </div>
                     </dd>
                 </dl>
+
                 <dl class="noborder">
                     <dt> </dt>
                     <dd>
-                        <input type="submit" name="submit" value="保存" class="submit">
+                        <input type="submit" name="submit" value="保存" class="submit" onclick="submitConfigInfos();">
                     </dd>
                 </dl>
+
             </div>
         </form>
 
-        <script src="http://localhost:88/metinfo/app/system/include/public/js/sea.js?53185"></script>
+        <script src="/js/sea.js"></script>
 
     </div>
 </div>
@@ -380,4 +275,34 @@
 </div>
 </div>
 </body>
+<script>
+function submitConfigInfos() {
+    var jsonArray = new Array();
+    $('.fbox').find('input, textarea').each(function () {
+        var _obj = new Object();
+        _obj.name = $(this).attr('name');
+        _obj.value = $(this).val();
+        jsonArray.push(_obj);
+    });
+    console.log(JSON.stringify(jsonArray));
+
+    $.ajax({
+        url: "/setting/submitBaseSetting.html",
+        type: "POST",
+        contentType : 'application/json;charset=utf-8', //设置请求头信息
+        dataType:"json",
+        data: JSON.stringify(jsonArray), //将Json对象序列化成Json字符串，JSON.stringify()原生态方法
+//        data: $.toJSON(customerArray), //将Json对象序列化成Json字符串，toJSON()需要引用jquery.json.min.js
+        success: function(data){
+            if (data.code==0) {
+                alert('操作成功');//提示操作成功
+            }
+
+        },
+        error: function(res){
+            alert(res.responseText);
+        }
+    });
+}
+</script>
 </html>

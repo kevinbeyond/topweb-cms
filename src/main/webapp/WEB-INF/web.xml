@@ -59,13 +59,13 @@
   </welcome-file-list>
 
   <!--错误异常页面-->
-  <error-page>
+  <!--<error-page>
     <error-code>403</error-code>
     <location>/error/403.html</location>
   </error-page>
   <error-page>
     <error-code>404</error-code>
     <location>/error/404.html</location>
-  </error-page>
+  </error-page>-->
 
 </web-app>

@@ -1,8 +1,23 @@
 package com.topweb.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.topweb.dao.CMSConfigMapper;
+import com.topweb.entity.CMSConfig;
+import com.topweb.model.CMSConfigList;
+import com.topweb.model.FileUploadReturnModel;
+import com.topweb.model.ResultCode;
+import com.topweb.model.ResultViewModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 设置菜单控制器
@@ -12,6 +27,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class SettingController {
 
+    @Autowired
+    private CMSConfigMapper cmsConfigMapper;
+
     /**
      * 网站信息设置
      * @return
@@ -19,7 +37,80 @@ public class SettingController {
     @RequestMapping("baseWebInfo.html")
     public ModelAndView baseWebInfoSetting() {
         ModelAndView view = new ModelAndView("base_web_info");
+
+        List<CMSConfig> configs = cmsConfigMapper.selectCMSConfigs();
+        for (CMSConfig tempConfig:configs) {
+            view.addObject(tempConfig.getName(), tempConfig.getValue());
+        }
         return view;
+    }
+
+    /**
+     * 提交基本信息配置
+     * @param configList
+     * @return
+     */
+    @RequestMapping(value = "submitBaseSetting.html", method = RequestMethod.POST)
+    @ResponseBody
+    public ResultViewModel submitBaseWebInfoSetting(@RequestBody List<CMSConfig> configList){
+        ResultViewModel result = new ResultViewModel();
+
+        try{
+            for (CMSConfig tempConfig:configList) {
+                CMSConfig queryConfig = cmsConfigMapper.selectByConfigName(tempConfig.getName());
+                if (queryConfig != null) {
+                    tempConfig.setId(queryConfig.getId());
+                    cmsConfigMapper.updateByPrimaryKeySelective(tempConfig);
+                } else {
+                    cmsConfigMapper.insert(tempConfig);
+                }
+            }
+
+            result.setCode(ResultCode.SUCCESS);
+            result.setMessage(ResultCode.SUCCESS_MSG);
+        }catch (Exception e) {
+            result.setCode(ResultCode.ERROR);
+            result.setMessage(ResultCode.ERROR_MSG);
+        }
+
+        return result;
+    }
+
+    @RequestMapping(value = "upload", method = RequestMethod.POST)
+    @ResponseBody
+    public ResultViewModel uploadImage(@RequestParam("file")MultipartFile image) {
+
+        ResultViewModel result = new ResultViewModel();
+
+//        String path = SysConstants.PIC_SERVER_FILE_ROOT_DIR +SysConstants.PIC_PTYPE_DIR;
+        String path = "F:\\TopWeb\\topweb-cms\\src\\main\\webapp\\static\\images\\upload";
+        String fileName = System.currentTimeMillis()+"_" + image.getOriginalFilename();
+        File targetFile = new File(path, fileName);
+        if (!targetFile.exists()) {
+            targetFile.mkdirs();
+        }
+        //保存
+        try {
+            image.transferTo(targetFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.setCode(ResultCode.UPLOAD_FAIL);
+            result.setMessage(ResultCode.UPLOAD_FAIL_MSG);
+            return result;
+        }
+
+        //json.put("filePath",request.getContextPath() + "/upload/" + fileName);
+        //File retfile = new File(SysConstants.PIC_SERVER_DNS + SysConstants.PIC_PTYPE_DIR, fileName);
+        File retfile = new File("F:\\TopWeb\\topweb-cms\\src\\main\\webapp\\static\\images\\upload", fileName);
+
+        result.setCode(ResultCode.UPLOAD_SUCCESS);
+        result.setMessage(ResultCode.UPLOAD_SUCCESS_MSG);
+        FileUploadReturnModel returnModel = new FileUploadReturnModel();
+        returnModel.setFilepath("/images/upload/" + fileName);
+        result.setObject(returnModel);
+//        json.put("filePath",retfile.getPath());
+//        System.out.println("json="+json.toJSONString());
+        return  result;
     }
 
     /**
