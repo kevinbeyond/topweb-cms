@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="/css/admin/templates/met/images/css/newstyle.css" />
     <link rel="stylesheet" href="/css/app/system/include/public/font-awesome/css/font-awesome.min.css" />
     <script type="text/javascript">
-        var basepath='/images?53185',
+        var basepath='/images?20171004',
                 lang = 'cn',
                 adminurl='http://localhost:88/metinfo/admin/';
     </script>
@@ -98,7 +98,7 @@
         <table cellpadding="0" cellspacing="0" class="table">
             <tr>
                 <td colspan="3" class="centle" style="font-weight:normal;">
-                    <a href="index.php?anyid=25&lang=cn&action=modify&met_columnshow=" onclick="return columnshow($(this),'展开所有子栏目','隐藏所有子栏目');" style="float:right; font-weight:normal; padding-right:10px;">展开所有子栏目</a>
+                    <%--<a href="index.php?anyid=25&lang=cn&action=modify&met_columnshow=" onclick="return columnshow($(this),'展开所有子栏目','隐藏所有子栏目');" style="float:right; font-weight:normal; padding-right:10px;">展开所有子栏目</a>--%>
                     &nbsp;&nbsp;<a href="/setting/addColumn.html?type=1" onclick="return addcolumn($(this),'',1);">添加一级栏目</a>&nbsp;&nbsp;
                     <font style=' color:#999;'>排序越小越靠前</font>
                     <span id="loadtxt"></span>
@@ -166,8 +166,7 @@
                                             <div class="columnmore">
                                                 <span class="text">更多&nbsp;<img src="/images/metcolumn12.gif" style="position:relative; bottom:2px;"></span>
                                                 <div class="none columnmorediv">
-                                                    <div><a href="add.php?anyid=25&amp;lang=cn&amp;id=1&amp;type=2&amp;action=add" onclick="return addcolumn($(this),'1',2);">添加子栏目</a></div>
-
+                                                    <%--<div><a href="add.php?anyid=25&amp;lang=cn&amp;id=1&amp;type=2&amp;action=add" onclick="return addcolumn($(this),'1',2);">添加子栏目</a></div>--%>
                                                     <div><a class="perColumnDel" data-id="${column.id}">删除</a></div>
                                                 </div>
                                             </div>
@@ -199,7 +198,7 @@
                 <td class="all-submit" colspan="7" style="padding: 5px 10px;border-top:0px">
                     <input name="saveorder" id="saveColumns" type='submit' value='保存' class="submit li-submit" />
                     <input name="submit" id="delColumns" type='submit' value='删除' class="submit li-submit" style="margin-right:20px;" />
-                    <div style="margin-top:2px;float:right;">
+                    <%--<div style="margin-top:2px;float:right;">
                         <form method="POST" name="myform" action="./copycolumn.php?lang=cn&action=copy&table=1" target="_self">
                             <input name="allid" type="hidden" id="allid" value="" />
                             <select name="copylang">
@@ -210,7 +209,7 @@
                             <label style="vertical-align:middle;font-weight:normal;height:28px;line-height:28px;"><input name="copycontent" type='checkbox' value='1' id="copycontent" class="checkbox">复制内容</label>
                         </form>
                         <input name="submit" type='submit' value='复制'  onclick="return met_modify($(this),'myform','editor','columncook');" class="submitmi"/>
-                    </div>
+                    </div>--%>
                 </td>
             </tr>
             <tr>

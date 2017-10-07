@@ -42,7 +42,7 @@
                 tem="/js/app/system/admin/templates/web/webset/",
                 adminurl="http://localhost:88/metinfo/admin/index.php?lang=cn&",
                 apppath="http://app.metinfo.cn/index.php?lang=cn&",
-                jsrand="53185",
+                jsrand="20171004",
                 editorname="ueditor"
                 ;
     </script>
@@ -264,7 +264,8 @@
             </div>
         </form>
 
-        <script src="/js/sea.js"></script>
+        <script src="/js/app/system/include/public/js/sea.js"></script>
+        <%--<script src="/js/sea.js"></script>--%>
 
     </div>
 </div>

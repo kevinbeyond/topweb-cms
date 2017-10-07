@@ -293,10 +293,10 @@ border: 1px solid #ccc; padding:4px; color:#333;
 .ftype_tags .tags_box ul{ padding:0px; overflow:hidden; zoom:1;}
 .ftype_tags .tags_box ul li{ float:left; cursor:default; position:relative;}
 .ftype_tags .tags_box ul li.tags_list{ border:1px solid #ccc; display:block; background:#eee; padding:2px 18px; padding-right:25px; margin:7px 0px 0px 7px; border-radius:3px; }
-.ftype_tags .tags_box ul li.tags_list a{ position:absolute; right:7px; top:8px; width:7px; height:7px; background:url(../images/tbl_close.gif) no-repeat left top; overflow:hidden; }
+.ftype_tags .tags_box ul li.tags_list a{ position:absolute; right:7px; top:8px; width:7px; height:7px; background:url(/images/ui/tbl_close.gif) no-repeat left top; overflow:hidden; }
 .ftype_tags .tags_box ul li.tags_tj{ white-space:nowrap; height:28px; margin:7px; line-height:28px; }
 .ftype_tags .tags_box ul li.tags_tj label{ position:absolute; left:0px; top:0px; height:28px; line-height:28px; color:#999; display:none;}
-.ftype_tags .tags_box ul li.tags_tj span{ float:left; cursor:pointer; width:28px; height:28px; background:#ccc url(../images/Ico_add.png) no-repeat center center; color:#36C; display:block; border-radius:3px;}
+.ftype_tags .tags_box ul li.tags_tj span{ float:left; cursor:pointer; width:28px; height:28px; background:#ccc url(/images/ui/Ico_add.png) no-repeat center center; color:#36C; display:block; border-radius:3px;}
 .ftype_tags .tags_box ul li.tags_tj span:hover{ background-color:#999;}
 .ftype_tags .tags_box ul li.tags_tj input{ border:0!important; padding:2px 0px; height:25px; margin-left:5px; outline:0; position:relative; background:none;}
 .ftype_tags .tags_box ul li.tags_list:hover{ border:1px solid #ccc; background:#ddd;}

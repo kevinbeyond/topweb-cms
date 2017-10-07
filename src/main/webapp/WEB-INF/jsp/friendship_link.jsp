@@ -3,13 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css?53185" />
+    <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css?20171004" />
     <link rel="stylesheet" type="text/css" href="/css/images/metinfo.css" />
     <link rel="stylesheet" type="text/css" href="/css/newstyle.css" />
     <link rel="stylesheet" type="text/css" href="/css/font-awesome/font-awesome.min.css" />
-    <script type="text/javascript">var basepath='../../templates/met/images?53185',lang = 'cn',adminurl='http://localhost:88/metinfo/admin/';</script>
+    <script type="text/javascript">var basepath='../../templates/met/images?20171004',lang = 'cn',adminurl='http://localhost:88/metinfo/admin/';</script>
     <script type="text/javascript" src="/js/jQuery1.7.2.js"></script>
-    <script type="text/javascript"src="/js/metvar.js?53185"></script>
+    <script type="text/javascript"src="/js/metvar.js?20171004"></script>
     <script type="text/javascript" src="/js/uploadify/jquery.uploadify.v2.1.4.min.js"></script>
     <script type="text/javascript" src="/js/iframes.js"></script>
     <script type="text/javascript" src="/js/cookie.js"></script>

@@ -15,7 +15,7 @@ $(function () {
     //点击保存按钮
     $('#saveColumns').on('click', function () {
 
-        if($("input[type='checkbox']:checked").length < 1) {
+        if($('#columnForm').find('tbody').find("input[type='checkbox']:checked").length < 1) {
             alert("请选择要保存的栏目");
             return false;
         }
@@ -54,8 +54,8 @@ $(function () {
     //点击删除按钮
     $('#delColumns').on('click', function () {
 
-        if($("input[type='checkbox']:checked").length < 1) {
-            alert("请选择要删除的栏目");
+        if($('#columnForm').find('tbody').find("input[type='checkbox']:checked").length < 1) {
+            alert("请选择要保存的栏目");
             return false;
         }
 

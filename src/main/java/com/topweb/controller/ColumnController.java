@@ -1,5 +1,8 @@
 package com.topweb.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.topweb.dao.CMSColumnMapper;
 import com.topweb.entity.CMSColumn;
 import com.topweb.model.ResultCode;
@@ -223,5 +226,33 @@ public class ColumnController {
             result.setMessage(ResultCode.ERROR_MSG);
         }
         return result;
+    }
+
+    @RequestMapping(value = "/cascadeColumns", produces = "application/json;charset=UTF-8;")
+    public @ResponseBody JSON getCascadeColumns(@RequestParam(value = "module", defaultValue = "0", required = false) int moduleId,
+                                                @RequestParam(value = "classtype", defaultValue = "1") int classtype){
+
+        JSONArray cascadeColumnArray = new JSONArray();
+        JSONObject defaultObject = new JSONObject();//默认模块
+        defaultObject.put("p", "所有栏目");
+        cascadeColumnArray.add(defaultObject);
+
+        List<CMSColumn> columnList = columnMapper.selectByModuleAndClassType(moduleId, classtype);
+
+        for (CMSColumn tempColumn:columnList) {
+            JSONObject firstColumnJSONObject = new JSONObject();
+            JSONObject columnObject = new JSONObject();
+            columnObject.put("name", tempColumn.getName());
+            columnObject.put("value", tempColumn.getId());
+            firstColumnJSONObject.put("p", columnObject);
+            cascadeColumnArray.add(firstColumnJSONObject);
+        }
+
+        JSONObject cascadeColumnJSON = new JSONObject();
+        cascadeColumnJSON.put("citylist", cascadeColumnArray);
+
+        System.out.println(JSON.toJSONString(cascadeColumnJSON));
+
+        return cascadeColumnJSON;
     }
 }

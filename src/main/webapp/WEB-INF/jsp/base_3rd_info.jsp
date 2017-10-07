@@ -12,9 +12,9 @@
     <meta content="black" name="apple-mobile-web-app-status-bar-style" />
     <meta content="telephone=no" name="format-detection" />
     <link href="http://localhost:88/metinfo/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link rel="stylesheet" href="http://localhost:88/metinfo/app/system/include/public/bootstrap/css/bootstrap.min.css?53185" />
-    <link rel="stylesheet" href="http://localhost:88/metinfo/app/system/include/public/ui/admin/css/metinfo.css?53185" />
-    <link rel="stylesheet" href="http://localhost:88/metinfo/app/system/include/public/font-awesome/css/font-awesome.min.css?53185" />
+    <link rel="stylesheet" href="/css/app/system/include/public/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/app/system/include/public/ui/admin/css/metinfo.css" />
+    <link rel="stylesheet" href="http://localhost:88/metinfo/app/system/include/public/font-awesome/css/font-awesome.min.css?20171004" />
     <script>
         var langtxt = {
                     "jsx15":"上传",
@@ -40,7 +40,7 @@
                 tem="http://localhost:88/metinfo/app/system/admin/templates/web/webset/",
                 adminurl="http://localhost:88/metinfo/admin/index.php?lang=cn&",
                 apppath="http://app.metinfo.cn/index.php?lang=cn&",
-                jsrand="53185",
+                jsrand="20171004",
                 editorname="ueditor"
                 ;
     </script>
@@ -300,7 +300,7 @@
             </div>
         </form>
 
-        <script src="http://localhost:88/metinfo/app/system/include/public/js/sea.js?53185"></script>
+        <script src="http://localhost:88/metinfo/app/system/include/public/js/sea.js?20171004"></script>
 
     </div>
 </div>

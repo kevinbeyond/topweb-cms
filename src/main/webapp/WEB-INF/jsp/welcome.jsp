@@ -39,7 +39,7 @@
     <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="/css/app/system/include/public/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/app/system/include/public/ui/admin/css/metinfo.css" />
-    <link rel="stylesheet" href="/css/app/system/include/public/font-awesome/css/font-awesome.min.css?53185" />
+    <link rel="stylesheet" href="/css/app/system/include/public/font-awesome/css/font-awesome.min.css?20171004" />
     <script>
         var tem="",
                 jsrand="20170927";
@@ -69,7 +69,7 @@
                 tem="http://localhost:88/metinfo/app/system/admin/templates/web/index/",
                 adminurl="http://localhost:88/metinfo/admin/index.php?lang=cn&",
                 apppath="http://app.metinfo.cn/index.php?lang=cn&",
-                jsrand="53185",
+                jsrand="20171004",
                 editorname="ueditor"
                 ;
     </script>--%>
@@ -235,7 +235,7 @@
         </div>
         <div class="clear"></div>
 
-        <link rel="stylesheet" href="/css/app/system/admin/templates/web/index/css/metinfo.css?53185" />
+        <link rel="stylesheet" href="/css/app/system/admin/templates/web/index/css/metinfo.css?20171004" />
         <%--<script>
             var chartdata = '{"labels":["08:59","09:59","10:59","11:59","12:59","13:59","14:59","15:59","16:59"],"datasets":[{"fillColor":"#23b7e5","strokeColor":"#23b7e5","pointColor":"#23b7e5","pointStrokeColor":"#fff"},{"fillColor":"#7266ba","strokeColor":"#7266ba","pointColor":"#7266ba","pointStrokeColor":"#fff"},{"fillColor":"#23ad44","strokeColor":"#23ad44","pointColor":"#23ad44","pointStrokeColor":"#fff"}]}';
             var ownlangtxt = {"installations":"安装量"};
