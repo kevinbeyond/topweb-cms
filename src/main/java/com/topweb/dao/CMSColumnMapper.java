@@ -28,7 +28,7 @@ public interface CMSColumnMapper {
      * @param classtype
      * @return
      */
-    List<CMSColumn> selectByColumnClassType(int classtype);
+    List<CMSColumn> selectByColumnClassType(@Param("classtype") int classtype, @Param("bigclass") int bigclass);
 
     /**
      * 根据模块和栏目等级查询栏目列表
