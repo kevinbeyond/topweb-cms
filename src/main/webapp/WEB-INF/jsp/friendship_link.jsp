@@ -234,7 +234,7 @@
                                 <td width="10%" class="list" >操作</td>
                             </tr>
 
-                            <!-- 输出Map -->
+                                <!-- 输出Map -->
                             <c:forEach items="${fdl}" var="node">
                                 <tr class="mouse click">
                                     <td class="list-text"><input name='id' type='checkbox' id="id" value='${node.id}' /></td>
