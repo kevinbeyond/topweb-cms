@@ -360,7 +360,7 @@ public class ColumnController {
         JSONObject cascadeColumnJSON = new JSONObject();
         cascadeColumnJSON.put("citylist", cascadeColumnArray);
 
-        System.out.println(JSON.toJSONString(cascadeColumnJSON));
+        //System.out.println(JSON.toJSONString(cascadeColumnJSON));
 
         return cascadeColumnJSON;
     }

@@ -50,6 +50,9 @@
     <if test="class1 > 0">
       AND  class1 = #{class1}
     </if>
+    <if test="class2 > 0">
+      AND  class2 = #{class2}
+    </if>
     ORDER BY top DESC, recommend DESC, no_order DESC, updatetime DESC
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
