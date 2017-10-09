@@ -72,7 +72,6 @@ $(function () {
                 articleArray.push(articleObject);
             }
         });
-        console.log(JSON.stringify(articleArray));
 
         $.ajax({
             url: "/content/articlesForm/",

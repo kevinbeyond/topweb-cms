@@ -2,9 +2,11 @@ package com.topweb.controller;
 
 import com.topweb.dao.CMSArticleMapper;
 import com.topweb.dao.CMSColumnMapper;
+import com.topweb.dao.CMSImageMapper;
 import com.topweb.entity.CMSArticle;
 import com.topweb.entity.CMSArticleWithBLOBs;
 import com.topweb.entity.CMSColumn;
+import com.topweb.entity.CMSImage;
 import com.topweb.model.ResultCode;
 import com.topweb.model.ResultViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class ManageController {
 
     @Autowired
     private CMSColumnMapper columnMapper;
+
+    @Autowired
+    private CMSImageMapper imageMapper;
 
     @RequestMapping("/manage.html")
     public ModelAndView cmsContentManage() {
@@ -79,9 +84,11 @@ public class ManageController {
             List<CMSArticle> articleList = articleMapper.selectArticleList(class1);
             view.addObject("articleList", articleList);
         } else if(moduleId == 3) {//图片模块
+            view.setViewName("image_list");
 
+            List<CMSImage> imageList = imageMapper.selectImageList(class1);
+            view.addObject("imageList", imageList);
         }
-
         return view;
     }
 
@@ -161,7 +168,6 @@ public class ManageController {
         } catch (Exception e) {
             result.setCode(ResultCode.ERROR);
             result.setMessage(ResultCode.ERROR_MSG);
-            throw e;
         }
 
         return result;
@@ -190,4 +196,97 @@ public class ManageController {
         return result;
     }
 
+    /**
+     * 单个图片记录编辑
+     * @return
+     */
+    @RequestMapping("/perImgEdit.html")
+    public ModelAndView perImageEdit(@RequestParam(value = "id", required = false, defaultValue = "0")int imgId){
+        ModelAndView view = new ModelAndView("image_edit");
+
+        if (imgId>0) {
+            CMSImage image = imageMapper.selectByPrimaryKey(imgId);
+            view.addObject("image", image);
+        }
+        return view;
+    }
+
+    @RequestMapping(value = "/saveOrUpdateImage", method = RequestMethod.POST)
+    public @ResponseBody ResultViewModel saveOrUpdateImage(@RequestBody CMSImage image){
+        ResultViewModel result = new ResultViewModel();
+
+        try {
+            if (image.getId() == null){//添加记录
+                imageMapper.insert(image);
+            }else {//更新记录
+                imageMapper.updateByPrimaryKeySelective(image);
+            }
+            result.setCode(ResultCode.SUCCESS);
+            result.setMessage(ResultCode.SUCCESS_MSG);
+        } catch (Exception e) {
+            result.setCode(ResultCode.ERROR);
+            result.setMessage(ResultCode.ERROR_MSG);
+        }
+        return result;
+    }
+
+    /**
+     * 删除单个图片记录
+     * 逻辑删除
+     * @param imgId
+     * @return
+     */
+    @RequestMapping("/delPerImage.html")
+    public ModelAndView delPerImage(@RequestParam(value = "id") int imgId) {
+        imageMapper.updateImageDelStatus(imgId);
+
+        return new ModelAndView("redirect:/content/modultList.html?module=3");
+    }
+
+    /**
+     * 保存图片记录表单
+     * @param images
+     * @return
+     */
+    @RequestMapping(value = "/imagesForm", method = RequestMethod.POST, produces = "application/json")
+    @ResponseBody
+    public ResultViewModel updateImages(@RequestBody List<CMSImage> images) {
+        ResultViewModel result = new ResultViewModel();
+
+        try{
+            for (CMSImage tempImg:images) {
+                imageMapper.updateByPrimaryKeySelective(tempImg);
+            }
+            result.setCode(ResultCode.SUCCESS);
+            result.setMessage(ResultCode.SUCCESS_MSG);
+        } catch (Exception e) {
+            result.setCode(ResultCode.ERROR);
+            result.setMessage(ResultCode.ERROR_MSG);
+        }
+
+        return result;
+    }
+
+    /**
+     * 图片列表删除
+     * @param ids
+     * @return
+     */
+    @RequestMapping(value = "/imagesForm", method = RequestMethod.DELETE, produces = "application/json")
+    @ResponseBody
+    public ResultViewModel deleteImages(@RequestBody String ids) {
+        ResultViewModel result = new ResultViewModel();
+
+        try{
+            for (String tempId:ids.split(",")) {
+                imageMapper.updateImageDelStatus(Integer.parseInt(tempId));
+            }
+            result.setCode(ResultCode.SUCCESS);
+            result.setMessage(ResultCode.SUCCESS_MSG);
+        }catch (Exception e) {
+            result.setCode(ResultCode.ERROR);
+            result.setMessage(ResultCode.ERROR_MSG);
+        }
+        return result;
+    }
 }

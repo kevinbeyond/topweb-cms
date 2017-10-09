@@ -216,14 +216,14 @@
 
 <div class="metv5box">
     <ul class="columnlist" id="test">
-        <li class="contlist" >
+        <%--<li class="contlist" >
             <div class="box">
                 <a href='/content/modultList.html?module=1'>
                     <img src="/images/metv5/tubiao_1.png?new" width='70' height='70' />
                     <h2>简介模块</h2>
                 </a>
             </div>
-        </li>
+        </li>--%>
 
         <li class="contlist" >
             <div class="box">

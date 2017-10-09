@@ -150,7 +150,6 @@ public class ColumnController {
         } catch (Exception e) {
             result.setCode(ResultCode.ERROR);
             result.setMessage(ResultCode.ERROR_MSG);
-            throw e;
         }
         return result;
     }
@@ -172,7 +171,6 @@ public class ColumnController {
         } catch (Exception e) {
             result.setCode(ResultCode.ERROR);
             result.setMessage(ResultCode.ERROR_MSG);
-            throw e;
         }
         return result;
     }

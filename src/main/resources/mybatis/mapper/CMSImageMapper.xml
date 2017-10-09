@@ -29,23 +29,31 @@
     from cms_img
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectImageList" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM cms_img
+    WHERE del=0
+    <if test="class1 > 0">
+      AND  class1 = #{class1}
+    </if>
+    ORDER BY top DESC, recommend DESC, no_order DESC, updatetime DESC
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from cms_img
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.topweb.entity.CMSImage" >
     insert into cms_img (id, title, class1, 
-      class2, class3, no_order, 
+      class2, class3,
       imgurl, top, recommend, 
-      hits, updatetime, addtime, 
-      issue, access, links, 
-      del)
+      hits, updatetime, addtime,
+      issue, links)
     values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{class1,jdbcType=INTEGER}, 
-      #{class2,jdbcType=INTEGER}, #{class3,jdbcType=INTEGER}, #{noOrder,jdbcType=INTEGER}, 
+      #{class2,jdbcType=INTEGER}, #{class3,jdbcType=INTEGER},
       #{imgurl,jdbcType=VARCHAR}, #{top,jdbcType=INTEGER}, #{recommend,jdbcType=INTEGER}, 
-      #{hits,jdbcType=INTEGER}, #{updatetime,jdbcType=TIMESTAMP}, #{addtime,jdbcType=TIMESTAMP}, 
-      #{issue,jdbcType=VARCHAR}, #{access,jdbcType=INTEGER}, #{links,jdbcType=VARCHAR}, 
-      #{del,jdbcType=INTEGER})
+      #{hits,jdbcType=INTEGER}, #{updatetime,jdbcType=TIMESTAMP}, NOW(),
+      #{issue,jdbcType=VARCHAR}, #{links,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.topweb.entity.CMSImage" >
     insert into cms_img
@@ -219,5 +227,10 @@
       links = #{links,jdbcType=VARCHAR},
       del = #{del,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateImageDelStatus">
+    UPDATE cms_img
+    SET del = 1
+    WHERE id = #{id}
   </update>
 </mapper>

@@ -35,7 +35,7 @@
         window.onerror = killErrors;
     </SCRIPT>
     <![endif]-->
-    <script src="http://localhost:88/metinfo/app/system/include/public/js/seajs.js"></script>
+    <script src="/js/app/system/include/public/js/seajs.js"></script>
     <script>
         var pub = 'http://localhost:88/metinfo/app/system/include/public/',siteurl='http://localhost:88/metinfo/',basepath='http://localhost:88/metinfo/admin/',apppath='http://app.metinfo.cn/index.php?lang=cn&',editorname='ueditor';
         seajs.config({
