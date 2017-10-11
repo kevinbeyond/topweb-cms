@@ -1326,6 +1326,7 @@ function adddisplayimg(my) {
 	});
 	return false;
 }
+
 function addcolumn(my, id, tp) {
 	if($('#loadtxt').html())return false;
 	$('#loadtxt').html('<img src=\"' + metimgurl + 'loadings.gif\" style=\"position:relative; top:4px;\" />' + user_msg['js48']);
@@ -1384,6 +1385,7 @@ function addcolumn(my, id, tp) {
 	});
 	return false;
 }
+
 function delettr(my) {
 	my.parent('td').parent('tr').remove();
 }
