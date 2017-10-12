@@ -13,7 +13,7 @@
     <meta content="telephone=no" name="format-detection" />
     <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="/css/box.css" />
-    <link rel="stylesheet" href="/css/font-awesome/font-awesome.min.css" />
+    <link rel="stylesheet" href="/css/app/system/include/public/font-awesome/css/font-awesome.min.css" />
     <script>
         var tem="",
                 jsrand="20170927";
