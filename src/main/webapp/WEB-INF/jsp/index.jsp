@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title托普威CMS</title>
+    <title>托普威CMS</title>
     <meta name="renderer" content="webkit">
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -29,8 +29,8 @@
                 apppath="http://app.metinfo.cn/index.php?lang=cn&",
                 jsrand="53175"
                 ;
-    </script>
-    <!--[if IE]><script src="/js/html5.js" type="text/javascript"></script><![endif]-->
+    </script>--%>
+    <!--[if IE]><script src="/js/public/js/html5.js" type="text/javascript"></script><![endif]-->
 </head>
 <body>
 <input id="met_automatic_upgrade" type="hidden" value="1" />
@@ -60,7 +60,7 @@
                 <a href="/admin/interface/online/index.php?anyid=71&lang=cn"  title="客服"  id="metinfo_metnav_71"><i class="fa fa-comments-o"></i>客服</a>
                 <a href="/admin/index.php?n=seo&c=seo&a=doindex&anyid=37&lang=cn"  title="SEO"  id="metinfo_metnav_37"><i class="fa fa-check"></i>SEO</a>--%>
                 <a href="/market/friendshiplink.html?pnow=1&linktype=3&guan=0"  title="友情链接"  id="metinfo_metnav_39"><i class="fa fa-link"></i>友情链接</a>
-                    <a href="/um/uninersity.html?pnow=1&type=0&authentication=0  " title="大学管理" id="uninersity"><i style=" font-size: 14px;margin-left: 8px; display: inline;color: #A7C6DC" class="fa fa-link">&nbsp;&nbsp;&nbsp;&nbsp;大学管理</i></a>
+                <a href="/um/uninersity.html?pnow=1&type=0&authentication=0  " title="大学管理" id="uninersity"><i style=" font-size: 14px;margin-left: 8px; display: inline;color: #A7C6DC" class="fa fa-link">&nbsp;&nbsp;&nbsp;&nbsp;大学管理</i></a>
             </dd>
         </dl>
 
@@ -128,6 +128,6 @@
         document.getElementById("metinfo_metnav_18").style.display="none";
     }
 </script>
-<script src="/js/sea.js"></script>
+<script src="/js/app/system/include/public/js/sea.js"></script>
 </body>
 </html>
