@@ -11,8 +11,8 @@ function HrefUrl(){
 	var s=location.href;
 		s = s.split('?');
 	var w = s[0].split('/');
-	//var a = s[0].replace(w[w.length-2]+'/'+w[w.length-1],"");
-	var a = s[0].replace(w[w.length-1],"");
+	var a = s[0].replace(w[w.length-2]+'/'+w[w.length-1],"");
+	//var a = s[0].replace(w[w.length-1],"");
 	ret['url'] = a;
 	//ret['admin'] = w[w.length-2];
 	return ret;
@@ -24,7 +24,7 @@ var editorname;
 var lang = getQueryString('lang'),
 	ret = HrefUrl(),
 	siteurl = ret['url'],
-	//basepath = siteurl+ret['admin']+'/',
+	basepath = '/',
 	pubjspath = '/js/app/system/include/public/',table;
 var metn = getQueryString('n'),metc = getQueryString('c'),meta = getQueryString('a');
 seajs.config({

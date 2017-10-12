@@ -1,22 +1,18 @@
 package com.topweb.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.topweb.dao.CMSConfigMapper;
 import com.topweb.entity.CMSConfig;
-import com.topweb.model.CMSConfigList;
 import com.topweb.model.FileUploadReturnModel;
 import com.topweb.model.ResultCode;
 import com.topweb.model.ResultViewModel;
+import com.topweb.util.ConstantUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -76,14 +72,18 @@ public class SettingController {
         return result;
     }
 
+    /**
+     * 图片上传
+     * @param image
+     * @return
+     */
     @RequestMapping(value = "upload", method = RequestMethod.POST)
     @ResponseBody
     public ResultViewModel uploadImage(@RequestParam("file")MultipartFile image) {
 
         ResultViewModel result = new ResultViewModel();
 
-//        String path = SysConstants.PIC_SERVER_FILE_ROOT_DIR +SysConstants.PIC_PTYPE_DIR;
-        String path = "F:\\TopWeb\\topweb-cms\\src\\main\\webapp\\static\\images\\upload";
+        String path = ConstantUtil.SETTING_UPLOAD_DIR;
         String fileName = System.currentTimeMillis()+"_" + image.getOriginalFilename();
         File targetFile = new File(path, fileName);
         if (!targetFile.exists()) {
