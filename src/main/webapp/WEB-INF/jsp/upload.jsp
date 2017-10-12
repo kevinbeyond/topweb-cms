@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>上传文件示例</title>
+    <title>上传文件示例Demo</title>
     <!--引入CSS-->
     <link rel="stylesheet" type="text/css" href="/css/webuploader/webuploader.css">
     <!--引入JS-->
