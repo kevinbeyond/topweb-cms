@@ -9,6 +9,11 @@ import java.util.Map;
 public class ConstantUtil {
 
     /**
+     * 设置板块图片上传地址
+     */
+    public static String SETTING_UPLOAD_DIR = "F:\\TopWeb\\topweb-cms\\src\\main\\webapp\\static\\images\\upload";
+
+    /**
      * 栏目是否在导航栏上显示
      * @return
      */

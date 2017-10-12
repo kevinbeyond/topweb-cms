@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.topweb.dao.UManagementMapper" >
+    <select id="schoollist"  resultType="com.topweb.entity.School">
+         SELECT * FROM university
+        <where>
+            <if test="school.schoolnature!=0">
+                AND schoolnature =#{school.schoolnature}
+            </if>
+            <if test="school.authentication!=0">
+                AND authentication =#{school.authentication}
+            </if>
+        </where>
+        LIMIT #{page.startNum},#{page.avgPageCount}
+    </select>
+
+    <select id="naturelist" resultType="com.topweb.entity.Nature">
+        SELECT * FROM nature
+    </select>
+
+    <select id="schoolconut" resultType="int">
+        SELECT COUNT(id) FROM university
+        <where>
+            <if test="school.schoolnature!=0">
+                AND schoolnature =#{school.schoolnature}
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteschool" >
+         DELETE FROM university WHERE id=#{deleteid}
+    </delete>
+
+    <select id="upschool" resultType="com.topweb.entity.School">
+        SELECT * FROM university WHERE id=#{id}
+    </select>
+
+    <update id="upinfo">
+            UPDATE university SET uname=#{school.uname},jpname=#{school.jpname},schooladress=#{school.schooladress},schoolnature=#{school.schoolnature},buldingschooltime=#{school.buldingschooltime},authentication=#{school.authentication},peoplecount=#{school.peoplecount},popularity=#{school.popularity},img=#{school.img},phone=#{school.phone},synopsis=#{school.synopsis},motto=#{school.motto},phd=#{school.phd},graduate=#{school.graduate},undergraduate=#{school.undergraduate},speechcenter=#{school.speechcenter} WHERE id=#{school.id}
+    </update>
+
+    <insert id="addinfo">
+        INSERT into university(uname,jpname,schooladress,schoolnature,buldingschooltime,authentication,peoplecount,popularity,img,phone,synopsis,motto,phd,graduate,undergraduate,speechcenter)values(#{school.uname},#{school.jpname},#{school.schooladress},#{school.schoolnature},#{school.buldingschooltime},#{school.authentication},#{school.peoplecount},#{school.popularity},#{school.img},#{school.phone},#{school.synopsis},#{school.motto},#{school.phd},#{school.graduate},#{school.undergraduate},#{school.speechcenter});
+    </insert>
+
+    <insert id="addtuition">
+        INSERT INTO tuition(sid,ptuition,gtuition,utuition,stuition)VALUES (#{tuition.sid},#{tuition.ptuition},#{tuition.gtuition},#{tuition.utuition},#{tuition.stuition});
+    </insert>
+
+    <insert id="uptuition">
+            UPDATE tuition SET ptuition=#{tuition.ptuition},gtuition=#{tuition.gtuition},utuition=#{tuition.utuition},stuition=#{tuition.stuition} WHERE sid=#{tuition.sid}
+    </insert>
+
+    <select id="setuition" resultType="com.topweb.entity.Tuition">
+         SELECT * FROM tuition WHERE sid=#{sid}
+    </select>
+
+    <select id="selectsid" resultType="int">
+        SELECT id FROM university WHERE uname=#{uname}
+    </select>
+
+</mapper>

@@ -15,6 +15,10 @@
     <link rel="stylesheet" href="/css/box.css" />
     <link rel="stylesheet" href="/css/font-awesome/font-awesome.min.css" />
     <script>
+        var tem="",
+                jsrand="20170927";
+    </script>
+    <%--<script>
         var langtxt = {
                     "checkupdatetips":"对不起！您的权限不够，无法操作在线升级。",
                     "detection":"检测中",
@@ -115,7 +119,7 @@
     <%--嵌入iframe--%>
     <div class="metcms_cont_right">
         <div class="metcms_cont_right_box">
-            <iframe src="" frameborder="0"></iframe>
+            <iframe src="/welcome.html" frameborder="0"></iframe>
         </div>
     </div>
     <div class="clear"></div>

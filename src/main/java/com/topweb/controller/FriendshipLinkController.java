@@ -32,12 +32,12 @@ public class FriendshipLinkController {
     private FriendlyLinkMapper flm;
 
     @RequestMapping("/friendshiplink.html")
-    public ModelAndView friendshipLinkSetting(HttpServletRequest request){
+    public ModelAndView friendshipLinkSetting(HttpServletRequest request,
+                                              @RequestParam(value = "pnow", defaultValue = "1", required = false)int pagenow,
+                                              @RequestParam(value = "linktype", defaultValue = "3", required = false)int linktype){
         ModelAndView view = new ModelAndView("friendship_link");
-  String guan=request.getParameter("guan");
+        String guan=request.getParameter("guan");
         //System.out.println(guan);
-        int pagenow=Integer.parseInt(request.getParameter("pnow"));
-        int linktype=Integer.parseInt(request.getParameter("linktype"));
         FriendlyLink fl=new FriendlyLink();
        // System.out.println("连接类型"+linktype);
        // System.out.println("当前页数"+pagenow);
@@ -63,10 +63,6 @@ public class FriendshipLinkController {
         }
 
         view.addObject("linktype",linktype);
-
-
-
-
 
       /*  System.out.println("linktype"+fl.getLinkType());
         System.out.println("egis"+fl.getEgis());

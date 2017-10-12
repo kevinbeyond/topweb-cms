@@ -23,7 +23,7 @@ textarea{resize:none}
 .metlogo{ border-bottom:1px solid #161e25;}
 .metlogo a{ display:block; font-size:0px; text-align:center; }
 .metlogo a:hover img{ filter:alpha(opacity=70);-moz-opacity:.7;-khtml-opacity:.7;opacity:.7}
-.metlogo a img{ height:50px; transition:all .5s;-webkit-transition:all .5s;-moz-transition:all .5s;-o-transition:all .5s}
+.metlogo a img{ height:40px; transition:all .5s;-webkit-transition:all .5s;-moz-transition:all .5s;-o-transition:all .5s}
 body
 {
     overflow-x:hidden;
