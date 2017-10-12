@@ -257,7 +257,7 @@
                         <i class="fa fa-angle-right"></i>
                     </li>
                     <li>
-                        <a href="#" id="column">
+                        <a href="/setting/columns.html" id="column">
                             <i class="fa fa-sitemap"></i>
                             配置栏目
                         </a>
