@@ -141,7 +141,7 @@
                     <dd class="ftype_select-linkage">
                         <div class="fbox pull-left" data-selectdburl="/setting/cascadeColumns?module=2&classtype=1">
                             <select name="class1" class="prov" data-required="1" data-checked="${article.class1>0?article.class1:''}"></select>
-                            <select name="class2" class="city" data-checked=""></select>
+                            <select name="class2" class="city" data-checked="${article.class2>0?article.class2:''}"></select>
                             <select name="class3" class="dist" data-checked=""></select>
                         </div>
                         <span class="tips pull-left" style="margin-left:20px;">

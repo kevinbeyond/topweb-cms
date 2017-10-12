@@ -72,7 +72,8 @@ public class ManageController {
      */
     @RequestMapping("/modultList.html")
     public ModelAndView cmsModuleList(@RequestParam(value = "module") int moduleId,
-                                      @RequestParam(value = "class1", required = false, defaultValue = "0") int class1) {
+                                      @RequestParam(value = "class1", required = false, defaultValue = "0") int class1,
+                                      @RequestParam(value = "class2", required = false, defaultValue = "0") int class2) {
         ModelAndView view = new ModelAndView();
 
         if (moduleId == 1) {//简介模块
@@ -81,7 +82,7 @@ public class ManageController {
             view.setViewName("article_list");
 
             //获取文章列表
-            List<CMSArticle> articleList = articleMapper.selectArticleList(class1);
+            List<CMSArticle> articleList = articleMapper.selectArticleList(class1, class2);
             view.addObject("articleList", articleList);
         } else if(moduleId == 3) {//图片模块
             view.setViewName("image_list");

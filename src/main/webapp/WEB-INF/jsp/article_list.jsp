@@ -136,7 +136,7 @@
                         <div class="ftype_select-linkage" id="articles-column-change">
                             <div class="fbox" data-selectdburl="/setting/cascadeColumns?module=2&classtype=1">
                                 <select name="class1_select" class="prov" data-checked="${param.class1}"></select>
-                                <select name="class2_select" class="city" data-checked=""></select>
+                                <select name="class2_select" class="city" data-checked="${param.class2}"></select>
                                 <select name="class3_select" class="dist" data-checked=""></select>
                             </div>
                         </div>
@@ -286,5 +286,5 @@
 </div>
 </div>
 </body>
-<script src="/js/topweb/article.js?v36"></script>
+<script src="/js/topweb/article.js?v89"></script>
 </html>

@@ -26,7 +26,7 @@ public interface CMSArticleMapper {
      * 获取文章列表
      * @return
      */
-    List<CMSArticle> selectArticleList(@Param("class1") int class1);
+    List<CMSArticle> selectArticleList(@Param("class1") int class1, @Param("class2") int class2);
 
     int updateByPrimaryKeySelective(CMSArticleWithBLOBs record);
 

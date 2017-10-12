@@ -250,7 +250,7 @@
                 <div class="container-fluid">
                 <ul>
                     <li>
-                        <a href="#" id="information">
+                        <a href="/setting/baseWebInfo.html" id="information">
                             <i class="fa fa-newspaper-o"></i>
                             基本信息
                         </a>

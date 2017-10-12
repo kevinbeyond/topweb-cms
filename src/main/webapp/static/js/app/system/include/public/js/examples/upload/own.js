@@ -2,12 +2,12 @@ define(function(require, exports, module) {
 
 	var $ = jQuery = require('jquery');
 	//上传组件
-	function imgupload(){
+	/*function imgupload(){
 		require.async('epl/upload/webuploader.min',function(){
 			var uploader = WebUploader.create({
 				auto: true,
-				swf: siteurl + 'app/system/include/public/js/examples/upload/Uploader.swf',
-				server: basepath + 'index.php?c=uploadify&m=include&a=doupimg&lang='+lang,
+				swf: '/js/app/system/include/public/js/examples/upload/Uploader.swf',
+				server: '/setting/upload/',
 				pick: '#filePicker',
 				compress:{
 					width: 2000,
@@ -17,7 +17,7 @@ define(function(require, exports, module) {
 				accept: {
 					title: 'Images',
 					extensions: 'gif,jpg,jpeg,bmp,png',
-					mimeTypes: 'image/*'
+					mimeTypes: 'image/!*'
 				}
 			});
 			//文件上传成功时
@@ -49,9 +49,9 @@ define(function(require, exports, module) {
 				});
 			});
 		});
-	}
+	}*/
 	//图片列表
-	function imglistlaod(){
+	/*function imglistlaod(){
 		var set = setInterval(function(){
 			if($("#upimglist").attr('data-ok') == 1){
 				require('epl/upload/jPages.css');
@@ -83,9 +83,9 @@ define(function(require, exports, module) {
 				$("#upimglist").attr('data-ok', 1);
 		   }
 		});
-	}
+	}*/
 	//图片库
-	function imgku(){
+	/*function imgku(){
 		//生成模态框
 		var txt = '<div class="modal fade" id="UploadModal" aria-hidden="true">';
 			txt += '	<div class="modal-dialog">';
@@ -160,7 +160,7 @@ define(function(require, exports, module) {
 				$('#upimglist li .widget-image-meta').removeClass('hide');
 			}
 		});
-	}
+	}*/
 	/*插入图片*/
 	function imgadd(dom,src,value){
 		$li = ' <li class="sort">' + 
@@ -197,9 +197,11 @@ define(function(require, exports, module) {
 					html+= '<li class="upnow">' +
 							'<div data-name="'+name+'" id="filePicker_'+name+'" class="btn btn-default" style="border-radius:0px"><span class="uptxt">上传</span></div>' +
 							'</li>';
-					if($(this).data("upload-type")=='doupimg')html+= '<li class="imgku">';
-					if($(this).data("upload-type")=='doupimg')html+= '<button type="button" data-name="'+name+'" class="btn btn-default">从图片库选择</button>';
-					if($(this).data("upload-type")=='doupimg')html+= '</li>';
+
+					//暂时没有图片库功能，注释，20171012 wsl
+					// if($(this).data("upload-type")=='doupimg')html+= '<li class="imgku">';
+					// if($(this).data("upload-type")=='doupimg')html+= '<button type="button" data-name="'+name+'" class="btn btn-default">从图片库选择</button>';
+					// if($(this).data("upload-type")=='doupimg')html+= '</li>';
 					html+= '</ul>';
 					html+= '</div>';
 				dom.after(html);
@@ -219,8 +221,8 @@ define(function(require, exports, module) {
 				require.async('epl/upload/webuploader.min',function(){
 					var uploaders = WebUploader.create({
 						auto: true,
-						swf: siteurl + 'app/system/include/public/js/examples/upload/Uploader.swf',
-						server: basepath + 'index.php?c=uploadify&m=include&a='+doaction+'&lang='+lang + '&data_key=' +data_key,
+						swf: '/js/app/system/include/public/js/examples/upload/Uploader.swf',
+						server: '/setting/upload/',
 						pick: {
 						id:'#filePicker_'+name,
 						multiple :false
@@ -238,13 +240,13 @@ define(function(require, exports, module) {
 					});
 					//文件上传成功时
 					uploaders.on( 'uploadSuccess', function( file, response ) {
-						if(response.error!='0'){
-							alert(response.errorcode);
+						if(response.code!=10){
+							alert(response.message);
 						}else{
 							if(!dom.data('upload-many')){
 								if(dom.next().find('li.sort').length)dom.next().find('li.sort').remove();
 							}
-							var path = siteurl + response.path;
+							var path = siteurl + response.object.filepath;
 							imgadd(dom,path,response.original);
 							imgvalue(dom);
 						}
@@ -293,7 +295,7 @@ define(function(require, exports, module) {
 				imgvalue(dom);
 			});
 			
-			imgku();//图片库
+			//imgku();//图片库
 		}
 
 	}

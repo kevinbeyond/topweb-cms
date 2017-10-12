@@ -2,16 +2,17 @@ package com.topweb.controller;
 
 import com.topweb.dao.CMSConfigMapper;
 import com.topweb.entity.CMSConfig;
-import com.topweb.model.CMSConfigList;
+import com.topweb.model.FileUploadReturnModel;
 import com.topweb.model.ResultCode;
 import com.topweb.model.ResultViewModel;
+import com.topweb.util.ConstantUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -46,6 +47,7 @@ public class SettingController {
      * @return
      */
     @RequestMapping(value = "submitBaseSetting.html", method = RequestMethod.POST)
+    @ResponseBody
     public ResultViewModel submitBaseWebInfoSetting(@RequestBody List<CMSConfig> configList){
         ResultViewModel result = new ResultViewModel();
 
@@ -68,6 +70,47 @@ public class SettingController {
         }
 
         return result;
+    }
+
+    /**
+     * 图片上传
+     * @param image
+     * @return
+     */
+    @RequestMapping(value = "upload", method = RequestMethod.POST)
+    @ResponseBody
+    public ResultViewModel uploadImage(@RequestParam("file")MultipartFile image) {
+
+        ResultViewModel result = new ResultViewModel();
+
+        String path = ConstantUtil.SETTING_UPLOAD_DIR;
+        String fileName = System.currentTimeMillis()+"_" + image.getOriginalFilename();
+        File targetFile = new File(path, fileName);
+        if (!targetFile.exists()) {
+            targetFile.mkdirs();
+        }
+        //保存
+        try {
+            image.transferTo(targetFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.setCode(ResultCode.UPLOAD_FAIL);
+            result.setMessage(ResultCode.UPLOAD_FAIL_MSG);
+            return result;
+        }
+
+        //json.put("filePath",request.getContextPath() + "/upload/" + fileName);
+        //File retfile = new File(SysConstants.PIC_SERVER_DNS + SysConstants.PIC_PTYPE_DIR, fileName);
+        File retfile = new File("F:\\TopWeb\\topweb-cms\\src\\main\\webapp\\static\\images\\upload", fileName);
+
+        result.setCode(ResultCode.UPLOAD_SUCCESS);
+        result.setMessage(ResultCode.UPLOAD_SUCCESS_MSG);
+        FileUploadReturnModel returnModel = new FileUploadReturnModel();
+        returnModel.setFilepath("/images/upload/" + fileName);
+        result.setObject(returnModel);
+//        json.put("filePath",retfile.getPath());
+//        System.out.println("json="+json.toJSONString());
+        return  result;
     }
 
     /**
