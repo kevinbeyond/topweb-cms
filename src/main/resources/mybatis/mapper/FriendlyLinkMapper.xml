@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.topweb.dao.FriendlyLinkMapper" >
+    <select id="friendlylinkList" resultType="com.topweb.entity.FriendlyLink" >
+        SELECT * FROM cms_friendlyLink
+        <where>
+          <if test="link.linkType!=0">
+              AND linkType =#{link.linkType}
+          </if>
+            <if test="link.egis==2">
+                AND egis =2
+            </if>
+            <if test="link.recommend==1">
+                AND recommend =1
+            </if>
+            <if test="link.webKeyWords!=null">
+                AND webKeyWords LIKE #{link.webKeyWords}
+            </if>
+      </where>
+        LIMIT #{page.startNum},#{page.avgPageCount}
+    </select>
+    <select id="nodeCount" resultType="int">
+        SELECT COUNT(id)FROM cms_friendlyLink
+        <where>
+            <if test="linkName==1">
+                AND egis =2
+            </if>
+            <if test="linkName==2">
+                AND recommend =1
+            </if>
+            <if test="linkName==3">
+
+            </if>
+            <if test="linkName==4">
+                AND linkType =1
+            </if>
+            <if test="linkName==5">
+                AND linkType =2
+            </if>
+
+        </where>
+    </select>
+    <select id="findLinkNames" resultType="com.topweb.entity.LinkName">
+        SELECT * FROM cms_linkname
+    </select>
+
+    <select id="nodeCountGuan" resultType="int">
+  SELECT COUNT(id)FROM cms_friendlyLink
+        <where>
+            AND webKeyWords LIKE #{guan}
+        </where>
+    </select>
+
+    <select id="updateinfo" resultType="com.topweb.entity.FriendlyLink">
+        SELECT * FROM cms_friendlyLink
+        <where>
+            AND id=#{updateid}
+        </where>
+    </select>
+
+    <delete id="deleteinfo" >
+        DELETE FROM cms_friendlyLink WHERE id=#{deleteid};
+    </delete>
+    <update id="saveinfo">
+        UPDATE cms_friendlyLink SET linkType=#{info.linkType},webAddress=#{info.webAddress},webLogo=#{info.webLogo},webTitle=#{info.webTitle},webKeyWords=#{info.webKeyWords},sort=#{info.sort},egis=#{info.egis},contactWay=#{info.contactWay},recommend=#{info.recommend} WHERE id=#{info.id}
+    </update>
+
+    <insert id="addinfo">
+        INSERT into cms_friendlyLink(linkType,webAddress,webLogo,webTitle,webKeyWords,sort,egis,contactWay,recommend)values(#{info.linkType},#{info.webAddress},#{info.webLogo},#{info.webTitle},#{info.webKeyWords},#{info.sort},#{info.egis},#{info.contactWay},#{info.recommend});
+    </insert>
+
+</mapper>

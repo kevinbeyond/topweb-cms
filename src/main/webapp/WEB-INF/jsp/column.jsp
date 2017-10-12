@@ -3,16 +3,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" href="http://localhost:88/metinfo/app/system/include/public/bootstrap/css/bootstrap.min.css?53185" />
-    <link rel="stylesheet" type="text/css" href="../templates/met/images/css/metinfo.css?53185" />
-    <link rel="stylesheet" type="text/css" href="../templates/met/images/css/newstyle.css?53185" />
-    <link rel="stylesheet" href="http://localhost:88/metinfo/app/system/include/public/font-awesome/css/font-awesome.min.css?53185" />
-    <script type="text/javascript">var basepath='../templates/met/images?53185',lang = 'cn',adminurl='http://localhost:88/metinfo/admin/';</script>
-    <script type="text/javascript" src="../../public/js/jQuery1.7.2.js?53185"></script>
-    <script type="text/javascript"src="../include/metvar.js?53185"></script>
-    <script type="text/javascript" src="../templates/met/images/js/uploadify/jquery.uploadify.v2.1.4.min.js?53185"></script>
-    <script type="text/javascript" src="../templates/met/images/js/iframes.js?53185"></script>
-    <script type="text/javascript" src="../templates/met/images/js/cookie.js?53185"></script>
+    <link rel="stylesheet" href="http://localhost:88/metinfo/app/system/include/public/bootstrap/css/bootstrap.min.css?20171004" />
+    <link rel="stylesheet" type="text/css" href="../templates/met/images/css/metinfo.css?20171004" />
+    <link rel="stylesheet" type="text/css" href="../templates/met/images/css/newstyle.css?20171004" />
+    <link rel="stylesheet" href="http://localhost:88/metinfo/app/system/include/public/font-awesome/css/font-awesome.min.css?20171004" />
+    <script type="text/javascript">var basepath='../templates/met/images?20171004',lang = 'cn',adminurl='http://localhost:88/metinfo/admin/';</script>
+    <script type="text/javascript" src="../../public/js/jQuery1.7.2.js?20171004"></script>
+    <script type="text/javascript"src="../include/metvar.js?20171004"></script>
+    <script type="text/javascript" src="../templates/met/images/js/uploadify/jquery.uploadify.v2.1.4.min.js?20171004"></script>
+    <script type="text/javascript" src="../templates/met/images/js/iframes.js?20171004"></script>
+    <script type="text/javascript" src="../templates/met/images/js/cookie.js?20171004"></script>
     <script type="text/javascript">
         /*ajax执行*/
         var metimgurl='../templates/met/images/';

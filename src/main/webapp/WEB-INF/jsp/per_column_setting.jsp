@@ -17,7 +17,7 @@
     <script type="text/javascript" src="/js/admin/templates/met/images/js/iframes.js"></script>
     <script type="text/javascript" src="/js/admin/templates/met/images/js/cookie.js"></script>
     <script type="text/javascript">
-        var basepath='/images?53185',
+        var basepath='/images?20171004',
                 lang = 'cn',
                 adminurl='http://localhost:88/metinfo/admin/';
     </script>

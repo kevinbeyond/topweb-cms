@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -10,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="/css/admin/templates/met/images/css/newstyle.css" />
     <link rel="stylesheet" href="/css/app/system/include/public/font-awesome/css/font-awesome.min.css" />
     <script type="text/javascript">
-        var basepath='/images?53185',
+        var basepath='/images?20171004',
                 lang = 'cn',
                 adminurl='http://localhost:88/metinfo/admin/';
     </script>
@@ -35,7 +36,7 @@
         window.onerror = killErrors;
     </SCRIPT>
     <![endif]-->
-    <script src="http://localhost:88/metinfo/app/system/include/public/js/seajs.js"></script>
+    <script src="/js/app/system/include/public/js/seajs.js"></script>
     <script>
         var pub = 'http://localhost:88/metinfo/app/system/include/public/',siteurl='http://localhost:88/metinfo/',basepath='http://localhost:88/metinfo/admin/',apppath='http://app.metinfo.cn/index.php?lang=cn&',editorname='ueditor';
         seajs.config({
@@ -98,7 +99,7 @@
         <table cellpadding="0" cellspacing="0" class="table">
             <tr>
                 <td colspan="3" class="centle" style="font-weight:normal;">
-                    <a href="index.php?anyid=25&lang=cn&action=modify&met_columnshow=" onclick="return columnshow($(this),'展开所有子栏目','隐藏所有子栏目');" style="float:right; font-weight:normal; padding-right:10px;">展开所有子栏目</a>
+                    <%--<a href="index.php?anyid=25&lang=cn&action=modify&met_columnshow=" onclick="return columnshow($(this),'展开所有子栏目','隐藏所有子栏目');" style="float:right; font-weight:normal; padding-right:10px;">展开所有子栏目</a>--%>
                     &nbsp;&nbsp;<a href="/setting/addColumn.html?type=1" onclick="return addcolumn($(this),'',1);">添加一级栏目</a>&nbsp;&nbsp;
                     <font style=' color:#999;'>排序越小越靠前</font>
                     <span id="loadtxt"></span>
@@ -120,7 +121,7 @@
                             </tr>
 
                             <%--已添加栏目 start--%>
-                            <c:forEach items="${columnList}" var="column" varStatus="status">
+                            <c:forEach items="${columnViewModelList}" var="column" varStatus="status">
                                 <tr class="mouse click column_1">
                                     <td class="list-text">
                                         <input name="id" type="checkbox" onclick="list_all($(this),1);" id="id" value="${column.id}">
@@ -141,7 +142,9 @@
                                         </div>
                                     </td>
                                     <td class="list-text blues" style="text-align:left;">
-                                        <img src="/images/colum1nx.gif" class="columnimg" id="img_1" onclick="oncolumn($(this),'1');">
+                                        <c:if test="${fn:length(column.subColumnList)>0}">
+                                            <img src="/images/colum1nx.gif" class="columnimg" id="img_1" onclick="oncolumn($(this),'1');">
+                                        </c:if>
                                         <input type="text" class="text nonull" value="${column.name}" name="name">
                                     </td>
                                     <td class="list-text">
@@ -158,7 +161,7 @@
                                     </td>
                                     <td class="list-text color999" title="about">about</td>
                                     <td class="list-text">
-                                        <input type="text" class="text no_order" value="2" name="index_num_1">
+                                        <input type="text" class="text no_order" value="2">
                                     </td>
                                     <td width="100" class="list-text">
                                         <div style=" position:relative; z-index:1;">
@@ -166,14 +169,78 @@
                                             <div class="columnmore">
                                                 <span class="text">更多&nbsp;<img src="/images/metcolumn12.gif" style="position:relative; bottom:2px;"></span>
                                                 <div class="none columnmorediv">
-                                                    <div><a href="add.php?anyid=25&amp;lang=cn&amp;id=1&amp;type=2&amp;action=add" onclick="return addcolumn($(this),'1',2);">添加子栏目</a></div>
-
+                                                    <div>
+                                                        <a href="/setting/addColumn.html?type=2&bigclass=${column.id}" onclick="return addcolumn($(this),'1',2);">添加子栏目</a>
+                                                    </div>
                                                     <div><a class="perColumnDel" data-id="${column.id}">删除</a></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
                                 </tr>
+                                <c:if test="${fn:length(column.subColumnList)>0}">
+                                    <c:forEach items="${column.subColumnList}" var="subColumn">
+                                        <tr id="class_${subColumn.id}" class="none mouse click columnz_1 column_2" style="display: none;">
+                                            <td class="list-text2">
+                                                <input name="id" type="checkbox" onclick="linkage($(this),'bgid_19');" id="id" value="${subColumn.id}" bgid_1"="">
+                                            </td>
+                                            <td class="list-text2">
+                                                <input type="text" class="text no_order" value="${subColumn.noOrder}" name="noOrder">
+                                                <div style="display:none;">
+                                                    <input type="hidden" value="${subColumn.bigclass}" name="bigclass">
+                                                    <%--<input type="hidden" value="about" name="foldername_19">--%>
+                                                    <%--<input type="hidden" value="1" name="module_19">
+                                                    <input type="hidden" value="2" name="classtype_19">
+                                                    <input type="hidden" value="" name="out_url_19">
+                                                    <input type="hidden" value="0" name="if_in_19">
+                                                    <input type="hidden" value="0" name="access_19">--%>
+                                                </div>
+                                            </td>
+                                            <td class="list-text2" id="tr19" style="text-align:left; padding-left:10px;">
+                                                <img src="/images/bg_column.gif" style="position:relative; top:6px;">
+
+                                                <input type="text" class="text nonull" value="${subColumn.name}" name="name" style=" width:141px;">
+                                            </td>
+                                            <td class="list-text2">
+                                                <select name="nav">
+                                                    <c:forEach items="${navConfig}" var="nav">
+                                                        <option value="${nav.key}" <c:if test="${subColumn.nav==nav.key}">selected="selected"</c:if>>${nav.value}</option>
+                                                    </c:forEach>
+                                                </select>
+                                            </td>
+
+                                            <td class="list-text2 color999">
+                                                <c:forEach items="${moduleConfig}" var="module">
+                                                    <c:if test="${module.key == subColumn.module}">${module.value}</c:if>
+                                                </c:forEach>
+                                            </td>
+                                            <td class="list-text2 color999" title="about">about</td>
+                                            <td class="list-text2">
+                                                <input type="text" class="text no_order" value="0">
+                                            </td>
+                                            <td class="list-text2" style="text-align:center;">
+                                                <div style=" position:relative;">
+                                                    <a href="/setting/perColumnSetting.html?id=${subColumn.id}" style="float:left; margin-left:10px;">设置</a>
+                                                    <div class="columnmore">
+                                                        <span class="text">更多&nbsp;<img src="/images/metcolumn12.gif" style="position:relative; bottom:2px;"></span>
+                                                        <div class="none columnmorediv">
+                                                            <%--<div><a href="add.php?anyid=25&amp;lang=cn&amp;id=19&amp;type=3&amp;action=add" onclick="return addcolumn($(this),'19',3);">添加三级栏目</a></div>
+                                                            <div class="move">
+                                                                <a href="move.php?anyid=25&amp;lang=cn&amp;id=19&amp;action=b1" onclick="return columnMove($(this))">
+                                                                    移动栏目至
+                                                                    &nbsp;<img src="../templates/met/images/metcolumn12.gif" style="position:relative; bottom:2px;">
+                                                                </a>
+                                                                <div class="moveb1"></div>
+                                                            </div>--%>
+
+                                                            <div><a class="perColumnDel" data-id="${subColumn.id}">删除</a></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </c:if>
                             </c:forEach>
                             <%--已添加栏目 end--%>
 
@@ -199,7 +266,7 @@
                 <td class="all-submit" colspan="7" style="padding: 5px 10px;border-top:0px">
                     <input name="saveorder" id="saveColumns" type='submit' value='保存' class="submit li-submit" />
                     <input name="submit" id="delColumns" type='submit' value='删除' class="submit li-submit" style="margin-right:20px;" />
-                    <div style="margin-top:2px;float:right;">
+                    <%--<div style="margin-top:2px;float:right;">
                         <form method="POST" name="myform" action="./copycolumn.php?lang=cn&action=copy&table=1" target="_self">
                             <input name="allid" type="hidden" id="allid" value="" />
                             <select name="copylang">
@@ -210,7 +277,7 @@
                             <label style="vertical-align:middle;font-weight:normal;height:28px;line-height:28px;"><input name="copycontent" type='checkbox' value='1' id="copycontent" class="checkbox">复制内容</label>
                         </form>
                         <input name="submit" type='submit' value='复制'  onclick="return met_modify($(this),'myform','editor','columncook');" class="submitmi"/>
-                    </div>
+                    </div>--%>
                 </td>
             </tr>
             <tr>

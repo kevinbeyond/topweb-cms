@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.topweb.dao.CMSArticleMapper" >
+  <resultMap id="BaseResultMap" type="com.topweb.entity.CMSArticle" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="ctitle" property="ctitle" jdbcType="VARCHAR" />
+    <result column="keywords" property="keywords" jdbcType="VARCHAR" />
+    <result column="class1" property="class1" jdbcType="INTEGER" />
+    <result column="class2" property="class2" jdbcType="INTEGER" />
+    <result column="class3" property="class3" jdbcType="INTEGER" />
+    <result column="no_order" property="noOrder" jdbcType="INTEGER" />
+    <result column="imgurl" property="imgurl" jdbcType="VARCHAR" />
+    <result column="recommend" property="recommend" jdbcType="INTEGER" />
+    <result column="issue" property="issue" jdbcType="VARCHAR" />
+    <result column="hits" property="hits" jdbcType="INTEGER" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="top" property="top" jdbcType="INTEGER" />
+    <result column="display" property="display" jdbcType="INTEGER" />
+    <result column="links" property="links" jdbcType="VARCHAR" />
+    <result column="del" property="del" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.topweb.entity.CMSArticleWithBLOBs" extends="BaseResultMap" >
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, ctitle, keywords, class1, class2, class3, no_order, imgurl, recommend, 
+    issue, hits, updatetime, addtime, top, display, links, del
+  </sql>
+  <sql id="Blob_Column_List" >
+    description, content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cms_article
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectArticleList" resultMap="ResultMapWithBLOBs">
+    SELECT
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    FROM cms_article
+    WHERE del = 0
+    <if test="class1 > 0">
+      AND  class1 = #{class1}
+    </if>
+    <if test="class2 > 0">
+      AND  class2 = #{class2}
+    </if>
+    ORDER BY top DESC, recommend DESC, no_order DESC, updatetime DESC
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cms_article
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.topweb.entity.CMSArticleWithBLOBs" >
+    insert into cms_article (id, title, ctitle, 
+      keywords, class1, class2, 
+      class3, no_order, imgurl, 
+      recommend, issue, hits, 
+      updatetime, addtime, top, 
+      display, links, del,
+      description, content)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{ctitle,jdbcType=VARCHAR}, 
+      #{keywords,jdbcType=VARCHAR}, #{class1,jdbcType=INTEGER}, #{class2,jdbcType=INTEGER}, 
+      #{class3,jdbcType=INTEGER}, #{noOrder,jdbcType=INTEGER}, #{imgurl,jdbcType=VARCHAR}, 
+      #{recommend,jdbcType=INTEGER}, #{issue,jdbcType=VARCHAR}, #{hits,jdbcType=INTEGER}, 
+      #{updatetime,jdbcType=TIMESTAMP}, NOW(), #{top,jdbcType=INTEGER},
+      #{display,jdbcType=INTEGER}, #{links,jdbcType=VARCHAR}, #{del,jdbcType=INTEGER},
+      #{description,jdbcType=LONGVARCHAR}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.topweb.entity.CMSArticleWithBLOBs" >
+    insert into cms_article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="ctitle != null" >
+        ctitle,
+      </if>
+      <if test="keywords != null" >
+        keywords,
+      </if>
+      <if test="class1 != null" >
+        class1,
+      </if>
+      <if test="class2 != null" >
+        class2,
+      </if>
+      <if test="class3 != null" >
+        class3,
+      </if>
+      <if test="noOrder != null" >
+        no_order,
+      </if>
+      <if test="imgurl != null" >
+        imgurl,
+      </if>
+      <if test="recommend != null" >
+        recommend,
+      </if>
+      <if test="issue != null" >
+        issue,
+      </if>
+      <if test="hits != null" >
+        hits,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+        addtime,
+      <if test="top != null" >
+        top,
+      </if>
+      <if test="display != null" >
+        display,
+      </if>
+      <if test="links != null" >
+        links,
+      </if>
+      <if test="del != null" >
+        del,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="ctitle != null" >
+        #{ctitle,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null" >
+        #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="class1 != null" >
+        #{class1,jdbcType=INTEGER},
+      </if>
+      <if test="class2 != null" >
+        #{class2,jdbcType=INTEGER},
+      </if>
+      <if test="class3 != null" >
+        #{class3,jdbcType=INTEGER},
+      </if>
+      <if test="noOrder != null" >
+        #{noOrder,jdbcType=INTEGER},
+      </if>
+      <if test="imgurl != null" >
+        #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="recommend != null" >
+        #{recommend,jdbcType=INTEGER},
+      </if>
+      <if test="issue != null" >
+        #{issue,jdbcType=VARCHAR},
+      </if>
+      <if test="hits != null" >
+        #{hits,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+        NOW(),
+      <if test="top != null" >
+        #{top,jdbcType=INTEGER},
+      </if>
+      <if test="display != null" >
+        #{display,jdbcType=INTEGER},
+      </if>
+      <if test="links != null" >
+        #{links,jdbcType=VARCHAR},
+      </if>
+      <if test="del != null" >
+        #{del,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.topweb.entity.CMSArticleWithBLOBs" >
+    update cms_article
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="ctitle != null" >
+        ctitle = #{ctitle,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null" >
+        keywords = #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="class1 != null" >
+        class1 = #{class1,jdbcType=INTEGER},
+      </if>
+      <if test="class2 != null" >
+        class2 = #{class2,jdbcType=INTEGER},
+      </if>
+      <if test="class3 != null" >
+        class3 = #{class3,jdbcType=INTEGER},
+      </if>
+      <if test="noOrder != null" >
+        no_order = #{noOrder,jdbcType=INTEGER},
+      </if>
+      <if test="imgurl != null" >
+        imgurl = #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="recommend != null" >
+        recommend = #{recommend,jdbcType=INTEGER},
+      </if>
+      <if test="issue != null" >
+        issue = #{issue,jdbcType=VARCHAR},
+      </if>
+      <if test="hits != null" >
+        hits = #{hits,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="top != null" >
+        top = #{top,jdbcType=INTEGER},
+      </if>
+      <if test="display != null" >
+        display = #{display,jdbcType=INTEGER},
+      </if>
+      <if test="links != null" >
+        links = #{links,jdbcType=VARCHAR},
+      </if>
+      <if test="del != null" >
+        del = #{del,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.topweb.entity.CMSArticleWithBLOBs" >
+    update cms_article
+    set title = #{title,jdbcType=VARCHAR},
+      ctitle = #{ctitle,jdbcType=VARCHAR},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      class1 = #{class1,jdbcType=INTEGER},
+      class2 = #{class2,jdbcType=INTEGER},
+      class3 = #{class3,jdbcType=INTEGER},
+      no_order = #{noOrder,jdbcType=INTEGER},
+      imgurl = #{imgurl,jdbcType=VARCHAR},
+      recommend = #{recommend,jdbcType=INTEGER},
+      issue = #{issue,jdbcType=VARCHAR},
+      hits = #{hits,jdbcType=INTEGER},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      top = #{top,jdbcType=INTEGER},
+      display = #{display,jdbcType=INTEGER},
+      links = #{links,jdbcType=VARCHAR},
+      del = #{del,jdbcType=INTEGER},
+      description = #{description,jdbcType=LONGVARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.topweb.entity.CMSArticle" >
+    update cms_article
+    set
+    <trim suffixOverrides=",">
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="ctitle != null">
+        ctitle = #{ctitle,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null">
+        keywords = #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="class1 != null">
+        class1 = #{class1,jdbcType=INTEGER},
+      </if>
+      <if test="class2 != null">
+        class2 = #{class2,jdbcType=INTEGER},
+      </if>
+      <if test="class3 != null">
+        class3 = #{class3,jdbcType=INTEGER},
+      </if>
+      <if test="noOrder != null">
+        no_order = #{noOrder,jdbcType=INTEGER},
+      </if>
+      <if test="imgurl != null">
+        imgurl = #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="recommend != null">
+        recommend = #{recommend,jdbcType=INTEGER},
+      </if>
+      <if test="issue != null">
+        issue = #{issue,jdbcType=VARCHAR},
+      </if>
+      <if test="hits != null">
+        hits = #{hits,jdbcType=INTEGER},
+      </if>
+      <if test="top != null" >
+        top = #{top,jdbcType=INTEGER},
+      </if>
+      <if test="display != null" >
+        display = #{display,jdbcType=INTEGER},
+      </if>
+      <if test="links != null" >
+        links = #{links,jdbcType=VARCHAR},
+      </if>
+      <if test="del != null" >
+        del = #{del,jdbcType=INTEGER},
+      </if>
+    </trim>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateArticleDelStatus">
+    UPDATE cms_article
+    SET del=1
+    WHERE id = #{id}
+  </update>
+</mapper>

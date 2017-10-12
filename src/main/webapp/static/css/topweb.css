@@ -909,11 +909,6 @@ div.showimg {
 .login-right p {
 	margin:20px 0px;
 }
-.login-right .error-tip {
-	display: block;
-	color: red;
-	margin: 0 85px;
-}
 .login-right form label {
 	float:left;
 	width:76px;
@@ -2232,10 +2227,10 @@ float:left; margin-top:5px; text-align:center; border:none;
 	vertical-align:middle;
 	padding:10px 0px 0px 15px;
 }
-.column_display{color:#ff3f00!important; background:#fff url(../metv5/titimg2_c.png) no-repeat 0px 14px; }
-.column_hidden{color:#999999!important; background:url(../metv5/titimg2_h.png) no-repeat 0px 14px;}
-.modular_display{color:#ff3f00!important; background:#fff url(../metv5/titimg_c.png) no-repeat 0px 14px;}
-.modular_hidden{color:#999999!important; background:url(../metv5/titimg_h.png) no-repeat 0px 14px;}
+.column_display{color:#ff3f00!important; background:#fff url(/images/metv5/titimg2_c.png) no-repeat 0px 14px; }
+.column_hidden{color:#999999!important; background:url(/images/metv5/titimg2_h.png) no-repeat 0px 14px;}
+.modular_display{color:#ff3f00!important; background:#fff url(/images/metv5/titimg_c.png) no-repeat 0px 14px;}
+.modular_hidden{color:#999999!important; background:url(/images/metv5/titimg_h.png) no-repeat 0px 14px;}
 
 
 .sectionh3{ border:1px solid #ccc;  float:left; margin-top:15px; margin-left:10px; height:35px; font-size:14px; font-weight:normal;}
@@ -2248,7 +2243,7 @@ float:left; margin-top:5px; text-align:center; border:none;
 .fundes{ color:#08c !important; padding-left:20px !important; font-size:14px;}
 
 
-.input_text{border:1px solid #d1d1d1; width:261px; height:37px; line-height:20px; *line-height:37px; line-height:37px\9; _line-height:37px;outline: none; background:url(../metv5/searchimg.jpg) no-repeat; margin:1px 0 0 26px; font-family:"微软雅黑"; color:#666; padding-left:54px;position: absolute;top: 5px;left: 0;}
+.input_text{border:1px solid #d1d1d1; width:261px; height:37px; line-height:20px; *line-height:37px; line-height:37px\9; _line-height:37px;outline: none; background:url(/images/metv5/searchimg.jpg) no-repeat; margin:1px 0 0 26px; font-family:"微软雅黑"; color:#666; padding-left:54px;position: absolute;top: 5px;left: 0;}
 .v52fmbx_ding{height:50px; border-bottom:1px solid #cccccc; position:relative;}
 .v52fmbx_dings{height:50px; border-bottom:1px solid #cccccc;}
 .v52fmbx_dings a{vertical-align:middle;}

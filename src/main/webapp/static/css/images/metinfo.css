@@ -2227,10 +2227,10 @@ float:left; margin-top:5px; text-align:center; border:none;
 	vertical-align:middle;
 	padding:10px 0px 0px 15px;
 }
-.column_display{color:#ff3f00!important; background:#fff url(../metv5/titimg2_c.png) no-repeat 0px 14px; }
-.column_hidden{color:#999999!important; background:url(../metv5/titimg2_h.png) no-repeat 0px 14px;}
-.modular_display{color:#ff3f00!important; background:#fff url(../metv5/titimg_c.png) no-repeat 0px 14px;}
-.modular_hidden{color:#999999!important; background:url(../metv5/titimg_h.png) no-repeat 0px 14px;}
+.column_display{color:#ff3f00!important; background:#fff url(/images/metv5/titimg2_c.png) no-repeat 0px 14px; }
+.column_hidden{color:#999999!important; background:url(/images/metv5/titimg2_h.png) no-repeat 0px 14px;}
+.modular_display{color:#ff3f00!important; background:#fff url(/images/metv5/titimg_c.png) no-repeat 0px 14px;}
+.modular_hidden{color:#999999!important; background:url(/images/metv5/titimg_h.png) no-repeat 0px 14px;}
 
 
 .sectionh3{ border:1px solid #ccc;  float:left; margin-top:15px; margin-left:10px; height:35px; font-size:14px; font-weight:normal;}

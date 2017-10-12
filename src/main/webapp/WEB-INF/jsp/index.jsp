@@ -52,8 +52,8 @@
         <dl >
             <dt>内容</dt>
             <dd>
-                <a href="/admin/index.php?n=content&c=content&a=doadd&anyid=68&lang=cn"  title="发布"  id="metinfo_metnav_68"><i class="fa fa-plus"></i>发布</a>
-                <a href="/admin/content/content.php?anyid=29&lang=cn"  title="管理"  id="metinfo_metnav_29"><i class="fa fa-th-large"></i>管理</a>
+                <a href="/content/publish.html"  title="发布"  id="metinfo_metnav_68"><i class="fa fa-plus"></i>发布</a>
+                <a href="/content/manage.html"  title="管理"  id="metinfo_metnav_29"><i class="fa fa-th-large"></i>管理</a>
             </dd>
         </dl>
 
