@@ -48,7 +48,7 @@
             paths: {
                 'epl': 'examples',
                 'pub': pub.substring(0,pub.length-1),
-                'edturl':siteurl+'app/app/'+editorname
+                'edturl':'/js/app/app/'+editorname
             },
             alias: {
                 "jquery": "jquery/1.11.1/jquery_seajs.js"
@@ -82,12 +82,6 @@
                         </li>
                     </ul>
                 </div>
-                <%--<div class="btn-group pull-right met-tool met-msecount-tool">
-                    <button class="btn btn-default text-center dropdown-toggle msecount" type="button" onclick="location.href = 'http://localhost:88/metinfo/admin/index.php?n=system&c=news&a=doindex&lang=cn';">
-                        <i class="fa fa-bell-o"></i>
-                        <span class="label label-danger">0</span>
-                    </button>
-                </div>--%>
             </div>
         </div>
     </div>

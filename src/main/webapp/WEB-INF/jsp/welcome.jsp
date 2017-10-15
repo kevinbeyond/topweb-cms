@@ -151,7 +151,7 @@
                         <i class="fa fa-angle-right"></i>
                     </li>--%>
                     <li>
-                        <a href="#" id="fubu">
+                        <a href="/content/publish.html" id="fubu">
                             <i class="fa fa-plus"></i>
                             发布内容
                         </a>

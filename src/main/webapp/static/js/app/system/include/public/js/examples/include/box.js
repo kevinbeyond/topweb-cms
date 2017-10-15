@@ -77,9 +77,9 @@ define(function(require, exports, module) {
 	
 	
 	/*升级控件*/	
-	if($('.metcms_upload_download').length>0)require.async('epl/include/download');
+	//if($('.metcms_upload_download').length>0)require.async('epl/include/download');
 	
 	/*自动补丁*/
-	if($('#met_automatic_upgrade').val() == 1)require.async('epl/include/patch');
+	//if($('#met_automatic_upgrade').val() == 1)require.async('epl/include/patch');
 	
 });

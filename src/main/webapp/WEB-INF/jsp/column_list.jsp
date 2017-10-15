@@ -143,7 +143,7 @@
                                     </td>
                                     <td class="list-text blues" style="text-align:left;">
                                         <c:if test="${fn:length(column.subColumnList)>0}">
-                                            <img src="/images/colum1nx.gif" class="columnimg" id="img_1" onclick="oncolumn($(this),'1');">
+                                            <img src="/images/colum1nx.gif" class="columnimg" id="img_1" onclick="oncolumn($(this),${column.id});">
                                         </c:if>
                                         <input type="text" class="text nonull" value="${column.name}" name="name">
                                     </td>
@@ -170,7 +170,7 @@
                                                 <span class="text">更多&nbsp;<img src="/images/metcolumn12.gif" style="position:relative; bottom:2px;"></span>
                                                 <div class="none columnmorediv">
                                                     <div>
-                                                        <a href="/setting/addColumn.html?type=2&bigclass=${column.id}" onclick="return addcolumn($(this),'1',2);">添加子栏目</a>
+                                                        <a href="/setting/addColumn.html?type=2&bigclass=${column.id}" onclick="return addcolumn($(this),${column.id},2);">添加子栏目</a>
                                                     </div>
                                                     <div><a class="perColumnDel" data-id="${column.id}">删除</a></div>
                                                 </div>
@@ -180,7 +180,7 @@
                                 </tr>
                                 <c:if test="${fn:length(column.subColumnList)>0}">
                                     <c:forEach items="${column.subColumnList}" var="subColumn">
-                                        <tr id="class_${subColumn.id}" class="none mouse click columnz_1 column_2" style="display: none;">
+                                        <tr id="class_${subColumn.id}" class="none mouse click columnz_${column.id} column_2" style="display: none;">
                                             <td class="list-text2">
                                                 <input name="id" type="checkbox" onclick="linkage($(this),'bgid_19');" id="id" value="${subColumn.id}" bgid_1"="">
                                             </td>

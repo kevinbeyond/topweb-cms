@@ -97,7 +97,7 @@ public class SettingController {
 
         //json.put("filePath",request.getContextPath() + "/upload/" + fileName);
         //File retfile = new File(SysConstants.PIC_SERVER_DNS + SysConstants.PIC_PTYPE_DIR, fileName);
-        File retfile = new File("F:\\TopWeb\\topweb-cms\\src\\main\\webapp\\static\\images\\upload", fileName);
+        File retfile = new File(ConstantUtil.SETTING_UPLOAD_DIR, fileName);
 
         result.setCode(ResultCode.UPLOAD_SUCCESS);
         result.setMessage(ResultCode.UPLOAD_SUCCESS_MSG);

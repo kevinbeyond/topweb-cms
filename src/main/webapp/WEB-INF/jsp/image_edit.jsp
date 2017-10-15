@@ -13,7 +13,7 @@
     <script type="text/javascript">
         var basepath='/js/admin/templates/templates/met/images',
                 lang = 'cn',
-                adminurl='http://localhost:88/metinfo/admin/';
+                adminurl='';
     </script>
 
     <script type="text/javascript" src="/js/public/js/jQuery1.7.2.js"></script>
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="/js/admin/templates/met/images/js/cookie.js"></script>
     <script type="text/javascript">
         /*ajax执行*/
-        var metimgurl='../../templates/met/images/';
+        var metimgurl='/images/';
         var depth='../';
         $(document).ready(function(){
             ifreme_methei();
@@ -40,14 +40,14 @@
     <script src="/js/app/system/include/public/js/seajs.js"></script>
     <script>
         var pub = '/js/app/system/include/public/',
-                siteurl='http://localhost:88/metinfo/',
-                basepath='http://localhost:88/metinfo/admin/',
-                apppath='http://app.metinfo.cn/index.php?lang=cn&',editorname='ueditor';
+                siteurl='/',
+                basepath='',
+                apppath='',editorname='ueditor';
         seajs.config({
             paths: {
                 'epl': 'examples',
                 'pub': pub.substring(0,pub.length-1),
-                'edturl':siteurl+'app/app/'+editorname
+                'edturl':'/js/app/app/'+editorname
             },
             alias: {
                 "jquery": "jquery/1.11.1/jquery_seajs.js"
@@ -105,7 +105,7 @@
         }
     </SCRIPT>
 
-    <script type="text/javascript" src="/js/app/sytem/include/public/js/examples/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="/js/app/system/include/public/js/examples/ckeditor/ckeditor.js"></script>
 </head>
 <script language = 'JavaScript'>
     var onecount;
@@ -395,7 +395,7 @@
                         </dl>
                     </div>
                     <div class="v52fmbx_submit">
-                        <input type="submit" id="per-image-submit" value="保存" class="submit"/>
+                        <input type="submit" value="保存" class="submit"/>
                     </div>
                 </div>
             </div>
@@ -423,5 +423,5 @@
     });
 </script>
 </body>
-<script src="/js/topweb/img.js?v0.2"></script>
+<script src="/js/topweb/img.js?v0.3"></script>
 </html>

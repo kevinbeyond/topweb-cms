@@ -2,40 +2,44 @@
  * Created by Leo on 2017/10/8.
  */
 $(function () {
-   $('#per-image-submit').on('click', function () {
-       var _title = $('input[name="title"]');
-       if(!_title.val()){
-           alert("请输入标题");
-           _title.focus();
-           return false;
-       }
 
-       var imgObject = new Object();
-       $('#imgForm').find("input, select, textarea").each(function () {
-           if ($(this).attr('name')) {
-               imgObject[$(this).attr('name')] = $(this).val();
-           }
-       });
-        
-       $.ajax({
-           url: "/content/saveOrUpdateImage/",
-           type: "POST",
-           contentType : 'application/json;charset=utf-8', //设置请求头信息
-           dataType:"json",
-           data: JSON.stringify(imgObject), //将Json对象序列化成Json字符串，JSON.stringify()原生态方法
-           success: function(data){
-               if (data.code==0) {
-                   alert('操作成功');//提示操作成功
-                   //document.location.reload();//当前页面
-                   //window.history.back();//返回列表页
-                   window.location.href = document.referrer;//返回上一页并刷新
-               }
-           },
-           error: function(res){
-               alert(res.responseText);
-           }
-       });
-   });
+    $(document).on('submit',"#imgForm",function(){
+        var _title = $('input[name="title"]');
+        if(!_title.val()){
+            alert("请输入标题");
+            _title.focus();
+            return false;
+        }
+        var imgObject = new Object();
+        $('#imgForm').find("input, select, textarea").each(function () {
+            if ($(this).attr('name')) {
+                imgObject[$(this).attr('name')] = $(this).val();
+            }
+        });
+
+        $.ajax({
+            url: "/content/saveOrUpdateImage/",
+            type: "POST",
+            contentType : 'application/json;charset=utf-8', //设置请求头信息
+            dataType:"json",
+            data: JSON.stringify(imgObject), //将Json对象序列化成Json字符串，JSON.stringify()原生态方法
+            success: function(data){
+                if (data.code==0) {
+                    alert('操作成功');//提示操作成功
+                    //document.location.reload();//当前页面
+                    //window.history.back();//返回列表页
+                    window.location.href = document.referrer;//返回上一页并刷新
+                }
+            },
+            error: function(res){
+                alert(res.responseText);
+            }
+        });
+    });
+    
+   // $('#per-image-submit').on('click', function () {
+   //     
+   // });
 
     $('#images-form-submit').on('click', function () {
         if($('#images-form').find("input[type='checkbox']:checked").length < 1) {
