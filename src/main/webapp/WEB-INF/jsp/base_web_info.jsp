@@ -1,6 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.topweb.common.WebBaseConfig" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE HTML>
 <html>
@@ -241,9 +241,9 @@ function submitConfigInfos() {
             if (data.code==0) {
                 alert('操作成功');//提示操作成功
             }
-
         },
         error: function(res){
+            alert('error');
             alert(res.responseText);
         }
     });

@@ -30,7 +30,7 @@ public class SettingController {
      * 网站信息设置
      * @return
      */
-    @RequestMapping("baseWebInfo.html")
+    @RequestMapping("/baseWebInfo.html")
     public ModelAndView baseWebInfoSetting() {
         ModelAndView view = new ModelAndView("base_web_info");
 
@@ -46,7 +46,7 @@ public class SettingController {
      * @param configList
      * @return
      */
-    @RequestMapping(value = "submitBaseSetting.html", method = RequestMethod.POST)
+    @RequestMapping(value = "/submitBaseSetting.html", method = RequestMethod.POST)
     @ResponseBody
     public ResultViewModel submitBaseWebInfoSetting(@RequestBody List<CMSConfig> configList){
         ResultViewModel result = new ResultViewModel();
@@ -77,7 +77,7 @@ public class SettingController {
      * @param image
      * @return
      */
-    @RequestMapping(value = "upload", method = RequestMethod.POST)
+    @RequestMapping(value = "/upload", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     public ResultViewModel uploadImage(@RequestParam("file")MultipartFile image) {
 
@@ -117,7 +117,7 @@ public class SettingController {
      * 第三方代码设置
      * @return
      */
-    @RequestMapping("base3rdInfo.html")
+    @RequestMapping("/base3rdInfo.html")
     public ModelAndView base3rdInfoSetting() {
         ModelAndView view = new ModelAndView("base_3rd_info");
         return view;
