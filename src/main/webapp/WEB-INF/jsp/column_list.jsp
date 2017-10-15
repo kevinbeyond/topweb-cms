@@ -13,7 +13,7 @@
     <script type="text/javascript">
         var basepath='/images?20171004',
                 lang = 'cn',
-                adminurl='http://localhost:88/metinfo/admin/';
+                adminurl='/';
     </script>
     <script type="text/javascript" src="/js/public/js/jQuery1.7.2.js"></script>
     <script type="text/javascript"src="/js/admin/include/metvar.js"></script>

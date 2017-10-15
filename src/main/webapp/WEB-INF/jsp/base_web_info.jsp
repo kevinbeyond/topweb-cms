@@ -40,12 +40,13 @@
                 own_form="",
                 own_name="",
                 tem="/js/app/system/admin/templates/web/webset/",
-                adminurl="",
+                adminurl="/",
                 apppath="",
                 jsrand="201710120226",
                 editorname="ueditor"
                 ;
     </script>
+    <script type="text/javascript" src="/js/public/js/jQuery1.7.2.js"></script>
     <!--[if IE]><script src="/js/public/js/html5.js" type="text/javascript"></script><![endif]-->
 </head>
 <body>
@@ -87,7 +88,7 @@
         </div>
         <div class="clear"></div>
 
-        <form method="POST" class="ui-from" id="myform" name="myform"  target="_self">
+        <form class="ui-from" id="baseSettingForm"  target="_self">
             <div class="v52fmbx" data-gent="" data-webset-record="">
                 <h3 class="v52fmbx_hr">网站基本信息设置</h3>
                 <dl>
@@ -201,7 +202,7 @@
                 <dl class="noborder">
                     <dt> </dt>
                     <dd>
-                        <input type="submit" name="submit" value="保存" class="submit" onclick="submitConfigInfos();">
+                        <input type="submit" value="保存" class="submit">
                     </dd>
                 </dl>
 
@@ -219,34 +220,5 @@
 </div>
 </div>
 </body>
-<script>
-function submitConfigInfos() {
-    var jsonArray = new Array();
-    $('.fbox').find('input, textarea').each(function () {
-        var _obj = new Object();
-        _obj.name = $(this).attr('name');
-        _obj.value = $(this).val();
-        jsonArray.push(_obj);
-    });
-    console.log(JSON.stringify(jsonArray));
-
-    $.ajax({
-        url: "/setting/submitBaseSetting.html",
-        type: "POST",
-        contentType : 'application/json;charset=utf-8', //设置请求头信息
-        dataType:"json",
-        data: JSON.stringify(jsonArray), //将Json对象序列化成Json字符串，JSON.stringify()原生态方法
-//        data: $.toJSON(customerArray), //将Json对象序列化成Json字符串，toJSON()需要引用jquery.json.min.js
-        success: function(data){
-            if (data.code==0) {
-                alert('操作成功');//提示操作成功
-            }
-        },
-        error: function(res){
-            alert('error');
-            alert(res.responseText);
-        }
-    });
-}
-</script>
+<script src="/js/topweb/setting.js?v0.7"></script>
 </html>

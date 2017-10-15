@@ -46,7 +46,7 @@ public class SettingController {
      * @param configList
      * @return
      */
-    @RequestMapping(value = "/submitBaseSetting.html", method = RequestMethod.POST)
+    @RequestMapping(value = "/submitBaseSetting", method = RequestMethod.POST, produces = {"application/json;","text/html;charset=UTF-8;"})
     @ResponseBody
     public ResultViewModel submitBaseWebInfoSetting(@RequestBody List<CMSConfig> configList){
         ResultViewModel result = new ResultViewModel();
@@ -61,14 +61,12 @@ public class SettingController {
                     cmsConfigMapper.insert(tempConfig);
                 }
             }
-
             result.setCode(ResultCode.SUCCESS);
             result.setMessage(ResultCode.SUCCESS_MSG);
         }catch (Exception e) {
             result.setCode(ResultCode.ERROR);
             result.setMessage(ResultCode.ERROR_MSG);
         }
-
         return result;
     }
 
@@ -77,12 +75,10 @@ public class SettingController {
      * @param image
      * @return
      */
-    @RequestMapping(value = "/upload", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/upload", method = RequestMethod.POST, produces = {"application/json;","text/html;charset=UTF-8;"})
     @ResponseBody
     public ResultViewModel uploadImage(@RequestParam("file")MultipartFile image) {
-
         ResultViewModel result = new ResultViewModel();
-
         String path = ConstantUtil.SETTING_UPLOAD_DIR;
         String fileName = System.currentTimeMillis()+"_" + image.getOriginalFilename();
         File targetFile = new File(path, fileName);

@@ -44,7 +44,7 @@
         var tem="",
                 jsrand="20170927";
     </script>
-    <%--<script>
+    <script>
         var langtxt = {
                     "jsx15":"上传",
                     "js35":"上传临时文件夹（upload_tmp_dir）不可写或者域名/后台文件夹/include/uploadify.php没有访问权限。",
@@ -64,15 +64,15 @@
                     "try_again":"重试"
                 },
                 anyid="",
-                own_form="http://localhost:88/metinfo/admin/index.php?lang=cn&anyid=&n=index&c=index&",
-                own_name="http://localhost:88/metinfo/admin/index.php?lang=cn&anyid=&n=index&",
-                tem="http://localhost:88/metinfo/app/system/admin/templates/web/index/",
-                adminurl="http://localhost:88/metinfo/admin/index.php?lang=cn&",
-                apppath="http://app.metinfo.cn/index.php?lang=cn&",
-                jsrand="20171004",
+                own_form="",
+                own_name="",
+                tem="/js/metinfo/app/system/admin/templates/web/index/",
+                adminurl="",
+                apppath="",
+                jsrand="20171015",
                 editorname="ueditor"
                 ;
-    </script>--%>
+    </script>
     <!--[if IE]><script src="/js/public/js/html5.js" type="text/javascript"></script><![endif]-->
 </head>
 <body>

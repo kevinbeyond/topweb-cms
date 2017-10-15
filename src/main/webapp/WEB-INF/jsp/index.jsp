@@ -15,25 +15,23 @@
     <link rel="stylesheet" href="/css/box.css" />
     <link rel="stylesheet" href="/css/app/system/include/public/font-awesome/css/font-awesome.min.css" />
     <script>
-        var tem="",
-                jsrand="20170927";
+        var tem="";
     </script>
-    <%--<script>
+    <script>
         var langtxt = {
                     "checkupdatetips":"对不起！您的权限不够，无法操作在线升级。",
                     "detection":"检测中",
                     "try_again":"重试"
                 },
                 anyid="",
-                own_form="/admin/index.php?lang=cn&anyid=&n=index&c=index&",
-                own_name="/admin/index.php?lang=cn&anyid=&n=index&",
-                tem="/app/system/admin/templates/web/index/",
-                adminurl="/admin/index.php?lang=cn&",
+                own_form="",
+                own_name="",
+                tem="/js/app/system/admin/templates/web/index/",
+                adminurl="",
                 renewable="",
-                apppath="http://app.metinfo.cn/index.php?lang=cn&",
-                jsrand="53175"
-                ;
-    </script>--%>
+                apppath="",
+                jsrand="201710152335";
+    </script>
     <!--[if IE]><script src="/js/public/js/html5.js" type="text/javascript"></script><![endif]-->
 </head>
 <body>
