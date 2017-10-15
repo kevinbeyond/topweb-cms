@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css?53185" />
     <link rel="stylesheet" type="text/css" href="/css/images/metinfo.css" />
     <link rel="stylesheet" type="text/css" href="/css/newstyle.css" />
-    <link rel="stylesheet" type="text/css" href="/css/font-awesome/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/app/system/include/public/font-awesome/css/font-awesome.min.css" />
     <script type="text/javascript">var basepath='../../templates/met/images?53185',lang = 'cn',adminurl='http://demo.metinfo.cn/admin/';</script>
 
     <script type="text/javascript" src="../../../public/js/jQuery1.7.2.js?53185"></script>
