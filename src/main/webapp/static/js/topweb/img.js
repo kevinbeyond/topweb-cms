@@ -3,7 +3,7 @@
  */
 $(function () {
 
-    $(document).on('submit',"#imgForm",function(){
+    $(document).on('submit',".imgForm", function(){
         var _title = $('input[name="title"]');
         if(!_title.val()){
             alert("请输入标题");
@@ -11,28 +11,30 @@ $(function () {
             return false;
         }
         var imgObject = new Object();
-        $('#imgForm').find("input, select, textarea").each(function () {
+        $('.imgForm').find("input, select, textarea").each(function () {
             if ($(this).attr('name')) {
                 imgObject[$(this).attr('name')] = $(this).val();
             }
         });
+        console.log(JSON.stringify(imgObject));
 
-        $.ajax({
+        jQuery.ajax({
             url: "/content/saveOrUpdateImage/",
             type: "POST",
             contentType : 'application/json;charset=utf-8', //设置请求头信息
             dataType:"json",
+            async: false,//明确是异步提交数据
             data: JSON.stringify(imgObject), //将Json对象序列化成Json字符串，JSON.stringify()原生态方法
             success: function(data){
                 if (data.code==0) {
                     alert('操作成功');//提示操作成功
                     //document.location.reload();//当前页面
                     //window.history.back();//返回列表页
-                    window.location.href = document.referrer;//返回上一页并刷新
+                    // window.location.href = document.referrer;//返回上一页并刷新
                 }
             },
-            error: function(res){
-                alert(res.responseText);
+            error: function(data){
+                alert(data.responseText);
             }
         });
     });

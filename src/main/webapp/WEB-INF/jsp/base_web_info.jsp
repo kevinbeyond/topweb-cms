@@ -220,5 +220,5 @@
 </div>
 </div>
 </body>
-<script src="/js/topweb/setting.js?v0.7"></script>
+<script src="/js/topweb/setting.js?v0.8"></script>
 </html>

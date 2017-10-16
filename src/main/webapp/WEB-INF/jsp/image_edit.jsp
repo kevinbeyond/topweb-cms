@@ -139,7 +139,7 @@
 </script>
 </div>
 
-<form  method="POST" id="imgForm" name="myform" target="_self">
+<form class="imgForm" method="post">
     <c:if test="${not empty image}">
         <input name="id" type="hidden" value="${image.id}">
     </c:if>
@@ -423,5 +423,5 @@
     });
 </script>
 </body>
-<script src="/js/topweb/img.js?v0.3"></script>
+<script src="/js/topweb/img.js?v0.12"></script>
 </html>

@@ -55,6 +55,7 @@ $(function () {
             dataType:"json",
             contentType : 'application/json;charset=utf-8', //设置请求头信息
             type:"POST",
+            async: false,//明确是异步提交数据
             success: function(data){
                 if (data.code==0) {
                     alert('操作成功');//提示操作成功

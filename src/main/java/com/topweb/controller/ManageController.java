@@ -212,7 +212,7 @@ public class ManageController {
         return view;
     }
 
-    @RequestMapping(value = "/saveOrUpdateImage", method = RequestMethod.POST)
+    @RequestMapping(value = "/saveOrUpdateImage", method = RequestMethod.POST, produces = {"application/json;","text/html;charset=UTF-8;"})
     public @ResponseBody ResultViewModel saveOrUpdateImage(@RequestBody CMSImage image){
         ResultViewModel result = new ResultViewModel();
 
