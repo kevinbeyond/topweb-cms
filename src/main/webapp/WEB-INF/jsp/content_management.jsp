@@ -134,24 +134,24 @@
 	</div>
 -->
 <h3 class="v52fmbx_ding search" id="topsearch" >
-    <form  method='POST' name='myform' onSubmit='return Checkmember();' action='content.php?anyid=29&search=&action=search&lang=cn' target='_self'>
+    <%--<form  method='POST' name='myform' onSubmit='return Checkmember();' action='content.php?anyid=29&search=&action=search&lang=cn' target='_self'>
         <div >
         </div>
         <div>
             <label class="Layer">请输入栏目名称</label>
             <input id='program' name='program' type='text' size='24'  class='input_text stxt'/>
         </div>
-    </form>
+    </form>--%>
 
-    <div class="topsearch-rigth">
-        <a href="content.php?anyid=29&lang=cn&met_content_type=2" title="切换为按模块分类" class='modular_display'>按模块分类</a>
-        <a href="content.php?anyid=29&lang=cn&met_content_type=1" title="切换为按栏目分类" class='column_hidden'>按栏目分类</a>
+    <%--<div class="topsearch-rigth">
+        <a href="#" title="切换为按模块分类" class='modular_display'>按模块分类</a>
+        <a href="#" title="切换为按栏目分类" class='column_hidden'>按栏目分类</a>
         </span>
 
-        <a href="recycle/index.php?anyid=33&amp;lang=cn" title="回收站" style="color: #23b7e5;text-decoration: none;padding-left:0px !important;">
+        <a href="" title="回收站" style="color: #23b7e5;text-decoration: none;padding-left:0px !important;">
             <i class="fa fa-recycle"></i>回收站</a>
-        <a href="../app/batch/img.php?anyid=32&lang=cn&cs=3" style="color: #23b7e5;text-decoration: none;padding-left:0px !important;">批量操作</a>
-    </div>
+        <a href="" style="color: #23b7e5;text-decoration: none;padding-left:0px !important;">批量操作</a>
+    </div>--%>
 </h3>
 
 

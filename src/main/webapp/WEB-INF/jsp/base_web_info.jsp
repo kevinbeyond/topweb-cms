@@ -185,7 +185,7 @@
                     <dt>联系方式</dt>
                     <dd class="ftype_input">
                         <div class="fbox">
-                            <input name="<%=WebBaseConfig.foottel%>" type="text" value="${topweb_foottel}" />
+                            <input name="<%=WebBaseConfig.foottel%>" type="text" value="${topweb_foottel}" maxlength="11"/>
                         </div>
                     </dd>
                 </dl>

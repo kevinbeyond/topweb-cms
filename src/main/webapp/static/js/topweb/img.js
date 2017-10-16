@@ -16,7 +16,6 @@ $(function () {
                 imgObject[$(this).attr('name')] = $(this).val();
             }
         });
-        console.log(JSON.stringify(imgObject));
 
         jQuery.ajax({
             url: "/content/saveOrUpdateImage/",
@@ -28,9 +27,12 @@ $(function () {
             success: function(data){
                 if (data.code==0) {
                     alert('操作成功');//提示操作成功
+                    //self.opener.location.reload();
                     //document.location.reload();//当前页面
-                    //window.history.back();//返回列表页
-                    // window.location.href = document.referrer;//返回上一页并刷新
+                    //history.back();location.reload();        //返回+刷新
+                    //history.go(-1)表示后退与刷新。如数据有改变也随之改变
+                    //history.back()只是单纯的返回到上一页。
+                    //window.location.href = '/content/modultList.html?module=3';//返回上一页并刷新
                 }
             },
             error: function(data){
@@ -67,6 +69,7 @@ $(function () {
             type: "POST",
             contentType : 'application/json;charset=utf-8', //设置请求头信息
             dataType:"json",
+            async: false,//明确是异步提交数据
             data: JSON.stringify(imgArray), //将Json对象序列化成Json字符串，JSON.stringify()原生态方法
             success: function(data){
                 if (data.code==0) {
@@ -97,6 +100,7 @@ $(function () {
             type: "DELETE",
             contentType : 'application/json;charset=utf-8', //设置请求头信息
             dataType:"json",
+            async: false,//明确是异步提交数据
             data: _ids.join(), //将Json对象序列化成Json字符串，JSON.stringify()原生态方法
             success: function(data){
                 if (data.code==0) {

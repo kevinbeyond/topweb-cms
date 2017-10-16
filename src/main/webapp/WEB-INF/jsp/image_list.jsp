@@ -362,5 +362,5 @@
     });
 </script>
 </body>
-<script src="/js/topweb/img.js?v0.113"></script>
+<script src="/js/topweb/img.js?v0.0020"></script>
 </html>
