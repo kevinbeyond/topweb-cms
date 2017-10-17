@@ -105,7 +105,7 @@
                     <dd class="ftype_upload">
                         <div class="fbox">
                             <%--<input name="<%=WebBaseConfig.logo%>" type="text" data-upload-type="doupimg" class="text" value="${topweb_logo}">--%>
-                            <input name="met_logo" type="text" data-upload-type="doupimg" class="text" value="..${topweb_logo}">
+                            <input name="<%=WebBaseConfig.logo%>" type="text" data-upload-type="doupimg" class="text" value="..${topweb_logo}">
                         </div>
                         <span class="tips">建议尺寸 180 * 60 (像素)</span>
                     </dd>
