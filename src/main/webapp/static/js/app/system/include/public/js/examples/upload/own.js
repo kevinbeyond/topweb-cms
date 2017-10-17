@@ -247,7 +247,7 @@ define(function(require, exports, module) {
 								if(dom.next().find('li.sort').length)dom.next().find('li.sort').remove();
 							}
 							var path = siteurl + response.object.filepath;
-							imgadd(dom,path,response.original);
+							imgadd(dom,path,response.object.original);
 							imgvalue(dom);
 						}
 					});

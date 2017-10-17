@@ -251,20 +251,15 @@
 
                     </dd>
                 </dl>--%>
-                <%--<dl>
+                <dl>
                     <dt>封面图片</dt>
                     <dd class="ftype_upload">
                         <div class="fbox">
-                            <input
-                                    name="imgurl"
-                                    type="text"
-                                    data-upload-type="doupimg"
-                                    value=""
-                            />
+                            <input name="imgurl" type="text" data-upload-type="doupimg" value=""/>
                         </div>
-                        <span class="tips">当没有手动上传图片时候，会自动提取您内容第一张图片作为封面（此功能需要模板支持）</span>
+                        <%--<span class="tips">当没有手动上传图片时候，会自动提取您内容第一张图片作为封面（此功能需要模板支持）</span>--%>
                     </dd>
-                </dl>--%>
+                </dl>
             </div>
         </form>
         <div class="met_affix_save bg-success">

@@ -42,7 +42,7 @@
                 tem="/js/app/system/admin/templates/web/webset/",
                 adminurl="/",
                 apppath="",
-                jsrand="201710120226",
+                jsrand="201710172056",
                 editorname="ueditor"
                 ;
     </script>
@@ -105,7 +105,7 @@
                     <dd class="ftype_upload">
                         <div class="fbox">
                             <%--<input name="<%=WebBaseConfig.logo%>" type="text" data-upload-type="doupimg" class="text" value="${topweb_logo}">--%>
-                            <input name="<%=WebBaseConfig.logo%>" type="text" data-upload-type="doupimg" class="text" value="..${topweb_logo}">
+                            <input name="<%=WebBaseConfig.logo%>" type="text" data-upload-type="doupimg" class="text" value="${topweb_logo}">
                         </div>
                         <span class="tips">建议尺寸 180 * 60 (像素)</span>
                     </dd>
@@ -115,7 +115,7 @@
                     <dt>地址栏图标</dt>
                     <dd class="ftype_upload">
                         <div class="fbox">
-                            <input name="<%=WebBaseConfig.icon%>" type="text" data-upload-key="98f1186331177ab93815c253ada6a011" data-upload-type="doupico" class="text" value="">
+                            <input name="<%=WebBaseConfig.icon%>" type="text" data-upload-key="98f1186331177ab93815c253ada6a011" data-upload-type="doupico" class="text" value="${topweb_icon}">
                         </div>
 			<span class="tips">建议尺寸 32 * 32 (像素)的.ico文件。<a href="https://www.baidu.com/s?wd=ico%E5%9B%BE%E6%A0%87%E5%88%B6%E4%BD%9C" target="_blank">点击制作ICO</a>
 			<br />
@@ -220,5 +220,5 @@
 </div>
 </div>
 </body>
-<script src="/js/topweb/setting.js?v0.8"></script>
+<script src="/js/topweb/setting.js?v0.1"></script>
 </html>

@@ -10,6 +10,8 @@ public class FileUploadReturnModel {
      */
     String filepath;
 
+    String original;
+
     public String getFilepath() {
         return filepath;
     }
@@ -18,10 +20,19 @@ public class FileUploadReturnModel {
         this.filepath = filepath;
     }
 
+    public String getOriginal() {
+        return original;
+    }
+
+    public void setOriginal(String original) {
+        this.original = original;
+    }
+
     @Override
     public String toString() {
         return "FileUploadReturnModel{" +
                 "filepath='" + filepath + '\'' +
+                ", original='" + original + '\'' +
                 '}';
     }
 }

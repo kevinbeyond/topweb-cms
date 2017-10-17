@@ -254,24 +254,24 @@
         });
     }
     searchzdx($('#topsearch .stxt'),$('#topsearch label'),"#666","#ccc");
-    var element = document.getElementById("program");
-    document.getElementById("program").onfocus=function(){
-        if(!+[1,]){
-            element.onpropertychange = webChange;
-        }else{
-            element.addEventListener("input",webChange,false);
-        }
-    }
-    function webChange(){
-        $.ajax({
-            url: 'originate.php?lang=cn&id='+escape(element.value),
-            type: 'GET',
-            cache: false,
-            success: function(data) {
-                $('#test').html(data);
-            }
-        });
-    }
+//    var element = document.getElementById("program");
+//    document.getElementById("program").onfocus=function(){
+//        if(!+[1,]){
+//            element.onpropertychange = webChange;
+//        }else{
+//            element.addEventListener("input",webChange,false);
+//        }
+//    }
+//    function webChange(){
+//        $.ajax({
+//            url: 'originate.php?lang=cn&id='+escape(element.value),
+//            type: 'GET',
+//            cache: false,
+//            success: function(data) {
+//                $('#test').html(data);
+//            }
+//        });
+//    }
     $('.contmorehver').hover(
             function () {
                 $(this).find('div.contmore').show();

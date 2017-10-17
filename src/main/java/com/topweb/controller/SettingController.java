@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.List;
 
@@ -77,9 +78,10 @@ public class SettingController {
      */
     @RequestMapping(value = "/upload", method = RequestMethod.POST, produces = {"application/json;","text/html;charset=UTF-8;"})
     @ResponseBody
-    public ResultViewModel uploadImage(@RequestParam("file")MultipartFile image) {
+    public ResultViewModel uploadImage(@RequestParam("file")MultipartFile image,
+                                       HttpServletRequest request) {
         ResultViewModel result = new ResultViewModel();
-        String path = ConstantUtil.SETTING_UPLOAD_DIR;
+        String path = request.getServletContext().getRealPath("/") + ConstantUtil.IMAGES_UPLOAD_DIR;
         String fileName = System.currentTimeMillis()+"_" + image.getOriginalFilename();
         File targetFile = new File(path, fileName);
         if (!targetFile.exists()) {
@@ -97,12 +99,13 @@ public class SettingController {
 
         //json.put("filePath",request.getContextPath() + "/upload/" + fileName);
         //File retfile = new File(SysConstants.PIC_SERVER_DNS + SysConstants.PIC_PTYPE_DIR, fileName);
-        File retfile = new File(ConstantUtil.SETTING_UPLOAD_DIR, fileName);
+//        File retfile = new File(ConstantUtil.IMAGES_UPLOAD_DIR, fileName);
 
         result.setCode(ResultCode.UPLOAD_SUCCESS);
         result.setMessage(ResultCode.UPLOAD_SUCCESS_MSG);
         FileUploadReturnModel returnModel = new FileUploadReturnModel();
-        returnModel.setFilepath("/images/upload/" + fileName);
+        returnModel.setFilepath("images/upload/" + fileName);
+        returnModel.setOriginal("../images/upload/" + fileName);
         result.setObject(returnModel);
 //        json.put("filePath",retfile.getPath());
 //        System.out.println("json="+json.toJSONString());

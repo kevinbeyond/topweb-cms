@@ -183,7 +183,7 @@
             $( '#'+file.id ).addClass('upload-state-done');
         });
 
-        // 文件上传失败，现实上传出错。
+        // 文件上传失败，显示上传出错。
         uploader.on( 'uploadError', function( file ) {
             var $li = $( '#'+file.id ),
                     $error = $li.find('div.error');

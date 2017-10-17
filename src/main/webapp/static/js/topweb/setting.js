@@ -15,9 +15,11 @@ $(function () {
         var jsonArray = new Array();
         $('.fbox').find('input, textarea').each(function () {
             var _obj = new Object();
-            _obj.name = $(this).attr('name');
-            _obj.value = $(this).val();
-            jsonArray.push(_obj);
+            if ($(this).attr('name') != 'file') {//排除上传input
+                _obj.name = $(this).attr('name');
+                _obj.value = $(this).val();
+                jsonArray.push(_obj);
+            }
         });
         
         jQuery.ajax({
