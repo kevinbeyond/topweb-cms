@@ -249,7 +249,7 @@
                             ${img.top==1?'是':'否'}
                             <%--<a href="changeState.php?anyid=29&lang=cn&top_ok=0&id=5&class1=33&class2=&class3=&page=0" onClick="return linkSmit($(this));" top_ok="5" top_ok_val="0">否</a>--%>
                         </td>
-                        <td class="list-text color999"><fmt:formatDate value="${img.updatetime}" pattern="yyyy-MM-dd"/></td>
+                        <td class="list-text color999"><fmt:formatDate value="${img.updatetime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                         <td class="list-text color999">不限</td><%--访问权限--%>
                         <td class="list-text list_left">
                             <a href="/content/perImgEdit.html?id=${img.id}" >编辑</a>&nbsp;&nbsp;<a href="/content/delPerImage.html?id=${img.id}" onClick="return linkSmit('',1,'是否把选定内容放入回收站？');" >删除</a>

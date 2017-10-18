@@ -215,14 +215,14 @@
                         </div>
                     </dd>
                 </dl>
-                <dl>
+                <%--<dl>
                     <dt>更新时间</dt>
                     <dd class="ftype_day">
                         <div class="fbox">
                             <input type="input" name="updatetime" data-day-type = "2" value="<fmt:formatDate value="${article.updatetime}" pattern="yyyy-MM-dd HH:mm:ss" />">
                         </div>
                     </dd>
-                </dl>
+                </dl>--%>
 
                 <%--<dl>
                     <dt>发布时间</dt>
@@ -275,6 +275,6 @@
 </div>
 </div>
 </body>
-<script src="/js/topweb/article.js?v17"></script>
+<script src="/js/topweb/article.js?v1777"></script>
 <script src="/js/app/system/include/public/js/sea.js"></script>
 </html>

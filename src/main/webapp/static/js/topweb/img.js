@@ -2,6 +2,14 @@
  * Created by Leo on 2017/10/8.
  */
 $(function () {
+    
+    //更改状态
+    $('.selected-var').find('input').each(function () {
+        $(this).on('click', function () {
+            var _val = $(this).val()==0?1:0;
+            $(this).val(_val);
+        });
+    });
 
     $(document).on('submit',".imgForm", function(){
         var _title = $('input[name="title"]');
@@ -12,11 +20,15 @@ $(function () {
         }
         var imgObject = new Object();
         $('.imgForm').find("input, select, textarea").each(function () {
-            if ($(this).attr('name')) {
-                imgObject[$(this).attr('name')] = $(this).val();
+            if ($(this).attr('name') && $(this).attr('name') != 'file') {
+                if ($(this).attr('type')=='radio') {
+                    imgObject[$(this).attr('name')] = $("input[type='radio']:checked").val();
+                } else {
+                    imgObject[$(this).attr('name')] = $(this).val();
+                }
             }
         });
-
+        
         jQuery.ajax({
             url: "/content/saveOrUpdateImage/",
             type: "POST",

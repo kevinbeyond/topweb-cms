@@ -289,7 +289,14 @@ define(function(require, exports, module) {
 			});
 			
 			//删除按钮
-			$(document).on('click','.ftype_upload .app-image-list li.sort span',function(){
+			// $(document).on('click','.ftype_upload .app-image-list li.sort span',function(){
+			// 	var dom = $(this).parents('.picture-list').prev();
+			// 	$(this).parent('li.sort').remove();
+			// 	imgvalue(dom);
+			// });
+
+			//删除按钮
+			$('li.sort span').on('click', function () {
 				var dom = $(this).parents('.picture-list').prev();
 				$(this).parent('li.sort').remove();
 				imgvalue(dom);
