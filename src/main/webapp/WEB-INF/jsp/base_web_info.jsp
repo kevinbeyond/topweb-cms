@@ -221,4 +221,5 @@
 </div>
 </body>
 <script src="/js/topweb/setting.js?v0.1"></script>
+<script src="/js/topweb/ueditor/editor_api.js"></script>
 </html>

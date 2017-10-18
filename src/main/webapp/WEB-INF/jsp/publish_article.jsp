@@ -40,7 +40,7 @@
                 tem="/js/app/system/admin/templates/web/content/",
                 adminurl="#",
                 apppath="http://app.metinfo.cn/index.php?lang=cn&",
-                jsrand="20171004",
+                jsrand="201710180936",
                 editorname="ueditor";
     </script>
     <script type="text/javascript" src="/js/public/js/jQuery1.7.2.js"></script>
@@ -255,7 +255,7 @@
                     <dt>封面图片</dt>
                     <dd class="ftype_upload">
                         <div class="fbox">
-                            <input name="imgurl" type="text" data-upload-type="doupimg" value=""/>
+                            <input name="imgurl" type="text" data-upload-type="doupimg" value="${article.imgurl}"/>
                         </div>
                         <%--<span class="tips">当没有手动上传图片时候，会自动提取您内容第一张图片作为封面（此功能需要模板支持）</span>--%>
                     </dd>
