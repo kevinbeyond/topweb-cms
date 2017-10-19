@@ -151,6 +151,21 @@
     </dependency>
   </dependencies>
 
+  <profiles>
+    <profile>
+      <id>dev</id>
+      <properties>
+        <upload.img.dir></upload.img.dir>
+      </properties>
+    </profile>
+    <profile>
+      <id>online</id>
+      <properties>
+        <upload.img.dir>/ycjxschool/upload/cms</upload.img.dir>
+      </properties>
+    </profile>
+  </profiles>
+
   <build>
     <!--<plugins>
       <plugin>

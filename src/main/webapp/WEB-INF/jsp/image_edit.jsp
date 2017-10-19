@@ -245,7 +245,7 @@
                     <dl>
                         <dt>所属栏目：</dt>
                         <dd class="ftype_select-linkage">
-                            <div class="fbox pull-left" data-selectdburl="/setting/cascadeColumns?module=2&classtype=1">
+                            <div class="fbox pull-left" data-selectdburl="/setting/cascadeColumns?module=3&classtype=1">
                                 <select name="class1" class="prov" data-required="1" data-checked="${image.class1>0?image.class1:''}"></select>
                                 <select name="class2" class="city" data-checked="${image.class2>0?image.class2:''}"></select>
                                 <select name="class3" class="dist" data-checked=""></select>

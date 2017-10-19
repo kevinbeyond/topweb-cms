@@ -240,7 +240,7 @@
         <%--<script src="/js/app/system/include/public/js/sea.js"></script>--%>
     </div>
 </div>
-<div class="footer">Powered by <b><a href="#" target=_blank>TopWeb CMS</a></b> &copy;2008-2017 &nbsp;<a href="#" target=_blank>TopWeb Inc.</a></div>
+<div class="footer">Powered by <b><a href="#" target=_blank>TopWebS CMS</a></b> &copy;2008-2017 &nbsp;<a href="#" target=_blank>TopWebS Inc.</a></div>
 </div>
 </div>
 <div class="clear"></div>

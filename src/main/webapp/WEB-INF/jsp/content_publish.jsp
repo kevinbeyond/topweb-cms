@@ -90,8 +90,8 @@
                     <dd class="ftype_select-linkage">
                         <div class="fbox" style="float:left;" data-selectdburl="/setting/cascadeColumns?classtype=1">
                             <select name="class1" class="prov" data-required="1"></select>
-                            <select name="add_class2" class="city"></select>
-                            <select name="add_class3" class="dist"></select>
+                            <select name="class2" class="city"></select>
+                            <select name="class3" class="dist"></select>
                         </div>
 
                         <span class="tips" style="float:left; margin-left:20px;">

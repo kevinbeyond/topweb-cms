@@ -47,13 +47,13 @@
     insert into cms_img (id, title, class1, 
       class2, class3,
       imgurl, top, recommend, 
-      hits, updatetime, addtime,
-      issue, links)
+      hits, addtime,
+      issue, access, links)
     values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{class1,jdbcType=INTEGER}, 
       #{class2,jdbcType=INTEGER}, #{class3,jdbcType=INTEGER},
       #{imgurl,jdbcType=VARCHAR}, #{top,jdbcType=INTEGER}, #{recommend,jdbcType=INTEGER}, 
-      #{hits,jdbcType=INTEGER}, #{updatetime,jdbcType=TIMESTAMP}, NOW(),
-      #{issue,jdbcType=VARCHAR}, #{links,jdbcType=VARCHAR})
+      #{hits,jdbcType=INTEGER}, NOW(),
+      #{issue,jdbcType=VARCHAR}, #{access,jdbcType=VARCHAR}, #{links,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.topweb.entity.CMSImage" >
     insert into cms_img

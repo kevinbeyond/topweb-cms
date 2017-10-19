@@ -40,7 +40,7 @@
     <div class="metcms_cont_left hidden-xs">
         <div class="metlogo">
             <a href="/" hidefocus="true">
-                <img src="/images/logo.png" alt="TopWeb CMS" title="TopWeb CMS"/>
+                <img src="/images/login-logo.jpg" alt="TopWeb CMS" title="TopWeb CMS" width="100%" height="10%"/>
             </a>
         </div>
         <%--<dl class="jslist">

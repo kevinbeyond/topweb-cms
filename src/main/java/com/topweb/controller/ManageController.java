@@ -51,7 +51,8 @@ public class ManageController {
      * @return
      */
     @RequestMapping(value = "/columnPublish.html", method = RequestMethod.POST)
-    public @ResponseBody String columnPublish(@RequestParam(value = "class1", defaultValue = "0") int class1) {
+    public @ResponseBody String columnPublish(@RequestParam(value = "class1", defaultValue = "0") int class1,
+                                              @RequestParam(value = "class2", defaultValue = "0") int class2) {
 
         if(class1 == 0) {
             return "/content/publish.html";
@@ -60,7 +61,20 @@ public class ManageController {
         CMSColumn column = columnMapper.selectByPrimaryKey(class1);
 
         if (column.getModule() == 2) {//文章模块
-            return "/content/publishArticle.html?class1=" + class1;
+            if (class2 > 0) {
+                return "/content/publishArticle.html?class1=" + class1 + "&class2=" + class2;
+            } else {
+                return "/content/publishArticle.html?class1=" + class1;
+            }
+
+        }
+
+        if (column.getModule() == 3) {//图片模块
+            if (class2 >0 ){
+                return "/content/perImgEdit.html?class1=" + class1 + "&class2=" + class2;
+            } else {
+                return "/content/perImgEdit.html?class1=" + class1;
+            }
         }
         return "/content/publish.html";
     }
@@ -99,7 +113,8 @@ public class ManageController {
      */
     @RequestMapping("/publishArticle.html")
     public ModelAndView publishPerArticle(@RequestParam(value = "id", required = false, defaultValue = "0") int articleId,
-                                          @RequestParam(value = "class1", required = false, defaultValue = "0")int class1 ){
+                                          @RequestParam(value = "class1", required = false, defaultValue = "0")int class1,
+                                          @RequestParam(value = "class2", required = false, defaultValue = "0")int class2){
         ModelAndView view = new ModelAndView("publish_article");
 
         if (articleId > 0) {
@@ -108,6 +123,9 @@ public class ManageController {
         } else if (class1 >0) {
             CMSArticleWithBLOBs article = new CMSArticleWithBLOBs();
             article.setClass1(class1);
+            if (class2 > 0) {
+                article.setClass2(class2);
+            }
             view.addObject("article", article);
         }
 
@@ -202,13 +220,24 @@ public class ManageController {
      * @return
      */
     @RequestMapping("/perImgEdit.html")
-    public ModelAndView perImageEdit(@RequestParam(value = "id", required = false, defaultValue = "0")int imgId){
+    public ModelAndView perImageEdit(@RequestParam(value = "id", required = false, defaultValue = "0")int imgId,
+                                     @RequestParam(value = "class1", required = false, defaultValue = "0")int class1,
+                                     @RequestParam(value = "class2", required = false, defaultValue = "0")int class2){
         ModelAndView view = new ModelAndView("image_edit");
 
         if (imgId>0) {
             CMSImage image = imageMapper.selectByPrimaryKey(imgId);
             view.addObject("image", image);
         }
+        if (class1>0) {
+            CMSImage image = new CMSImage();
+            image.setClass1(class1);
+            if(class2 > 0) {
+                image.setClass2(class2);
+            }
+            view.addObject("image", image);
+        }
+
         return view;
     }
 
