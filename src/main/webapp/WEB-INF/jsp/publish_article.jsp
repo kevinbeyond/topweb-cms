@@ -40,7 +40,7 @@
                 tem="/js/app/system/admin/templates/web/content/",
                 adminurl="#",
                 apppath="http://app.metinfo.cn/index.php?lang=cn&",
-                jsrand="201710180936",
+                jsrand="201710210013",
                 editorname="ueditor";
     </script>
     <script type="text/javascript" src="/js/public/js/jQuery1.7.2.js"></script>
@@ -276,5 +276,5 @@
 </div>
 </body>
 <script src="/js/topweb/article.js?v1777"></script>
-<script src="/js/app/system/include/public/js/sea.js"></script>
+<script src="/js/app/system/include/public/js/sea.js?11"></script>
 </html>

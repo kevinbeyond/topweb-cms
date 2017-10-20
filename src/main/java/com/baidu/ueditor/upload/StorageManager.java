@@ -3,6 +3,15 @@ package com.baidu.ueditor.upload;
 import com.baidu.ueditor.define.AppInfo;
 import com.baidu.ueditor.define.BaseState;
 import com.baidu.ueditor.define.State;
+import com.google.gson.Gson;
+import com.qiniu.common.QiniuException;
+import com.qiniu.common.Zone;
+import com.qiniu.http.Response;
+import com.qiniu.storage.Configuration;
+import com.qiniu.storage.UploadManager;
+import com.qiniu.storage.model.DefaultPutRet;
+import com.qiniu.util.Auth;
+import com.topweb.util.ConstantUtil;
 import org.apache.commons.io.FileUtils;
 
 import java.io.*;
@@ -145,5 +154,70 @@ public class StorageManager {
 		}
 
 		return new BaseState(true);
+	}
+
+	//上传至七牛云服务器
+	public static State saveFileToQiniu(InputStream is, String savePath, long maxSize) {
+
+		State state = null;
+
+//		File tmpFile = getTmpFile();
+//
+//		byte[] dataBuf = new byte[ 2048 ];
+//		BufferedInputStream bis = new BufferedInputStream(is, StorageManager.BUFFER_SIZE);
+//
+//		try {
+//			BufferedOutputStream bos = new BufferedOutputStream(
+//					new FileOutputStream(tmpFile), StorageManager.BUFFER_SIZE);
+//
+//			int count = 0;
+//			while ((count = bis.read(dataBuf)) != -1) {
+//				bos.write(dataBuf, 0, count);
+//			}
+//			bos.flush();
+//			bos.close();
+//
+//			if (tmpFile.length() > maxSize) {
+//				tmpFile.delete();
+//				return new BaseState(false, AppInfo.MAX_SIZE);
+//			}
+//			state = saveTmpFile(tmpFile, path);
+//
+//			if (!state.isSuccess()) {
+//				tmpFile.delete();
+//			}
+//
+//			return state;
+//
+//		} catch (IOException e) {
+//		}
+
+		Configuration cfg = new Configuration(Zone.zone1());
+		UploadManager uploadManager = new UploadManager(cfg);
+		String accessKey = ConstantUtil.QINIU_ACCESS_KEY;
+		String secretKey = ConstantUtil.QINIU_SECRET_KEY;
+		String bucket = ConstantUtil.QINIU_BUCKET;
+
+		//默认不指定key的情况下，以文件内容的hash值作为文件名
+		String key = savePath;
+
+//			byte[] uploadBytes = is.getBytes("utf-8");
+//			ByteArrayInputStream byteInputStream=new ByteArrayInputStream(uploadBytes);
+
+		Auth auth = Auth.create(accessKey, secretKey);
+		String upToken = auth.uploadToken(bucket);
+		try {
+			Response response = uploadManager.put(is,key,upToken,null, null);
+			//解析上传成功的结果
+			DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
+			state = new BaseState(true);
+//			state.putInfo( "size", targetFile.length() );
+			state.putInfo( "title", key);
+			return state;
+		} catch (QiniuException ex) {
+
+		}
+
+		return new BaseState(false, AppInfo.IO_ERROR);
 	}
 }

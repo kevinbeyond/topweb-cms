@@ -212,7 +212,7 @@ define(function(require, exports, module) {
 					for(var i=0;i<srcs.length;i++){
 						if(srcs[i]!=''){
 							isrc = srcs[i].split('../');
-							isrc = siteurl + isrc[1];
+							isrc = qiniuurl + isrc[1];
 							imgadd(dom,isrc,srcs[i]);
 							isrc = '';
 						}
@@ -246,7 +246,7 @@ define(function(require, exports, module) {
 							if(!dom.data('upload-many')){
 								if(dom.next().find('li.sort').length)dom.next().find('li.sort').remove();
 							}
-							var path = siteurl + response.object.filepath;
+							var path = qiniuurl + response.object.filepath;
 							imgadd(dom,path,response.object.original);
 							imgvalue(dom);
 						}

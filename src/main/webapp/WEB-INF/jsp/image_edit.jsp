@@ -116,7 +116,7 @@
                 tem="/js/app/system/admin/templates/web/content/",
                 adminurl="#",
                 apppath="",
-                jsrand="201710181832",
+                jsrand="201710210006",
                 editorname="ueditor";
     </script>
     <script src="/js/app/system/include/public/js/sea.js"></script>

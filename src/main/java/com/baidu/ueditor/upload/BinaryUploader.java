@@ -5,6 +5,7 @@ import com.baidu.ueditor.define.AppInfo;
 import com.baidu.ueditor.define.BaseState;
 import com.baidu.ueditor.define.FileType;
 import com.baidu.ueditor.define.State;
+import com.topweb.util.ConstantUtil;
 import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.FileUploadException;
@@ -67,15 +68,22 @@ public class BinaryUploader {
 
 			savePath = PathFormat.parse(savePath, originFileName);
 
-			String physicalPath = (String) conf.get("rootPath") + savePath;
+//			String physicalPath = (String) conf.get("rootPath") + savePath;
 
 			InputStream is = fileStream.openStream();
-			State storageState = StorageManager.saveFileByInputStream(is,
-					physicalPath, maxSize);
+
+			//原上传方法，现改为上传至七牛云服务器 20171021 wsl
+//			State storageState = StorageManager.saveFileByInputStream(is,
+//					physicalPath, maxSize);
+
+			State storageState = StorageManager.saveFileToQiniu(is,
+					savePath, maxSize);
+
 			is.close();
 
 			if (storageState.isSuccess()) {
-				storageState.putInfo("url", PathFormat.format(savePath));
+				//storageState.putInfo("url", PathFormat.format(savePath));
+				storageState.putInfo("url", ConstantUtil.QINIU_DEFAULT_DOMAIN + PathFormat.format(savePath));
 				storageState.putInfo("type", suffix);
 				storageState.putInfo("original", originFileName + suffix);
 			}
