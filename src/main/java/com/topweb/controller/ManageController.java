@@ -23,6 +23,11 @@ import java.util.List;
 @Controller
 public class ManageController {
 
+    /**
+     * 文章模块分页每页记录数
+     */
+    private final int ARTICLE_LIST_PAGE_SIZE = 2;
+
     @Autowired
     private CMSArticleMapper articleMapper;
 
@@ -87,7 +92,8 @@ public class ManageController {
     @RequestMapping("/modultList.html")
     public ModelAndView cmsModuleList(@RequestParam(value = "module") int moduleId,
                                       @RequestParam(value = "class1", required = false, defaultValue = "0") int class1,
-                                      @RequestParam(value = "class2", required = false, defaultValue = "0") int class2) {
+                                      @RequestParam(value = "class2", required = false, defaultValue = "0") int class2,
+                                      @RequestParam(value = "pager.offset", required = false, defaultValue = "0") int offset) {
         ModelAndView view = new ModelAndView();
 
         if (moduleId == 1) {//简介模块
@@ -95,8 +101,12 @@ public class ManageController {
         } else if (moduleId == 2) {//文章模块
             view.setViewName("article_list");
 
+            int articleCnt = articleMapper.queryArticleCnt(class1, class2);
+            view.addObject("articleCnt", articleCnt);
+            view.addObject("pageSize", ARTICLE_LIST_PAGE_SIZE);
+
             //获取文章列表
-            List<CMSArticle> articleList = articleMapper.selectArticleList(class1, class2);
+            List<CMSArticle> articleList = articleMapper.selectArticleList(class1, class2, ARTICLE_LIST_PAGE_SIZE, offset);
             view.addObject("articleList", articleList);
         } else if(moduleId == 3) {//图片模块
             view.setViewName("image_list");

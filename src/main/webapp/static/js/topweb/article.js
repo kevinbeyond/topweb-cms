@@ -126,13 +126,19 @@ $(function () {
     //栏目切换
     $('#articles-column-change').find('select').each(function () {
        $(this).on('change', function () {
-           if (isNaN($(this).val())){
-               window.location.href = "/content/modultList.html?module=2";
-           } else {
-               if($(this).attr('name')=='class1_select') {//一级栏目变更
-                   window.location.href = "/content/modultList.html?module=2&class1=" + $(this).val();
-               } else if($(this).attr('name')=='class2_select') {//二级栏目变更
-                   var _class1 = $(this).prev('select').val();
+           if($(this).attr('name')=='class1_select') {//一级栏目变更
+               if (!$(this).val() || isNaN($(this).val())){
+                   window.location.href = "/content/modultList.html?module=2";
+               } else {
+                   window.location.href = "/content/modultList.html?module=2&class1=" + $(this).val(); 
+               }
+               
+           } else if($(this).attr('name')=='class2_select') {//二级栏目变更
+               var _class1 = $(this).prev('select').val();
+
+               if (!$(this).val() || isNaN($(this).val())){
+                   window.location.href = "/content/modultList.html?module=2&class1=" + _class1;
+               } else {
                    window.location.href = "/content/modultList.html?module=2&class1=" + _class1 + "&class2=" + $(this).val();
                }
            }
