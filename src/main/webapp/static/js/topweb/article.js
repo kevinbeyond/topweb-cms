@@ -14,7 +14,7 @@ $(function () {
     //编辑文章
     $('#article-submit').on('click', function () {
 
-        if(isNaN($('select[name="class1"]').val())){
+        if(isNaN($('select[name="class1"]').val()) || $('select[name="class1"]').val() <= 0){
             alert("请选择一个栏目");
             return false;
         }

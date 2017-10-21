@@ -275,6 +275,6 @@
 </div>
 </div>
 </body>
-<script src="/js/topweb/article.js?v1777"></script>
+<script src="/js/topweb/article.js?v1888"></script>
 <script src="/js/app/system/include/public/js/sea.js?11"></script>
 </html>

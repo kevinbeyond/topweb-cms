@@ -313,7 +313,7 @@ public class ColumnController {
         JSONArray cascadeColumnArray = new JSONArray();
         JSONObject defaultObject = new JSONObject();
         defaultObject.put("name", "所有栏目");
-        defaultObject.put("value", "");
+        defaultObject.put("value", "0");
 
         JSONObject defaultJSON = new JSONObject();
         defaultJSON.put("p", defaultObject);
@@ -333,7 +333,7 @@ public class ColumnController {
 
                 JSONObject subDefaultJSONObject = new JSONObject();
                 subDefaultJSONObject.put("name", "二级栏目");
-                subDefaultJSONObject.put("value", "");
+                subDefaultJSONObject.put("value", "0");
 
                 JSONObject subDefaultJSON = new JSONObject();
                 subDefaultJSON.put("n", subDefaultJSONObject);

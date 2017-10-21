@@ -26,7 +26,7 @@ public class ManageController {
     /**
      * 文章模块分页每页记录数
      */
-    private final int ARTICLE_LIST_PAGE_SIZE = 2;
+    private final int ARTICLE_LIST_PAGE_SIZE = 3;
 
     @Autowired
     private CMSArticleMapper articleMapper;

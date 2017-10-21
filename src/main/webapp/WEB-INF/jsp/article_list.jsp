@@ -238,7 +238,7 @@
                     </tfoot>
                 </table>
 
-                <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">显示第 1 至 20 项结果，共 ${articleCnt} 项</div>
+                <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">显示第 ${empty param['pager.offset']?1:param['pager.offset']+1} 至 ${(param['pager.offset']+pageSize)>articleCnt?articleCnt:(param['pager.offset']+pageSize)} 项结果，共 ${articleCnt} 项</div>
 
                 <%--
                     url:分页的链接根地址，pager标签会在这个链接的基础上附加分页参数，但不允许像给页面跳转的url那样，在后面直接添加参数，而参数的传递时需要使用pg:param来指定。
@@ -248,7 +248,12 @@
                 --%>
                 <pg:pager url="/content/modultList.html" maxIndexPages="5" maxPageItems="${pageSize}"  items="${articleCnt}" export="currentPageNumber=pageNumber">
                     <pg:param name="module" value="${param.module}"></pg:param>
-                    <pg:param name="class1" value="${param.class1}"></pg:param>
+                    <c:if test="${param.class1>0}">
+                        <pg:param name="class1" value="${param.class1}"></pg:param>
+                    </c:if>
+                    <c:if test="${param.class2>0}">
+                        <pg:param name="class2" value="${param.class2}"></pg:param>
+                    </c:if>
 
                     <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
 
