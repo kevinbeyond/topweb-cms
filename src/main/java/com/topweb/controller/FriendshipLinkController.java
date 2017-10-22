@@ -1,10 +1,22 @@
 package com.topweb.controller;
 
 
+import com.google.gson.Gson;
+import com.qiniu.common.QiniuException;
+import com.qiniu.common.Zone;
+import com.qiniu.http.Response;
+import com.qiniu.storage.Configuration;
+import com.qiniu.storage.UploadManager;
+import com.qiniu.storage.model.DefaultPutRet;
+import com.qiniu.util.Auth;
 import com.topweb.dao.FriendlyLinkMapper;
 import com.topweb.entity.FriendlyLink;
 import com.topweb.entity.LinkName;
 import com.topweb.entity.Page;
+import com.topweb.model.FileUploadReturnModel;
+import com.topweb.model.ResultCode;
+import com.topweb.model.ResultViewModel;
+import com.topweb.util.ConstantUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,6 +30,7 @@ import javax.servlet.http.HttpServletRequest;
 
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -197,23 +210,51 @@ public class FriendshipLinkController {
     }
 
     @RequestMapping(value = "/addinfo.html", method = RequestMethod.POST )
-    public ModelAndView addinfo(@RequestParam(value = "met_upsql1", required = false) MultipartFile file, HttpServletRequest request){
+    public ModelAndView addinfo(@RequestParam(value = "met_upsql1") MultipartFile image,
+                                HttpServletRequest request){
         ModelAndView view = new ModelAndView("redirect:/market/friendshiplink.html?pnow=1&linktype=3&guan=0");
 
 
         FriendlyLink friendlyLink=new FriendlyLink();
 
-        // 判断文件是否为空
-        if (!file.isEmpty()) {
-            try {
-                // 文件保存路径
-                String filePath = request.getSession().getServletContext().getRealPath("/") + "upload/"
-                        + file.getOriginalFilename();
-                // 转存文件
-                file.transferTo(new File(filePath));
-            } catch (Exception e) {
-                e.printStackTrace();
+        //文件上传
+        ResultViewModel result = new ResultViewModel();
+        //上传七牛云服务器
+        Configuration cfg = new Configuration(Zone.zone1());//华北机房
+        UploadManager uploadManager = new UploadManager(cfg);
+        Auth auth = Auth.create(ConstantUtil.QINIU_ACCESS_KEY, ConstantUtil.QINIU_SECRET_KEY);
+        String upToken = auth.uploadToken(ConstantUtil.QINIU_BUCKET);
+
+        String key = System.currentTimeMillis()+"_" + image.getOriginalFilename();
+        friendlyLink.setWebLogo(key);
+        try {
+            Response response = uploadManager.put(image.getBytes(), key, upToken);
+            //解析上传成功的结果
+            DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
+            if (putRet != null) {
+
+                FileUploadReturnModel returnModel = new FileUploadReturnModel();
+                returnModel.setFilepath(key);
+                returnModel.setOriginal("../" + key);
+                result.setObject(returnModel);
+                result.setCode(ResultCode.UPLOAD_SUCCESS);
+                result.setMessage(ResultCode.UPLOAD_SUCCESS_MSG);
+                System.out.println("putnull");
+            } else {
+                result.setCode(ResultCode.UPLOAD_FAIL);
+                result.setMessage(ResultCode.UPLOAD_FAIL_MSG);
+                System.out.println("putnotnull");
             }
+        } catch (QiniuException ex) {
+            Response r = ex.response;
+            result.setCode(ResultCode.UPLOAD_FAIL);
+            result.setMessage(ResultCode.UPLOAD_FAIL_MSG);
+            System.out.println("qiniuex");
+        } catch (IOException e) {
+            e.printStackTrace();
+            result.setCode(ResultCode.UPLOAD_FAIL);
+            result.setMessage(ResultCode.UPLOAD_FAIL_MSG);
+            System.out.println("ioex");
         }
 
         int link_type=Integer.parseInt(request.getParameter("link_type"));
@@ -223,9 +264,8 @@ public class FriendshipLinkController {
         friendlyLink.setWebAddress(webaddress);
         System.out.println(webaddress);
 
-        String weblogo=request.getParameter("weblogo");
-        friendlyLink.setWebLogo(weblogo);
-        System.out.println(weblogo);
+
+
 
         String keyword =request.getParameter("info");
         friendlyLink.setWebKeyWords(keyword);

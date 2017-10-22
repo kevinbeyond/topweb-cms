@@ -161,7 +161,7 @@
                     <dl>
                         <dt>网站LOGO：</dt>
                         <dd>
-                            <input name="weblogo" type="text" required="required" class="text" value="">
+
                             <input name="met_upsql1" type="file" id="file_upload" />
                             <script type="text/javascript">
                                 $(document).ready(function(){
