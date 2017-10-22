@@ -132,7 +132,7 @@ public class UManagmentController {
 
     @RequestMapping(value = "/addinfo.html", method = RequestMethod.POST)
     public ModelAndView addinfo(@RequestParam(value = "met_upsql1") MultipartFile image, HttpServletRequest request){
-                  ModelAndView modelAndView=new ModelAndView("redirect:/um/uninersity.html?pnow=1&type=0&authentication=0");
+        ModelAndView modelAndView=new ModelAndView("redirect:/um/uninersity.html?pnow=1&type=0&authentication=0");
         System.out.println("addinfo");
 
         School school=new School();

@@ -273,7 +273,7 @@
                     </dl>
                 </div>
                 <div class="v52fmbx_submit">
-                    <input type="submit" name="Submit" value="保存" class="submit" onclick="return Smit($(this),'myform')" />
+                    <input type="submit" name="Submit" value="保存" class="submit"/>
                     <input name="id" type="hidden" value="" />
                 </div>
             </div>
