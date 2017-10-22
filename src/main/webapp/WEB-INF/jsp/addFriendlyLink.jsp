@@ -161,13 +161,12 @@
                     <dl>
                         <dt>网站LOGO：</dt>
                         <dd>
-
                             <input name="met_upsql1" type="file" id="file_upload" />
-                            <script type="text/javascript">
+                           <%-- <script type="text/javascript">
                                 $(document).ready(function(){
                                     metuploadify('#file_upload','upimage','weblogo');
                                 });
-                            </script>
+                            </script>--%>
                         </dd>
                     </dl>
                 </div>

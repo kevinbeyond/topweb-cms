@@ -137,7 +137,7 @@
 
 </div>
 
-<form  method="POST" name="myform" action="/market/saveFriendlyLink.html?updateid=${fl.id}" target="_self">
+<form  method="POST" name="myform" enctype="multipart/form-data" action="/market/saveFriendlyLink.html?updateid=${fl.id}" target="_self">
     <input name="lang" type="hidden"  value="cn">
     <input name="id" type="hidden"  value="">
     <div class="v52fmbx_tbmax v52fmbx_tbmaxmt">
@@ -174,13 +174,12 @@
                     <dl>
                         <dt>网站LOGO：</dt>
                         <dd>
-                            <input name="weblogo" type="text" class="text" value="${fl.webLogo}">
                             <input name="met_upsql1" type="file" id="file_upload" />
-                            <script type="text/javascript">
+                          <%--  <script type="text/javascript">
                                 $(document).ready(function(){
                                     metuploadify('#file_upload','upimage','weblogo');
                                 });
-                            </script>
+                            </script>--%>
                         </dd>
                     </dl>
                 </div>
