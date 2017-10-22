@@ -346,13 +346,12 @@
                     <dl>
                         <dt>图片：</dt>
                         <dd>
-                            <input name="img" type="text" required="required" class="text" value="${school.img}">
                             <input name="met_upsql1" type="file" id="file_upload" />
-                            <script type="text/javascript">
+                           <%-- <script type="text/javascript">
                                 $(document).ready(function(){
                                     metuploadify('#file_upload','upimage','weblogo');
                                 });
-                            </script>
+                            </script>--%>
                         </dd>
                     </dl>
                 </div>

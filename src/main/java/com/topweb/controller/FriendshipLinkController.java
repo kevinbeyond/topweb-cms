@@ -127,10 +127,52 @@ public class FriendshipLinkController {
     }
 
     @RequestMapping(value = "/saveFriendlyLink.html", method = RequestMethod.POST )
-    public ModelAndView saveFriendlyLink(HttpServletRequest request){
+    public ModelAndView saveFriendlyLink(@RequestParam(value = "met_upsql1") MultipartFile image,
+                                         HttpServletRequest request){
         ModelAndView view = new ModelAndView("redirect:/market/friendshiplink.html?pnow=1&linktype=3&guan=0");
 
         FriendlyLink friendlyLink=new FriendlyLink();
+
+        //文件上传
+        ResultViewModel result = new ResultViewModel();
+        //上传七牛云服务器
+        Configuration cfg = new Configuration(Zone.zone1());//华北机房
+        UploadManager uploadManager = new UploadManager(cfg);
+        Auth auth = Auth.create(ConstantUtil.QINIU_ACCESS_KEY, ConstantUtil.QINIU_SECRET_KEY);
+        String upToken = auth.uploadToken(ConstantUtil.QINIU_BUCKET);
+
+        String key = System.currentTimeMillis()+"_" + image.getOriginalFilename();
+        friendlyLink.setWebLogo(key);
+        try {
+            Response response = uploadManager.put(image.getBytes(), key, upToken);
+            //解析上传成功的结果
+            DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
+            if (putRet != null) {
+
+                FileUploadReturnModel returnModel = new FileUploadReturnModel();
+                returnModel.setFilepath(key);
+                returnModel.setOriginal("../" + key);
+                result.setObject(returnModel);
+                result.setCode(ResultCode.UPLOAD_SUCCESS);
+                result.setMessage(ResultCode.UPLOAD_SUCCESS_MSG);
+                System.out.println("putnull");
+            } else {
+                result.setCode(ResultCode.UPLOAD_FAIL);
+                result.setMessage(ResultCode.UPLOAD_FAIL_MSG);
+                System.out.println("putnotnull");
+            }
+        } catch (QiniuException ex) {
+            Response r = ex.response;
+            result.setCode(ResultCode.UPLOAD_FAIL);
+            result.setMessage(ResultCode.UPLOAD_FAIL_MSG);
+            System.out.println("qiniuex");
+        } catch (IOException e) {
+            e.printStackTrace();
+            result.setCode(ResultCode.UPLOAD_FAIL);
+            result.setMessage(ResultCode.UPLOAD_FAIL_MSG);
+            System.out.println("ioex");
+        }
+
         int updateid=Integer.parseInt(request.getParameter("updateid"));
         friendlyLink.setId(updateid);
         System.out.println(updateid);
@@ -143,9 +185,6 @@ public class FriendshipLinkController {
        friendlyLink.setWebAddress(webaddress);
         System.out.println(webaddress);
 
-      String weblogo=request.getParameter("weblogo");
-      friendlyLink.setWebLogo(weblogo);
-        System.out.println(weblogo);
 
       String keyword =request.getParameter("info");
       friendlyLink.setWebKeyWords(keyword);
