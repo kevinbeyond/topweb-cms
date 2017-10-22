@@ -1156,7 +1156,7 @@ function linkSmit(my, type, txt) {
 	return false;
 }
 
-function met_modify(my, form, type) {
+function  met_modify(my, form, type) {
 	var form = $("form[name='" + form + "']");
 	var id = $("input[name='id']");
 	var all = $("input[name='allid']");
