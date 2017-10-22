@@ -80,7 +80,7 @@
         </div>
         <div class="clear"></div>
         <link rel="stylesheet" href="/css/app/system/admin/templates/web/content/css/metinfo.css" />
-        <form method="POST" name="myform" id="articleForm" class="ui-from article_add" target="_self">
+        <form method="POST"  name="myform" id="articleForm" class="ui-from article_add" target="_self">
             <c:if test="${not empty article}">
                 <input type="hidden" name='id' value="${article.id}" />
             </c:if>
