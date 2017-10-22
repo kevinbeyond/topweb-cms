@@ -28,6 +28,11 @@ public class ManageController {
      */
     private final int ARTICLE_LIST_PAGE_SIZE = 3;
 
+    /**
+     * 图片模块分页每页记录数
+     */
+    private final int IMAGE_LIST_PAGE_SIZE = 3;
+
     @Autowired
     private CMSArticleMapper articleMapper;
 
@@ -111,7 +116,11 @@ public class ManageController {
         } else if(moduleId == 3) {//图片模块
             view.setViewName("image_list");
 
-            List<CMSImage> imageList = imageMapper.selectImageList(class1);
+            int imgCnt = imageMapper.queryImageCnt(class1, class2);
+            view.addObject("imgCnt", imgCnt);
+            view.addObject("pageSize", IMAGE_LIST_PAGE_SIZE);
+
+            List<CMSImage> imageList = imageMapper.selectImageList(class1, class2 , IMAGE_LIST_PAGE_SIZE, offset);
             view.addObject("imageList", imageList);
         }
         return view;

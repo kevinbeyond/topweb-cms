@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://jsptags.com/tags/navigation/pager" prefix="pg" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -336,12 +337,56 @@
                     </div>--%>
                 </td>
             </tr>
-            <%--<tr><td colspan="9" class="page_list"><form method='POST' name='page1'  action='index.php?anyid=29&lang=cn&class1=33&class2=&class3=&search=&title=&page=' target='_self'><style>.digg4 a{ border:1px solid #ccdbe4; padding:2px 8px 2px 8px; background:#fff; background-position:50%; margin:2px; color:#666; text-decoration:none;}
-            .digg4 a:hover { border:1px solid #999; color:#fff; background-color:#999;}
-            .digg4 a:active {border:1px solid #000099; color:#000000;}
-            .digg4 span.current { padding:2px 8px 2px 8px; margin:2px; text-decoration:none;}
-            .digg4 span.disabled { border:1px solid #ccc; background:#fff; padding:1px 8px 1px 8px; margin:2px; color:#999;}
-            </style><div class='digg4'><span class='disabled' style='font-family: Tahoma, Verdana;'><b>«</b></span><span class='disabled' style='font-family: Tahoma, Verdana;'>‹</span><span class='current'>1</span><span class='disabled' style='font-family: Tahoma, Verdana;'>›</span><span class='disabled' style='font-family: Tahoma, Verdana;'><b>»</b></span> 转到<input name='page_input' class='page_input' />页 <input type='submit' name='Submit3' value=' go ' class='submit' /></form></div></td></tr>--%>
+            <tr>
+                <td colspan="9" class="page_list">
+                    <style>
+                        .digg4 a{ border:1px solid #ccdbe4; padding:2px 8px 2px 8px; background:#fff; background-position:50%; margin:2px; color:#666; text-decoration:none;}
+                        .digg4 a:hover { border:1px solid #999; color:#fff; background-color:#999;}
+                        .digg4 a:active {border:1px solid #000099; color:#000000;}
+                        .digg4 span.current { padding:2px 8px 2px 8px; margin:2px; text-decoration:none;}
+                        .digg4 span.disabled { border:1px solid #ccc; background:#fff; padding:1px 8px 1px 8px; margin:2px; color:#999;}
+                    </style>
+                    <div class='digg4'>
+                        <pg:pager url="/content/modultList.html" maxIndexPages="5" maxPageItems="${pageSize}"  items="${imgCnt}" export="currentPageNumber=pageNumber">
+                            <pg:param name="module" value="${param.module}"></pg:param>
+                            <c:if test="${param.class1>0}">
+                                <pg:param name="class1" value="${param.class1}"></pg:param>
+                            </c:if>
+                            <c:if test="${param.class2>0}">
+                                <pg:param name="class2" value="${param.class2}"></pg:param>
+                            </c:if>
+
+                            <%--<span style='font-family: Tahoma, Verdana;'>
+                            <b>«</b>
+                        </span>--%>
+                            <pg:first>
+                                <a style="font-family: Tahoma, Verdana;" href="${pageUrl}"><b>首页</b></a>
+                            </pg:first>
+
+                            <pg:prev>
+                                <a style="font-family: Tahoma, Verdana;" href="${pageUrl}">‹</a>
+                            </pg:prev>
+
+                            <pg:pages>
+                                <c:choose>
+                                    <c:when test="${currentPageNumber eq pageNumber }">
+                                        <span class='current'>${pageNumber}</span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a href="${pageUrl}">${pageNumber}</a>
+                                    </c:otherwise>
+                                </c:choose>
+                            </pg:pages>
+                            <pg:next>
+                                <a style="font-family: Tahoma, Verdana;" href="${pageUrl}">›</a>
+                            </pg:next>
+                            <pg:last>
+                                <a style="font-family: Tahoma, Verdana;" href="${pageUrl}"><b>尾页</b></a>
+                            </pg:last>
+                        </pg:pager>
+                    </div>
+                </td>
+            </tr>
     </table>
     </form>
 </div>
