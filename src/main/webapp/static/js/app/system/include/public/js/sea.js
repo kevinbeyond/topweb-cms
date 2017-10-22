@@ -23,6 +23,7 @@ function HrefUrl(){
 var editorname;
 var lang = getQueryString('lang'),
 	ret = HrefUrl(),
+	qiniuurl = "http://oy4m5h68i.bkt.clouddn.com/",
 	siteurl = ret['url'],
 	basepath = '/',
 	pubjspath = '/js/app/system/include/public/',table;

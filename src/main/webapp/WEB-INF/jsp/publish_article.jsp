@@ -40,7 +40,7 @@
                 tem="/js/app/system/admin/templates/web/content/",
                 adminurl="#",
                 apppath="http://app.metinfo.cn/index.php?lang=cn&",
-                jsrand="20171004",
+                jsrand="201710210013",
                 editorname="ueditor";
     </script>
     <script type="text/javascript" src="/js/public/js/jQuery1.7.2.js"></script>
@@ -71,51 +71,6 @@
                         </li>
                     </ul>
                 </div>
-                <%--<div class="btn-group pull-right met-tool met-msecount-tool">
-                    <button class="btn btn-default text-center dropdown-toggle msecount" type="button" onclick="location.href = 'http://localhost:88/metinfo/admin/index.php?n=system&c=news&a=doindex&lang=cn';">
-                        <i class="fa fa-bell-o"></i>
-                        <span class="label label-danger">0</span>
-                    </button>
-                </div>--%>
-
-                <%--<div class="btn-group pull-right met-tool" >
-                    <button class="btn btn-default dropdown-toggle" type="button" id="shouquan" data-toggle="dropdown" aria-expanded="true">
-                        <i class="fa fa-bookmark"></i><span class="hidden-xs">商业授权</span>
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="shouquan">
-                        <li class="met-tool-list text-center"><a target="_blank" class="liaojie" href="http://www.metinfo.cn/web/product.htm">了解商业授权</a></li>
-                        <li class="met-tool-list text-center">
-                            <button class="btn btn-primary" type="submit" onclick="location.href = 'http://localhost:88/metinfo/admin/index.php?lang=cn&&n=system&c=authcode&a=doindex';">录入商业授权</button>
-                        </li>
-                    </ul>
-                </div>--%>
-
-                <%--<div class="btn-group pull-right met-tool supportbox" >
-                    <!--<a href="http://www.metinfo.cn/bangzhu/index.php?ver=metcms" class="btn btn-success dropdown-toggle" target="_blank">技术支持<a>
-                    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                        <i class="fa fa-life-ring"></i><span class="hidden-xs">技术支持</span>
-                        <span class="caret"></span>
-                        <input name="supporturldata" type="hidden" value="user_key=&siteurl=http://localhost:88/metinfo/" />
-                    </button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                        <li class="met-tool-list text-center support_loading">获取中...</li>
-                        <li class="met-tool-list text-center support_youok">处理时间：每天 </li>
-                        <li class="met-tool-list text-center support_youok"><button class="btn btn-primary" type="submit">工单</button></li>
-                        <li class="divider support_youok"></li>
-                        <li class="met-tool-list text-center support_youok">在线时间：工作日</li>
-                        <li class="met-tool-list text-center support_youok"><button class="btn btn-info supportmechatlink" type="submit">点我咨询</button></li>
-                        <li class="divider support_youok"></li>
-                        <li class="met-tool-list text-center support_desc">于 <span id="support_expiretime"></span> 到期</li>
-                        <li class="met-tool-list text-center support_desc"><a href="http://localhost:88/metinfo/admin/index.php?lang=cn&n=appstore&c=support&a=doindex">续费服务</a></li>
-                        <li class="met-tool-list text-center support_no"><span class="text-danger">尚未开通服务</span>
-                        <a href="http://www.metinfo.cn/news/shownews1248.htm" target="_blank">什么是技术支持？</a>
-                        </li>
-                        <li class="met-tool-list text-center support_no">
-                        <button class="btn btn-primary" type="submit" onclick="location.href = 'http://localhost:88/metinfo/admin/index.php?lang=cn&n=appstore&c=support&a=doindex';">开通服务</button>
-                        </li>
-                    </ul>-->
-                </div>--%>
             </div>
         </div>
     </div>
@@ -260,14 +215,14 @@
                         </div>
                     </dd>
                 </dl>
-                <dl>
+                <%--<dl>
                     <dt>更新时间</dt>
                     <dd class="ftype_day">
                         <div class="fbox">
                             <input type="input" name="updatetime" data-day-type = "2" value="<fmt:formatDate value="${article.updatetime}" pattern="yyyy-MM-dd HH:mm:ss" />">
                         </div>
                     </dd>
-                </dl>
+                </dl>--%>
 
                 <%--<dl>
                     <dt>发布时间</dt>
@@ -296,20 +251,15 @@
 
                     </dd>
                 </dl>--%>
-                <%--<dl>
+                <dl>
                     <dt>封面图片</dt>
                     <dd class="ftype_upload">
                         <div class="fbox">
-                            <input
-                                    name="imgurl"
-                                    type="text"
-                                    data-upload-type="doupimg"
-                                    value=""
-                            />
+                            <input name="imgurl" type="text" data-upload-type="doupimg" value="${article.imgurl}"/>
                         </div>
-                        <span class="tips">当没有手动上传图片时候，会自动提取您内容第一张图片作为封面（此功能需要模板支持）</span>
+                        <%--<span class="tips">当没有手动上传图片时候，会自动提取您内容第一张图片作为封面（此功能需要模板支持）</span>--%>
                     </dd>
-                </dl>--%>
+                </dl>
             </div>
         </form>
         <div class="met_affix_save bg-success">
@@ -325,6 +275,6 @@
 </div>
 </div>
 </body>
-<script src="/js/topweb/article.js?v17"></script>
-<script src="/js/app/system/include/public/js/sea.js"></script>
+<script src="/js/topweb/article.js?v1888"></script>
+<script src="/js/app/system/include/public/js/sea.js?11"></script>
 </html>

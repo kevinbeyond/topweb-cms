@@ -23,6 +23,16 @@ import java.util.List;
 @Controller
 public class ManageController {
 
+    /**
+     * 文章模块分页每页记录数
+     */
+    private final int ARTICLE_LIST_PAGE_SIZE = 10;
+
+    /**
+     * 图片模块分页每页记录数
+     */
+    private final int IMAGE_LIST_PAGE_SIZE = 10;
+
     @Autowired
     private CMSArticleMapper articleMapper;
 
@@ -51,7 +61,8 @@ public class ManageController {
      * @return
      */
     @RequestMapping(value = "/columnPublish.html", method = RequestMethod.POST)
-    public @ResponseBody String columnPublish(@RequestParam(value = "class1", defaultValue = "0") int class1) {
+    public @ResponseBody String columnPublish(@RequestParam(value = "class1", defaultValue = "0") int class1,
+                                              @RequestParam(value = "class2", defaultValue = "0") int class2) {
 
         if(class1 == 0) {
             return "/content/publish.html";
@@ -60,7 +71,20 @@ public class ManageController {
         CMSColumn column = columnMapper.selectByPrimaryKey(class1);
 
         if (column.getModule() == 2) {//文章模块
-            return "/content/publishArticle.html?class1=" + class1;
+            if (class2 > 0) {
+                return "/content/publishArticle.html?class1=" + class1 + "&class2=" + class2;
+            } else {
+                return "/content/publishArticle.html?class1=" + class1;
+            }
+
+        }
+
+        if (column.getModule() == 3) {//图片模块
+            if (class2 >0 ){
+                return "/content/perImgEdit.html?class1=" + class1 + "&class2=" + class2;
+            } else {
+                return "/content/perImgEdit.html?class1=" + class1;
+            }
         }
         return "/content/publish.html";
     }
@@ -73,7 +97,8 @@ public class ManageController {
     @RequestMapping("/modultList.html")
     public ModelAndView cmsModuleList(@RequestParam(value = "module") int moduleId,
                                       @RequestParam(value = "class1", required = false, defaultValue = "0") int class1,
-                                      @RequestParam(value = "class2", required = false, defaultValue = "0") int class2) {
+                                      @RequestParam(value = "class2", required = false, defaultValue = "0") int class2,
+                                      @RequestParam(value = "pager.offset", required = false, defaultValue = "0") int offset) {
         ModelAndView view = new ModelAndView();
 
         if (moduleId == 1) {//简介模块
@@ -81,13 +106,21 @@ public class ManageController {
         } else if (moduleId == 2) {//文章模块
             view.setViewName("article_list");
 
+            int articleCnt = articleMapper.queryArticleCnt(class1, class2);
+            view.addObject("articleCnt", articleCnt);
+            view.addObject("pageSize", ARTICLE_LIST_PAGE_SIZE);
+
             //获取文章列表
-            List<CMSArticle> articleList = articleMapper.selectArticleList(class1, class2);
+            List<CMSArticle> articleList = articleMapper.selectArticleList(class1, class2, ARTICLE_LIST_PAGE_SIZE, offset);
             view.addObject("articleList", articleList);
         } else if(moduleId == 3) {//图片模块
             view.setViewName("image_list");
 
-            List<CMSImage> imageList = imageMapper.selectImageList(class1);
+            int imgCnt = imageMapper.queryImageCnt(class1, class2);
+            view.addObject("imgCnt", imgCnt);
+            view.addObject("pageSize", IMAGE_LIST_PAGE_SIZE);
+
+            List<CMSImage> imageList = imageMapper.selectImageList(class1, class2 , IMAGE_LIST_PAGE_SIZE, offset);
             view.addObject("imageList", imageList);
         }
         return view;
@@ -99,7 +132,8 @@ public class ManageController {
      */
     @RequestMapping("/publishArticle.html")
     public ModelAndView publishPerArticle(@RequestParam(value = "id", required = false, defaultValue = "0") int articleId,
-                                          @RequestParam(value = "class1", required = false, defaultValue = "0")int class1 ){
+                                          @RequestParam(value = "class1", required = false, defaultValue = "0")int class1,
+                                          @RequestParam(value = "class2", required = false, defaultValue = "0")int class2){
         ModelAndView view = new ModelAndView("publish_article");
 
         if (articleId > 0) {
@@ -108,6 +142,9 @@ public class ManageController {
         } else if (class1 >0) {
             CMSArticleWithBLOBs article = new CMSArticleWithBLOBs();
             article.setClass1(class1);
+            if (class2 > 0) {
+                article.setClass2(class2);
+            }
             view.addObject("article", article);
         }
 
@@ -202,17 +239,28 @@ public class ManageController {
      * @return
      */
     @RequestMapping("/perImgEdit.html")
-    public ModelAndView perImageEdit(@RequestParam(value = "id", required = false, defaultValue = "0")int imgId){
+    public ModelAndView perImageEdit(@RequestParam(value = "id", required = false, defaultValue = "0")int imgId,
+                                     @RequestParam(value = "class1", required = false, defaultValue = "0")int class1,
+                                     @RequestParam(value = "class2", required = false, defaultValue = "0")int class2){
         ModelAndView view = new ModelAndView("image_edit");
 
         if (imgId>0) {
             CMSImage image = imageMapper.selectByPrimaryKey(imgId);
             view.addObject("image", image);
         }
+        if (class1>0) {
+            CMSImage image = new CMSImage();
+            image.setClass1(class1);
+            if(class2 > 0) {
+                image.setClass2(class2);
+            }
+            view.addObject("image", image);
+        }
+
         return view;
     }
 
-    @RequestMapping(value = "/saveOrUpdateImage", method = RequestMethod.POST)
+    @RequestMapping(value = "/saveOrUpdateImage", method = RequestMethod.POST, produces = {"application/json;","text/html;charset=UTF-8;"})
     public @ResponseBody ResultViewModel saveOrUpdateImage(@RequestBody CMSImage image){
         ResultViewModel result = new ResultViewModel();
 

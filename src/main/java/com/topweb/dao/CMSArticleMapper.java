@@ -26,11 +26,18 @@ public interface CMSArticleMapper {
      * 获取文章列表
      * @return
      */
-    List<CMSArticle> selectArticleList(@Param("class1") int class1, @Param("class2") int class2);
+    List<CMSArticle> selectArticleList(@Param("class1") int class1, @Param("class2") int class2,
+                                       @Param("pageSize") int pageSize, @Param("offset") int offset);
 
     int updateByPrimaryKeySelective(CMSArticleWithBLOBs record);
 
     int updateByPrimaryKeyWithBLOBs(CMSArticleWithBLOBs record);
 
     int updateByPrimaryKey(CMSArticle record);
+
+    /**
+     * 获取文章模块总的记录数
+     * @return
+     */
+    int queryArticleCnt(@Param("class1") int class1,@Param("class2") int class2);
 }

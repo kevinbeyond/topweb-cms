@@ -14,8 +14,7 @@ $(function () {
     //编辑文章
     $('#article-submit').on('click', function () {
 
-
-        if(isNaN($('select[name="class1"]').val())){
+        if(isNaN($('select[name="class1"]').val()) || $('select[name="class1"]').val() <= 0){
             alert("请选择一个栏目");
             return false;
         }
@@ -38,6 +37,7 @@ $(function () {
             type: "POST",
             contentType : 'application/json;charset=utf-8', //设置请求头信息
             dataType:"json",
+            async: false,//明确是异步提交数据
             data: JSON.stringify(articleObject), //将Json对象序列化成Json字符串，JSON.stringify()原生态方法
             success: function(data){
                 if (data.code==0) {
@@ -78,6 +78,7 @@ $(function () {
             type: "POST",
             contentType : 'application/json;charset=utf-8', //设置请求头信息
             dataType:"json",
+            async: false,//明确是异步提交数据
             data: JSON.stringify(articleArray), //将Json对象序列化成Json字符串，JSON.stringify()原生态方法
             success: function(data){
                 if (data.code==0) {
@@ -109,6 +110,7 @@ $(function () {
             contentType : 'application/json;charset=utf-8', //设置请求头信息
             dataType:"json",
             data: _ids.join(), //将Json对象序列化成Json字符串，JSON.stringify()原生态方法
+            async: false,//明确是异步提交数据
             success: function(data){
                 if (data.code==0) {
                     alert('操作成功');//提示操作成功
@@ -124,13 +126,19 @@ $(function () {
     //栏目切换
     $('#articles-column-change').find('select').each(function () {
        $(this).on('change', function () {
-           if (isNaN($(this).val())){
-               window.location.href = "/content/modultList.html?module=2";
-           } else {
-               if($(this).attr('name')=='class1_select') {//一级栏目变更
-                   window.location.href = "/content/modultList.html?module=2&class1=" + $(this).val();
-               } else if($(this).attr('name')=='class2_select') {//二级栏目变更
-                   var _class1 = $(this).prev('select').val();
+           if($(this).attr('name')=='class1_select') {//一级栏目变更
+               if (!$(this).val() || isNaN($(this).val())){
+                   window.location.href = "/content/modultList.html?module=2";
+               } else {
+                   window.location.href = "/content/modultList.html?module=2&class1=" + $(this).val(); 
+               }
+               
+           } else if($(this).attr('name')=='class2_select') {//二级栏目变更
+               var _class1 = $(this).prev('select').val();
+
+               if (!$(this).val() || isNaN($(this).val())){
+                   window.location.href = "/content/modultList.html?module=2&class1=" + _class1;
+               } else {
                    window.location.href = "/content/modultList.html?module=2&class1=" + _class1 + "&class2=" + $(this).val();
                }
            }

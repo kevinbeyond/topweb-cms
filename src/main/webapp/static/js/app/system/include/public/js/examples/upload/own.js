@@ -212,7 +212,7 @@ define(function(require, exports, module) {
 					for(var i=0;i<srcs.length;i++){
 						if(srcs[i]!=''){
 							isrc = srcs[i].split('../');
-							isrc = siteurl + isrc[1];
+							isrc = qiniuurl + isrc[1];
 							imgadd(dom,isrc,srcs[i]);
 							isrc = '';
 						}
@@ -246,8 +246,8 @@ define(function(require, exports, module) {
 							if(!dom.data('upload-many')){
 								if(dom.next().find('li.sort').length)dom.next().find('li.sort').remove();
 							}
-							var path = siteurl + response.object.filepath;
-							imgadd(dom,path,response.original);
+							var path = qiniuurl + response.object.filepath;
+							imgadd(dom,path,response.object.original);
 							imgvalue(dom);
 						}
 					});
@@ -289,7 +289,14 @@ define(function(require, exports, module) {
 			});
 			
 			//删除按钮
-			$(document).on('click','.ftype_upload .app-image-list li.sort span',function(){
+			// $(document).on('click','.ftype_upload .app-image-list li.sort span',function(){
+			// 	var dom = $(this).parents('.picture-list').prev();
+			// 	$(this).parent('li.sort').remove();
+			// 	imgvalue(dom);
+			// });
+
+			//删除按钮
+			$('li.sort span').on('click', function () {
 				var dom = $(this).parents('.picture-list').prev();
 				$(this).parent('li.sort').remove();
 				imgvalue(dom);

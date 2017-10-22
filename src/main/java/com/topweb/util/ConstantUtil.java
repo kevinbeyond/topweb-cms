@@ -9,9 +9,19 @@ import java.util.Map;
 public class ConstantUtil {
 
     /**
-     * 设置板块图片上传地址
+     * 七牛云密钥管理
      */
-    public static String SETTING_UPLOAD_DIR = "F:\\TopWeb\\topweb-cms\\src\\main\\webapp\\static\\images\\upload";
+    public static String QINIU_ACCESS_KEY = "ApknYHvAXQOY5TE0b06W4YQTMV9bYecRwiOCzyzK";
+
+    public static String QINIU_SECRET_KEY = "jA8vjBfC4imkQFgLO_VJtT1ZmZ1Ie9igBOk_rIwL";
+
+    public static String QINIU_BUCKET = "ycjxschool";
+
+    public static String QINIU_DEFAULT_DOMAIN = "http://oy4m5h68i.bkt.clouddn.com/";
+    /**
+     * 图片上传文件夹
+     */
+    public static String IMAGES_UPLOAD_DIR = "static/images/upload";
 
     /**
      * 栏目是否在导航栏上显示

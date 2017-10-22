@@ -1,6 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.topweb.common.WebBaseConfig" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE HTML>
 <html>
@@ -40,12 +40,13 @@
                 own_form="",
                 own_name="",
                 tem="/js/app/system/admin/templates/web/webset/",
-                adminurl="",
+                adminurl="/",
                 apppath="",
-                jsrand="201710120226",
+                jsrand="201710172056",
                 editorname="ueditor"
                 ;
     </script>
+    <script type="text/javascript" src="/js/public/js/jQuery1.7.2.js"></script>
     <!--[if IE]><script src="/js/public/js/html5.js" type="text/javascript"></script><![endif]-->
 </head>
 <body>
@@ -87,7 +88,7 @@
         </div>
         <div class="clear"></div>
 
-        <form method="POST" class="ui-from" id="myform" name="myform"  target="_self">
+        <form class="ui-from" id="baseSettingForm"  target="_self">
             <div class="v52fmbx" data-gent="" data-webset-record="">
                 <h3 class="v52fmbx_hr">网站基本信息设置</h3>
                 <dl>
@@ -104,7 +105,7 @@
                     <dd class="ftype_upload">
                         <div class="fbox">
                             <%--<input name="<%=WebBaseConfig.logo%>" type="text" data-upload-type="doupimg" class="text" value="${topweb_logo}">--%>
-                            <input name="met_logo" type="text" data-upload-type="doupimg" class="text" value="..${topweb_logo}">
+                            <input name="<%=WebBaseConfig.logo%>" type="text" data-upload-type="doupimg" class="text" value="${topweb_logo}">
                         </div>
                         <span class="tips">建议尺寸 180 * 60 (像素)</span>
                     </dd>
@@ -114,7 +115,7 @@
                     <dt>地址栏图标</dt>
                     <dd class="ftype_upload">
                         <div class="fbox">
-                            <input name="<%=WebBaseConfig.icon%>" type="text" data-upload-key="98f1186331177ab93815c253ada6a011" data-upload-type="doupico" class="text" value="">
+                            <input name="<%=WebBaseConfig.icon%>" type="text" data-upload-key="98f1186331177ab93815c253ada6a011" data-upload-type="doupico" class="text" value="${topweb_icon}">
                         </div>
 			<span class="tips">建议尺寸 32 * 32 (像素)的.ico文件。<a href="https://www.baidu.com/s?wd=ico%E5%9B%BE%E6%A0%87%E5%88%B6%E4%BD%9C" target="_blank">点击制作ICO</a>
 			<br />
@@ -184,7 +185,7 @@
                     <dt>联系方式</dt>
                     <dd class="ftype_input">
                         <div class="fbox">
-                            <input name="<%=WebBaseConfig.foottel%>" type="text" value="${topweb_foottel}" />
+                            <input name="<%=WebBaseConfig.foottel%>" type="text" value="${topweb_foottel}" maxlength="11"/>
                         </div>
                     </dd>
                 </dl>
@@ -201,7 +202,7 @@
                 <dl class="noborder">
                     <dt> </dt>
                     <dd>
-                        <input type="submit" name="submit" value="保存" class="submit" onclick="submitConfigInfos();">
+                        <input type="submit" value="保存" class="submit">
                     </dd>
                 </dl>
 
@@ -219,34 +220,6 @@
 </div>
 </div>
 </body>
-<script>
-function submitConfigInfos() {
-    var jsonArray = new Array();
-    $('.fbox').find('input, textarea').each(function () {
-        var _obj = new Object();
-        _obj.name = $(this).attr('name');
-        _obj.value = $(this).val();
-        jsonArray.push(_obj);
-    });
-    console.log(JSON.stringify(jsonArray));
-
-    $.ajax({
-        url: "/setting/submitBaseSetting.html",
-        type: "POST",
-        contentType : 'application/json;charset=utf-8', //设置请求头信息
-        dataType:"json",
-        data: JSON.stringify(jsonArray), //将Json对象序列化成Json字符串，JSON.stringify()原生态方法
-//        data: $.toJSON(customerArray), //将Json对象序列化成Json字符串，toJSON()需要引用jquery.json.min.js
-        success: function(data){
-            if (data.code==0) {
-                alert('操作成功');//提示操作成功
-            }
-
-        },
-        error: function(res){
-            alert(res.responseText);
-        }
-    });
-}
-</script>
+<script src="/js/topweb/setting.js?v0.1"></script>
+<script src="/js/topweb/ueditor/editor_api.js"></script>
 </html>

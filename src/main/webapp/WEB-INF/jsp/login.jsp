@@ -18,7 +18,7 @@
         <div class="login-left">
             <div style=" border-right:1px solid #fff; padding:0px 0px 20px;">
                 <a href="/" style="font-size:0px;" target="_blank" title="托普威CMS" class="img">
-                    <img src="/images/login-logo.png" alt="托普威CMS" title="托普威CMS" />
+                    <img src="/images/login-logo.jpg" alt="托普威CMS" title="托普威CMS" width="300" />
                 </a>
                 <p>打造具有营销价值的企业网站</p>
             </div>

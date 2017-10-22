@@ -37,7 +37,22 @@
     <if test="class1 > 0">
       AND  class1 = #{class1}
     </if>
+    <if test="class2 > 0">
+      AND  class2 = #{class2}
+    </if>
     ORDER BY top DESC, recommend DESC, no_order DESC, updatetime DESC
+    LIMIT #{offset},#{pageSize}
+  </select>
+  <select id="queryImageCnt" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM cms_img WHERE
+    del=0
+    <if test="class1 > 0">
+      AND class1 = #{class1}
+    </if>
+    <if test="class2 > 0">
+      AND  class2 = #{class2}
+    </if>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from cms_img
@@ -47,13 +62,13 @@
     insert into cms_img (id, title, class1, 
       class2, class3,
       imgurl, top, recommend, 
-      hits, updatetime, addtime,
-      issue, links)
+      hits, addtime,
+      issue, access, links)
     values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{class1,jdbcType=INTEGER}, 
       #{class2,jdbcType=INTEGER}, #{class3,jdbcType=INTEGER},
       #{imgurl,jdbcType=VARCHAR}, #{top,jdbcType=INTEGER}, #{recommend,jdbcType=INTEGER}, 
-      #{hits,jdbcType=INTEGER}, #{updatetime,jdbcType=TIMESTAMP}, NOW(),
-      #{issue,jdbcType=VARCHAR}, #{links,jdbcType=VARCHAR})
+      #{hits,jdbcType=INTEGER}, NOW(),
+      #{issue,jdbcType=VARCHAR}, #{access,jdbcType=VARCHAR}, #{links,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.topweb.entity.CMSImage" >
     insert into cms_img
@@ -188,9 +203,7 @@
       <if test="hits != null" >
         hits = #{hits,jdbcType=INTEGER},
       </if>
-      <if test="updatetime != null" >
-        updatetime = #{updatetime,jdbcType=TIMESTAMP},
-      </if>
+        updatetime = NOW(),
       <if test="addtime != null" >
         addtime = #{addtime,jdbcType=TIMESTAMP},
       </if>

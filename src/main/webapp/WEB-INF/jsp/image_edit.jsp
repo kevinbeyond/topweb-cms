@@ -5,25 +5,81 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <title>托普威CMS</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="/css/app/system/include/public/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/css/admin/templates/met/images/css/metinfo.css" />
     <link rel="stylesheet" type="text/css" href="/css/admin/templates/met/images/css/newstyle.css" />
     <link rel="stylesheet" href="/css/app/system/include/public/font-awesome/css/font-awesome.min.css" />
+    <style type="text/css">
+        /*上传组件*/
+        .ftype_upload .fbox{ position:relative; }
+        .ftype_upload .fbox input.text{ display:none; }
+        .ftype_upload .fbox input.text{ background:#fff; color:#000; border:1px solid #ccc; padding:2px 8px; vertical-align:middle;height:32px; line-height:32px; width:220px; }
+        .ftype_upload .fbox input.text{
+            padding: 2px 5px;
+            border: 1px solid #dcdfe0;
+            background-color: #fff;
+            color: #333;
+            outline: 0;
+            -webkit-transition: .05s border-color ease-in-out;
+            transition: .05s border-color ease-in-out;
+        }
+        .ftype_upload .tips{ display:block; padding-top:5px; }
+        .ftype_upload .app-image-list li{ float:left;margin-right:10px; }
+        .ftype_upload .app-image-list li.sort{ border:1px solid #ddd; position:relative; margin-bottom:10px; }
+        .ftype_upload .app-image-list li.sort img{ max-height:80px; max-width: 100%}
+        .ftype_upload .app-image-list li.sort span.close{ position:absolute; right:-8px; top:-8px; width:18px; height:18px; line-height:18px; text-align:center; background:#666; border-radius:9px; font-size:16px; color:#fff; font-weight:normal; opacity:0.8; }
+        .ftype_upload .app-image-list li.sort:hover span.close{display:block!important;}
+        .ftype_upload .app-image-list li button{ border-radius:0;}
+        .ftype_upload .app-image-list li.upnow div{ width:100%!important; height:34px!important; }
+        .ftype_upload .app-image-list li.upnow div.webuploader-pick{ width:auto!important; height:auto!important; }
+        #upimglist li{ float:left; position:relative; width:100px; height:100px; background-size: contain; background-repeat: no-repeat; background-position: 50% 50%; background-color:#d7d7d7; margin:5px; cursor:pointer; opacity: 0;}
+        #UploadModal .modal-body{ height:500px; overflow:hidden; }
+        #UploadModal .modal-body li .check{ border:2px solid #09F; position:absolute; left:0px; top:0px; width:100%; height:100%; }
+        #UploadModal .modal-body li .check:after {
+            position: absolute;
+            display: block;
+            content: ' ';
+            right: 0px;
+            bottom: 0px;
+            border: 14px solid #09f;
+            border-left-color: transparent;
+            border-top-color: transparent;
+        }
+        #UploadModal .modal-body li .check i{ position:absolute; right:0px; bottom:0px; color:#fff; z-index:2;}
+        #UploadModal .modal-body li .widget-image-meta{ position:absolute; bottom:0px; left:0px; height:20px; line-height:20px; background:#000; opacity: 0.5; color:#fff; width:100%; font-size:12px; text-align:center;}
+        #UploadModal .modal-header h4{ float:left; margin-top:8px; padding-right:20px; border-right:2px solid #ddd; }
+        #UploadModal .modal-header #filePicker div{ height:35px!important; width:100%!important; }
+        #UploadModal .modal-header #filePicker{ margin-left:20px;float:left; height:35px; width:auto!important; overflow:hidden;}
+        .webuploader-container {
+            position: relative;
+        }
+        .webuploader-element-invisible {
+            position: absolute !important;
+            clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+            clip: rect(1px,1px,1px,1px);
+        }
+
+        .webuploader-pick-disable {
+            opacity: 0.6;
+            pointer-events:none;
+        }
+    </style>
     <script type="text/javascript">
         var basepath='/js/admin/templates/templates/met/images',
                 lang = 'cn',
-                adminurl='http://localhost:88/metinfo/admin/';
+                adminurl='';
     </script>
 
     <script type="text/javascript" src="/js/public/js/jQuery1.7.2.js"></script>
-    <script type="text/javascript"src="/js/admin/include/metvar.js"></script>
+    <%--<script type="text/javascript"src="/js/admin/include/metvar.js"></script>
     <script type="text/javascript" src="/js/admin/templates/met/images/js/uploadify/jquery.uploadify.v2.1.4.min.js"></script>
+    <script type="text/javascript" src="/js/admin/templates/met/images/js/cookie.js"></script>--%>
     <script type="text/javascript" src="/js/admin/templates/met/images/js/iframes.js"></script>
-    <script type="text/javascript" src="/js/admin/templates/met/images/js/cookie.js"></script>
     <script type="text/javascript">
         /*ajax执行*/
-        var metimgurl='../../templates/met/images/';
+        var metimgurl='/images/';
         var depth='../';
         $(document).ready(function(){
             ifreme_methei();
@@ -37,24 +93,52 @@
         window.onerror = killErrors;
     </SCRIPT>
     <![endif]-->
-    <script src="/js/app/system/include/public/js/seajs.js"></script>
     <script>
+        var langtxt = {
+                    "jsx15":"上传",
+                    "js35":"上传临时文件夹（upload_tmp_dir）不可写或者域名/后台文件夹/include/uploadify.php没有访问权限。",
+                    "jsx17":"上传成功！",
+                    "formerror1":"请填写此字段。",
+                    "formerror2":"请从这些选项中选择一个。",
+                    "formerror3":"请输入正确的手机号码。",
+                    "formerror4":"请输入正确的Email地址。",
+                    "formerror5":"两次输入的密码不一致，请重新输入。",
+                    "formerror6":"请输入至少&metinfo&个字符。",
+                    "formerror7":"输入不能超过&metinfo&个字符。",
+                    "formerror8":"输入的字符数必须在&metinfo&之间。",
+                    "js46":"不能重复",
+                    "js23":"没有选中的记录!",
+                    "checkupdatetips":"对不起！您的权限不够，无法操作在线升级。",
+                    "detection":"检测中",
+                    "try_again":"重试"
+                },
+                anyid="29",
+                tem="/js/app/system/admin/templates/web/content/",
+                adminurl="#",
+                apppath="",
+                jsrand="201710210006",
+                editorname="ueditor";
+    </script>
+    <script src="/js/app/system/include/public/js/sea.js"></script>
+    <%--<script src="/js/app/system/include/public/js/seajs.js"></script>--%>
+    <%--<script>
         var pub = '/js/app/system/include/public/',
-                siteurl='http://localhost:88/metinfo/',
-                basepath='http://localhost:88/metinfo/admin/',
-                apppath='http://app.metinfo.cn/index.php?lang=cn&',editorname='ueditor';
+                siteurl='/',
+                basepath='',
+                tem="/js/app/system/admin/templates/web/content/",
+                apppath='',editorname='ueditor';
         seajs.config({
             paths: {
                 'epl': 'examples',
                 'pub': pub.substring(0,pub.length-1),
-                'edturl':siteurl+'app/app/'+editorname
+                'edturl':'/js/app/app/'+editorname
             },
             alias: {
                 "jquery": "jquery/1.11.1/jquery_seajs.js"
             }
         });
         seajs.use("pub/js/examples/compatible"); //载入入口模块
-    </script>
+    </script>--%>
 
     <div class="metcms_top_right">
         <div class="metcms_top_right_box">
@@ -105,7 +189,7 @@
         }
     </SCRIPT>
 
-    <script type="text/javascript" src="/js/app/sytem/include/public/js/examples/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="/js/app/system/include/public/js/examples/ckeditor/ckeditor.js"></script>
 </head>
 <script language = 'JavaScript'>
     var onecount;
@@ -139,7 +223,7 @@
 </script>
 </div>
 
-<form  method="POST" id="imgForm" name="myform" target="_self">
+<form class="imgForm" method="post">
     <c:if test="${not empty image}">
         <input name="id" type="hidden" value="${image.id}">
     </c:if>
@@ -157,24 +241,22 @@
     <div class="v52fmbx_tbmax">
         <div class="v52fmbx_tbbox">
             <div class="v52fmbx">
-                <%--<div class="v52fmbx_dlbox">
+                <div class="v52fmbx_dlbox">
                     <dl>
                         <dt>所属栏目：</dt>
-                        <dd>
-                            <select name="class1" id="class1select" class="noselect" onChange="changelocation_contents(document.myform.class1.options[document.myform.class1.selectedIndex].value,1)" >
-                                <option value="">一级栏目</option>
-                                <option  value="33" selected='selected'>客户案例</option>
-                            </select>
-                            <select name="class2" id="class2select" class="noselect" onChange="changelocation_contents(document.myform.class2.options[document.myform.class2.selectedIndex].value,2)" style='display:none'>
-                                <option value=0>----------</option>
-                            </select>
-                            <select name="class3" id="class3select" class="noselect" onChange="changepower(3);changelocation_para();" style='display:none'>
-                                <option value=0>----------</option>
-                            </select>
-                            <a href="/setting/columns.html" >栏目设置</a>
+                        <dd class="ftype_select-linkage">
+                            <div class="fbox pull-left" data-selectdburl="/setting/cascadeColumns?module=3&classtype=1">
+                                <select name="class1" class="prov" data-required="1" data-checked="${image.class1>0?image.class1:''}"></select>
+                                <select name="class2" class="city" data-checked="${image.class2>0?image.class2:''}"></select>
+                                <select name="class3" class="dist" data-checked=""></select>
+                            </div>
+
+                            <span class="tips pull-left" style="margin-left:20px;">
+                                <a href="/setting/columns.html">栏目管理</a>
+                            </span>
                         </dd>
                     </dl>
-                </div>--%>
+                </div>
                 <div class="v52fmbx_dlbox">
                     <dl>
                         <dt>标题：</dt>
@@ -203,11 +285,11 @@
                 <div class="v52fmbx_dlbox v52fmbx_inline">
                     <dl>
                         <dt>可选属性：</dt>
-                        <dd>
+                        <dd class="selected-var">
                             <label>
-                                <input name="recommend" type="checkbox" class="checkbox" value="1" >推荐</label>
+                                <input name="recommend" type="checkbox" class="checkbox" ${image.recommend==1?'checked':''} value="${image.recommend}" >推荐</label>
                             <label>
-                                <input name="top" type="checkbox" class="checkbox" value="1" >置顶</label>
+                                <input name="top" type="checkbox" class="checkbox" ${image.top==1?'checked':''} value="${image.top}" >置顶</label>
                         </dd>
                     </dl>
                 </div>
@@ -220,7 +302,26 @@
                         </dd>
                     </dl>
                 </div>
-                <%--<h3 class="v52fmbx_hr metsliding" sliding="1">展示图片</h3>--%>
+                <h3 class="v52fmbx_hr metsliding" sliding="1">展示图片</h3>
+                <div class="metsliding_box metsliding_box_1">
+                    <div class="v52fmbx_dlbox">
+                        <dl>
+                            <dt>图片地址：</dt>
+                            <dd class="ftype_upload">
+                                <div class="fbox">
+                                    <input name="imgurl" type="text" data-upload-type="doupimg" value="${image.imgurl}"/>
+                                </div>
+                                <%--<span class="tips">当没有手动上传图片时候，会自动提取您内容第一张图片作为封面（此功能需要模板支持）</span>--%>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+                <%--<div class="metsliding_box metsliding_box_1">
+                    <div class="fbox">
+                        <input name="imgurl" type="text" data-upload-type="doupimg" value="${article.imgurl}"/>
+                    </div>
+                    &lt;%&ndash;<span class="tips">当没有手动上传图片时候，会自动提取您内容第一张图片作为封面（此功能需要模板支持）</span>&ndash;%&gt;
+                </div>--%>
                 <%--<div class="metsliding_box metsliding_box_1">
                     <div class="v52fmbx_dlbox">
                         <dl>
@@ -379,23 +480,19 @@
                             <dd>
                                 <c:choose>
                                     <c:when test="${image.access==1}">
-                                        <label>
-                                            <input name="access" type="radio" class="radio" checked value="1" />是</label>
-                                        <label>
-                                            <input name="access" type="radio" class="radio"  value="0" />否</label>
+                                        <label><input name="access" type="radio" class="radio" checked value="1" />是</label>
+                                        <label><input name="access" type="radio" class="radio"  value="0" />否</label>
                                     </c:when>
                                     <c:otherwise>
-                                        <label>
-                                            <input name="access" type="radio" class="radio" value="1" />是</label>
-                                        <label>
-                                            <input name="access" type="radio" class="radio" checked value="0" />否</label>
+                                        <label><input name="access" type="radio" class="radio" value="1" />是</label>
+                                        <label><input name="access" type="radio" class="radio" checked value="0" />否</label>
                                     </c:otherwise>
                                 </c:choose>
                             </dd>
                         </dl>
                     </div>
                     <div class="v52fmbx_submit">
-                        <input type="submit" id="per-image-submit" value="保存" class="submit"/>
+                        <input type="submit" value="保存" class="submit"/>
                     </div>
                 </div>
             </div>
@@ -423,5 +520,5 @@
     });
 </script>
 </body>
-<script src="/js/topweb/img.js?v0.2"></script>
+<script src="/js/topweb/img.js?v0.11200"></script>
 </html>

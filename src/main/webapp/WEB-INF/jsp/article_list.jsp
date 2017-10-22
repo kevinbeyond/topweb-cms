@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://jsptags.com/tags/navigation/pager" prefix="pg" %>
 
 <!DOCTYPE HTML>
 <html>
@@ -73,45 +74,6 @@
                         </li>
                     </ul>
                 </div>
-
-                <%--<div class="btn-group pull-right met-tool" >
-                    <button class="btn btn-default dropdown-toggle" type="button" id="shouquan" data-toggle="dropdown" aria-expanded="true">
-                        <i class="fa fa-bookmark"></i><span class="hidden-xs">商业授权</span>
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="shouquan">
-                        <li class="met-tool-list text-center"><a target="_blank" class="liaojie" href="http://www.metinfo.cn/web/product.htm">了解商业授权</a></li>
-                        <li class="met-tool-list text-center">
-                            <button class="btn btn-primary" type="submit" onclick="location.href = 'http://localhost:88/metinfo/admin/index.php?lang=cn&&n=system&c=authcode&a=doindex';">录入商业授权</button>
-                        </li>
-                    </ul>
-                </div>--%>
-
-                <%--<div class="btn-group pull-right met-tool supportbox" >
-                    <!--<a href="http://www.metinfo.cn/bangzhu/index.php?ver=metcms" class="btn btn-success dropdown-toggle" target="_blank">技术支持<a>
-                    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                        <i class="fa fa-life-ring"></i><span class="hidden-xs">技术支持</span>
-                        <span class="caret"></span>
-                        <input name="supporturldata" type="hidden" value="user_key=&siteurl=http://localhost:88/metinfo/" />
-                    </button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                        <li class="met-tool-list text-center support_loading">获取中...</li>
-                        <li class="met-tool-list text-center support_youok">处理时间：每天 </li>
-                        <li class="met-tool-list text-center support_youok"><button class="btn btn-primary" type="submit">工单</button></li>
-                        <li class="divider support_youok"></li>
-                        <li class="met-tool-list text-center support_youok">在线时间：工作日</li>
-                        <li class="met-tool-list text-center support_youok"><button class="btn btn-info supportmechatlink" type="submit">点我咨询</button></li>
-                        <li class="divider support_youok"></li>
-                        <li class="met-tool-list text-center support_desc">于 <span id="support_expiretime"></span> 到期</li>
-                        <li class="met-tool-list text-center support_desc"><a href="http://localhost:88/metinfo/admin/index.php?lang=cn&n=appstore&c=support&a=doindex">续费服务</a></li>
-                        <li class="met-tool-list text-center support_no"><span class="text-danger">尚未开通服务</span>
-                        <a href="http://www.metinfo.cn/news/shownews1248.htm" target="_blank">什么是技术支持？</a>
-                        </li>
-                        <li class="met-tool-list text-center support_no">
-                        <button class="btn btn-primary" type="submit" onclick="location.href = 'http://localhost:88/metinfo/admin/index.php?lang=cn&n=appstore&c=support&a=doindex';">开通服务</button>
-                        </li>
-                    </ul>-->
-                </div>--%>
             </div>
         </div>
     </div>
@@ -146,6 +108,7 @@
                     <input id="class1id" name="class1" data-table-search="1" value="" class="ui-input" type="hidden" />
                     <input id="class2id" name="class2" data-table-search="1" value="" class="ui-input" type="hidden" />
                     <input id="class3id" name="class3" data-table-search="1" value="" class="ui-input" type="hidden" />
+                <div class="dataTables_wrapper">
                 <table class="display dataTable ui-table"  data-table-pageLength="20">
                     <thead>
                         <tr>
@@ -273,18 +236,74 @@
                         </tr>
                     </tfoot>
                 </table>
+
+                <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">显示第 ${empty param['pager.offset']?1:param['pager.offset']+1} 至 ${(param['pager.offset']+pageSize)>articleCnt?articleCnt:(param['pager.offset']+pageSize)} 项结果，共 ${articleCnt} 项</div>
+
+                <%--
+                    url:分页的链接根地址，pager标签会在这个链接的基础上附加分页参数，但不允许像给页面跳转的url那样，在后面直接添加参数，而参数的传递时需要使用pg:param来指定。
+                    items:总记录数，pager标签正是根据这个值来计算分页参数，很重要。
+                    maxPageItems:每页显示的行数，默认为10
+                    maxIndexPages:在循环输出页码的时候，最大输出多少个页码，默认是10
+                --%>
+                <pg:pager url="/content/modultList.html" maxIndexPages="5" maxPageItems="${pageSize}"  items="${articleCnt}" export="currentPageNumber=pageNumber">
+                    <pg:param name="module" value="${param.module}"></pg:param>
+                    <c:if test="${param.class1>0}">
+                        <pg:param name="class1" value="${param.class1}"></pg:param>
+                    </c:if>
+                    <c:if test="${param.class2>0}">
+                        <pg:param name="class2" value="${param.class2}"></pg:param>
+                    </c:if>
+
+                    <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+
+                        <c:if test="${articleCnt > pageSize}">
+                            <pg:first>
+                                <a class="paginate_button previous disabled" href="${pageUrl}">首页</a>
+                            </pg:first>
+                        </c:if>
+                        <pg:prev>
+                            <a class="paginate_button previous disabled" href="${pageUrl}">上页</a>
+                        </pg:prev>
+
+                        <span>
+                            <pg:pages>
+                                <c:choose>
+                                    <c:when test="${currentPageNumber eq pageNumber }">
+                                        <a class="paginate_button current" tabindex="0">${pageNumber}</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a class="paginate_button " tabindex="0" href="${pageUrl}">${pageNumber}</a>
+                                    </c:otherwise>
+                                </c:choose>
+                            </pg:pages>
+
+                            <%--<a class="paginate_button current" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0">1</a>
+                            <a class="paginate_button " aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0">2</a>--%>
+                        </span>
+
+                        <pg:next>
+                            <a class="paginate_button next" href="${pageUrl}">下页</a>
+                        </pg:next>
+                        <c:if test="${articleCnt > pageSize}">
+                            <pg:last>
+                                <a class="paginate_button next" href="${pageUrl}">尾页</a>
+                            </pg:last>
+                        </c:if>
+                    </div>
+                </pg:pager>
+            </div>
             </form>
             </div>
 
         <script src="/js/app/system/include/public/js/sea.js?v111"></script>
     </div>
 </div>
-<div class="footer">Powered by <b><a href="#" target=_blank>TopWeb CMS</a></b> &copy;2008-2017 &nbsp;<a href="#" target=_blank>TopWeb CMS</a></div>
+<div class="footer">Powered by <b><a href="#" target=_blank>TopWebS CMS</a></b> &copy;2008-2017 &nbsp;<a href="#" target=_blank>TopWebS CMS</a></div>
 </div>
 </div>
 <div class="clear"></div>
 </div>
 </div>
 </body>
-<script src="/js/topweb/article.js?v89"></script>
+<script src="/js/topweb/article.js?v17"></script>
 </html>
