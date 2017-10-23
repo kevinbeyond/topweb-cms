@@ -77,7 +77,7 @@ public class UManagmentController {
 
     @RequestMapping("/deleteschool.html")
     public ModelAndView deleteschool(HttpServletRequest request) {
-        ModelAndView view = new ModelAndView("redirect:/um/uninersity.html");
+        ModelAndView view = new ModelAndView("forward:/um/uninersity.html");
 
             int id=Integer.parseInt(request.getParameter("deleteid"));
         System.out.println(id);
@@ -89,7 +89,7 @@ public class UManagmentController {
     @RequestMapping("/alldelete.html")
     public ModelAndView alldelete(HttpServletRequest request){
 
-        ModelAndView view = new ModelAndView("redirect:/um/uninersity.html");
+        ModelAndView view = new ModelAndView("forward:/um/uninersity.html");
         String [] ids=request.getParameterValues("id");
         int result=0;
         for (String id:ids) {
@@ -130,7 +130,7 @@ public class UManagmentController {
 
     @RequestMapping(value = "/addinfo.html", method = RequestMethod.POST)
     public ModelAndView addinfo(@RequestParam(value = "met_upsql1") MultipartFile image, HttpServletRequest request){
-        ModelAndView modelAndView=new ModelAndView("redirect:/um/uninersity.html");
+        ModelAndView modelAndView=new ModelAndView("forward:/um/uninersity.html");
         System.out.println("addinfo");
 
         School school=new School();
@@ -257,7 +257,7 @@ public class UManagmentController {
 
     @RequestMapping(value = "/upinfo.html", method = RequestMethod.POST)
     public ModelAndView upinfo(@RequestParam(value = "met_upsql1") MultipartFile image, HttpServletRequest request){
-        ModelAndView modelAndView=new ModelAndView("redirect:/um/uninersity.html");
+        ModelAndView modelAndView=new ModelAndView("forward:/um/uninersity.html");
 
 
         School school=new School();

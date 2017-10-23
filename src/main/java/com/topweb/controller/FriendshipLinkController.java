@@ -130,7 +130,7 @@ public class FriendshipLinkController {
     @RequestMapping(value = "/saveFriendlyLink.html", method = RequestMethod.POST )
     public ModelAndView saveFriendlyLink(@RequestParam(value = "met_upsql1") MultipartFile image,
                                          HttpServletRequest request){
-        ModelAndView view = new ModelAndView("redirect:/market/friendshiplink.html");
+        ModelAndView view = new ModelAndView("forward:/market/friendshiplink.html");
 
         FriendlyLink friendlyLink=new FriendlyLink();
 
@@ -227,7 +227,7 @@ public class FriendshipLinkController {
 
     @RequestMapping("/deletelink.html")
     public ModelAndView deletelink(HttpServletRequest request){
-        ModelAndView view = new ModelAndView("redirect:/market/friendshiplink.html");
+        ModelAndView view = new ModelAndView("forward:market/friendshiplink.html");
         int id=Integer.parseInt(request.getParameter("deleteid"));
        // System.out.println(id);
         int deleteresult=flm.deleteinfo(id);
@@ -239,7 +239,7 @@ public class FriendshipLinkController {
     @RequestMapping("/alldeleteinfo.html")
     public ModelAndView alldeleteinfo(HttpServletRequest request){
 
-        ModelAndView view = new ModelAndView("redirect:/market/friendshiplink.html");
+        ModelAndView view = new ModelAndView("forward:market/friendshiplink.html");
        String [] ids=request.getParameterValues("id");
        int result=0;
         for (String id:ids) {
@@ -252,7 +252,7 @@ public class FriendshipLinkController {
     @RequestMapping(value = "/addinfo.html", method = RequestMethod.POST )
     public ModelAndView addinfo(@RequestParam(value = "met_upsql1") MultipartFile image,
                                 HttpServletRequest request){
-        ModelAndView view = new ModelAndView("redirect:/market/friendshiplink.html");
+        ModelAndView view = new ModelAndView("forward:/market/friendshiplink.html");
 
 
         FriendlyLink friendlyLink=new FriendlyLink();
