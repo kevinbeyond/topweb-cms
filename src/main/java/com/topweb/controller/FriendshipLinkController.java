@@ -47,9 +47,10 @@ public class FriendshipLinkController {
     @RequestMapping("/friendshiplink.html")
     public ModelAndView friendshipLinkSetting(HttpServletRequest request,
                                               @RequestParam(value = "pnow", defaultValue = "1", required = false)int pagenow,
-                                              @RequestParam(value = "linktype", defaultValue = "3", required = false)int linktype){
+                                              @RequestParam(value = "linktype", defaultValue = "3", required = false)int linktype,
+                                              @RequestParam(value = "guan", defaultValue = "0", required = false)String guan){
         ModelAndView view = new ModelAndView("friendship_link");
-        String guan=request.getParameter("guan");
+
         //System.out.println(guan);
         FriendlyLink fl=new FriendlyLink();
        // System.out.println("连接类型"+linktype);
@@ -129,7 +130,7 @@ public class FriendshipLinkController {
     @RequestMapping(value = "/saveFriendlyLink.html", method = RequestMethod.POST )
     public ModelAndView saveFriendlyLink(@RequestParam(value = "met_upsql1") MultipartFile image,
                                          HttpServletRequest request){
-        ModelAndView view = new ModelAndView("redirect:/market/friendshiplink.html?pnow=1&linktype=3&guan=0");
+        ModelAndView view = new ModelAndView("redirect:/market/friendshiplink.html");
 
         FriendlyLink friendlyLink=new FriendlyLink();
 
@@ -226,7 +227,7 @@ public class FriendshipLinkController {
 
     @RequestMapping("/deletelink.html")
     public ModelAndView deletelink(HttpServletRequest request){
-        ModelAndView view = new ModelAndView("redirect:/market/friendshiplink.html?pnow=1&linktype=3&guan=0");
+        ModelAndView view = new ModelAndView("redirect:/market/friendshiplink.html");
         int id=Integer.parseInt(request.getParameter("deleteid"));
        // System.out.println(id);
         int deleteresult=flm.deleteinfo(id);
@@ -238,7 +239,7 @@ public class FriendshipLinkController {
     @RequestMapping("/alldeleteinfo.html")
     public ModelAndView alldeleteinfo(HttpServletRequest request){
 
-        ModelAndView view = new ModelAndView("redirect:/market/friendshiplink.html?pnow=1&linktype=3&guan=0");
+        ModelAndView view = new ModelAndView("redirect:/market/friendshiplink.html");
        String [] ids=request.getParameterValues("id");
        int result=0;
         for (String id:ids) {
@@ -251,7 +252,7 @@ public class FriendshipLinkController {
     @RequestMapping(value = "/addinfo.html", method = RequestMethod.POST )
     public ModelAndView addinfo(@RequestParam(value = "met_upsql1") MultipartFile image,
                                 HttpServletRequest request){
-        ModelAndView view = new ModelAndView("redirect:/market/friendshiplink.html?pnow=1&linktype=3&guan=0");
+        ModelAndView view = new ModelAndView("redirect:/market/friendshiplink.html");
 
 
         FriendlyLink friendlyLink=new FriendlyLink();

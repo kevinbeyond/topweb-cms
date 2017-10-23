@@ -37,14 +37,12 @@ public class UManagmentController {
     private UManagementMapper um;
 
     @RequestMapping("/uninersity.html")
-    public ModelAndView uninersity(HttpServletRequest request){
+    public ModelAndView uninersity(HttpServletRequest request,
+                                   @RequestParam(value = "pnow", defaultValue = "1", required = false)int pagenow,
+                                   @RequestParam(value = "type", defaultValue = "0", required = false)int type,
+                                   @RequestParam(value = "authentication", defaultValue = "0", required = false)int authentication){
         ModelAndView view = new ModelAndView("umanagement");
 
-
-
-        int type=Integer.parseInt(request.getParameter("type"));
-        int pagenow=Integer.parseInt(request.getParameter("pnow"));
-        int authentication=Integer.parseInt(request.getParameter("authentication"));
 
         //System.out.println(authentication);
 
@@ -79,7 +77,7 @@ public class UManagmentController {
 
     @RequestMapping("/deleteschool.html")
     public ModelAndView deleteschool(HttpServletRequest request) {
-        ModelAndView view = new ModelAndView("redirect:/um/uninersity.html?pnow=1&type=0&authentication=0");
+        ModelAndView view = new ModelAndView("redirect:/um/uninersity.html");
 
             int id=Integer.parseInt(request.getParameter("deleteid"));
         System.out.println(id);
@@ -91,7 +89,7 @@ public class UManagmentController {
     @RequestMapping("/alldelete.html")
     public ModelAndView alldelete(HttpServletRequest request){
 
-        ModelAndView view = new ModelAndView("redirect:/um/uninersity.html?pnow=1&type=0&authentication=0");
+        ModelAndView view = new ModelAndView("redirect:/um/uninersity.html");
         String [] ids=request.getParameterValues("id");
         int result=0;
         for (String id:ids) {
@@ -132,7 +130,7 @@ public class UManagmentController {
 
     @RequestMapping(value = "/addinfo.html", method = RequestMethod.POST)
     public ModelAndView addinfo(@RequestParam(value = "met_upsql1") MultipartFile image, HttpServletRequest request){
-        ModelAndView modelAndView=new ModelAndView("redirect:/um/uninersity.html?pnow=1&type=0&authentication=0");
+        ModelAndView modelAndView=new ModelAndView("redirect:/um/uninersity.html");
         System.out.println("addinfo");
 
         School school=new School();
@@ -259,7 +257,7 @@ public class UManagmentController {
 
     @RequestMapping(value = "/upinfo.html", method = RequestMethod.POST)
     public ModelAndView upinfo(@RequestParam(value = "met_upsql1") MultipartFile image, HttpServletRequest request){
-        ModelAndView modelAndView=new ModelAndView("redirect:/um/uninersity.html?pnow=1&type=0&authentication=0");
+        ModelAndView modelAndView=new ModelAndView("redirect:/um/uninersity.html");
 
 
         School school=new School();
