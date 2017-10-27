@@ -27,6 +27,10 @@
         </where>
     </select>
 
+    <insert id="addshoolimg">
+            INSERT into schoolimg(sid,picturename)VALUES (#{simg.sid},#{simg.picturename});
+    </insert>
+
     <delete id="deleteschool" >
          DELETE FROM university WHERE id=#{deleteid}
     </delete>
