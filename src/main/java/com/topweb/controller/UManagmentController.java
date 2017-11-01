@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -80,9 +82,10 @@ public class UManagmentController {
         ModelAndView view = new ModelAndView("forward:/um/uninersity.html");
 
             int id=Integer.parseInt(request.getParameter("deleteid"));
-        System.out.println(id);
+        //System.out.println(id);
            int num=  um.deleteschool(id);
-        System.out.println( num);
+           um.deletetuition(id);
+      //  System.out.println( num);
              return view;
     }
 
@@ -95,6 +98,7 @@ public class UManagmentController {
         for (String id:ids) {
             int sid=Integer.parseInt(id);
             result+=um.deleteschool(sid);
+            um.deletetuition(sid);
         }
         System.out.println(request);
         return view;
@@ -107,17 +111,17 @@ public class UManagmentController {
 
             int adorup=Integer.parseInt(request.getParameter("addorup"));
             if (adorup==1){
-                System.out.println(adorup);
+               // System.out.println(adorup);
                 School school=new School();
                 school.setId(0);
                 modelAndView.addObject("school",school);
             }else {
-                System.out.println(adorup);
+               // System.out.println(adorup);
                 int id=Integer.parseInt(request.getParameter("updateid"));
                 School school=um.upschool(id);
                 modelAndView.addObject("school",school);
-                System.out.println(school.getUname());
-                System.out.println(school.getId());
+              //  System.out.println(school.getUname());
+              //  System.out.println(school.getId());
                 Tuition tuition=um.setuition(id);
                 modelAndView.addObject("tuition",tuition);
             }
@@ -131,8 +135,6 @@ public class UManagmentController {
     @RequestMapping(value = "/addinfo.html", method = RequestMethod.POST)
     public ModelAndView addinfo(@RequestParam(value = "met_upsql1") MultipartFile image, HttpServletRequest request){
         ModelAndView modelAndView=new ModelAndView("forward:/um/uninersity.html");
-        System.out.println("addinfo");
-
         School school=new School();
 
         //文件上传
@@ -145,36 +147,6 @@ public class UManagmentController {
 
         String key = System.currentTimeMillis()+"_" + image.getOriginalFilename();
         school.setImg(key);
-        try {
-            Response response = uploadManager.put(image.getBytes(), key, upToken);
-            //解析上传成功的结果
-            DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
-            if (putRet != null) {
-
-                FileUploadReturnModel returnModel = new FileUploadReturnModel();
-                returnModel.setFilepath(key);
-                returnModel.setOriginal("../" + key);
-                result.setObject(returnModel);
-                result.setCode(ResultCode.UPLOAD_SUCCESS);
-                result.setMessage(ResultCode.UPLOAD_SUCCESS_MSG);
-                System.out.println("putnull");
-            } else {
-                result.setCode(ResultCode.UPLOAD_FAIL);
-                result.setMessage(ResultCode.UPLOAD_FAIL_MSG);
-                System.out.println("putnotnull");
-            }
-        } catch (QiniuException ex) {
-            Response r = ex.response;
-            result.setCode(ResultCode.UPLOAD_FAIL);
-            result.setMessage(ResultCode.UPLOAD_FAIL_MSG);
-            System.out.println("qiniuex");
-        } catch (IOException e) {
-            e.printStackTrace();
-            result.setCode(ResultCode.UPLOAD_FAIL);
-            result.setMessage(ResultCode.UPLOAD_FAIL_MSG);
-            System.out.println("ioex");
-        }
-
         String name=request.getParameter("cname");
         System.out.println("中文名字:"+name);
         school.setUname(name);
@@ -213,14 +185,14 @@ public class UManagmentController {
         school.setSynopsis(synopsis);
 
 
-        String phone=request.getParameter("phone");
+       /* String phone=request.getParameter("phone");
         // System.out.println("phone:"+phone);
-        school.setPhone(phone);
+        school.setPhone(phone);*/
 
 
-        String motto=request.getParameter("motto").trim();
+       /* String motto=request.getParameter("motto").trim();
         // System.out.println("motto:"+motto);
-        school.setMotto(motto);
+        school.setMotto(motto);*/
 
         int phd =Integer.parseInt(request.getParameter("phd"));
         // System.out.println("phd；"+phd);
@@ -241,12 +213,87 @@ public class UManagmentController {
         um.addinfo(school);
 
         int sid=um.selectsid(name);
+
+
+        MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;
+        List<MultipartFile> files=multiRequest.getFiles("picture");
+         for (MultipartFile item:files){
+                    String pickey=System.currentTimeMillis()+"_" + item.getOriginalFilename();
+                     Schoolimg schoolimg=new Schoolimg();
+                     schoolimg.setPicturename(pickey);
+                     schoolimg.setSid(sid);
+                     um.addshoolimg(schoolimg);
+             try {
+                 Response response = uploadManager.put(item.getBytes(), pickey, upToken);
+                 //解析上传成功的结果
+                 DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
+                 if (putRet != null) {
+
+                     FileUploadReturnModel returnModel = new FileUploadReturnModel();
+                     returnModel.setFilepath(pickey);
+                     returnModel.setOriginal("../" + pickey);
+                     result.setObject(returnModel);
+                     result.setCode(ResultCode.UPLOAD_SUCCESS);
+                     result.setMessage(ResultCode.UPLOAD_SUCCESS_MSG);
+                     System.out.println("putnull");
+                 } else {
+                     result.setCode(ResultCode.UPLOAD_FAIL);
+                     result.setMessage(ResultCode.UPLOAD_FAIL_MSG);
+                     System.out.println("putnotnull");
+                 }
+             } catch (QiniuException ex) {
+                 Response r = ex.response;
+                 result.setCode(ResultCode.UPLOAD_FAIL);
+                 result.setMessage(ResultCode.UPLOAD_FAIL_MSG);
+                 System.out.println("qiniuex");
+             } catch (IOException e) {
+                 e.printStackTrace();
+                 result.setCode(ResultCode.UPLOAD_FAIL);
+                 result.setMessage(ResultCode.UPLOAD_FAIL_MSG);
+
+                 System.out.println("ioex");
+             }
+         }
+
+
+        try {
+            Response response = uploadManager.put(image.getBytes(), key, upToken);
+            //解析上传成功的结果
+            DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
+            if (putRet != null) {
+
+            FileUploadReturnModel returnModel = new FileUploadReturnModel();
+                returnModel.setFilepath(key);
+                returnModel.setOriginal("../" + key);
+                result.setObject(returnModel);
+                result.setCode(ResultCode.UPLOAD_SUCCESS);
+                result.setMessage(ResultCode.UPLOAD_SUCCESS_MSG);
+                System.out.println("putnull");
+            } else {
+                result.setCode(ResultCode.UPLOAD_FAIL);
+                result.setMessage(ResultCode.UPLOAD_FAIL_MSG);
+                System.out.println("putnotnull");
+            }
+        } catch (QiniuException ex) {
+            Response r = ex.response;
+            result.setCode(ResultCode.UPLOAD_FAIL);
+            result.setMessage(ResultCode.UPLOAD_FAIL_MSG);
+            System.out.println("qiniuex");
+        } catch (IOException e) {
+            e.printStackTrace();
+            result.setCode(ResultCode.UPLOAD_FAIL);
+            result.setMessage(ResultCode.UPLOAD_FAIL_MSG);
+            System.out.println("ioex");
+        }
+
+
         Tuition tuition=new Tuition();
            tuition.setPtuition(Double.parseDouble(request.getParameter("ptuition")));
            tuition.setGtuition(Double.parseDouble(request.getParameter("gtuition")));
            tuition.setUtuition(Double.parseDouble(request.getParameter("utuition")));
            tuition.setStuition(Double.parseDouble(request.getParameter("stuition")));
            tuition.setSid(sid);
+
 
            um.addtuition(tuition);
 
@@ -258,8 +305,8 @@ public class UManagmentController {
     @RequestMapping(value = "/upinfo.html", method = RequestMethod.POST)
     public ModelAndView upinfo(@RequestParam(value = "met_upsql1") MultipartFile image, HttpServletRequest request){
         ModelAndView modelAndView=new ModelAndView("forward:/um/uninersity.html");
-
-
+        int id=Integer.parseInt(request.getParameter("schoolid"));
+       // System.out.println("该id"+id);
         School school=new School();
 
         //文件上传
@@ -272,6 +319,47 @@ public class UManagmentController {
 
         String key = System.currentTimeMillis()+"_" + image.getOriginalFilename();
         school.setImg(key);
+
+        MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)request;
+        List<MultipartFile> files=multiRequest.getFiles("picture");
+        for (MultipartFile item:files){
+            String pickey=System.currentTimeMillis()+"_" + item.getOriginalFilename();
+                     Schoolimg simg=new Schoolimg();
+                     simg.setSid(id);
+                     simg.setPicturename(pickey);
+                     um.addshoolimg(simg);
+            try {
+                Response response = uploadManager.put(item.getBytes(), pickey, upToken);
+                //解析上传成功的结果
+                DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
+                if (putRet != null) {
+
+                    FileUploadReturnModel returnModel = new FileUploadReturnModel();
+                    returnModel.setFilepath(pickey);
+                    returnModel.setOriginal("../" + pickey);
+                    result.setObject(returnModel);
+                    result.setCode(ResultCode.UPLOAD_SUCCESS);
+                    result.setMessage(ResultCode.UPLOAD_SUCCESS_MSG);
+                    System.out.println("putseusses");
+                } else {
+                    result.setCode(ResultCode.UPLOAD_FAIL);
+                    result.setMessage(ResultCode.UPLOAD_FAIL_MSG);
+                    System.out.println("putnotnull");
+                }
+            } catch (QiniuException ex) {
+                Response r = ex.response;
+                result.setCode(ResultCode.UPLOAD_FAIL);
+                result.setMessage(ResultCode.UPLOAD_FAIL_MSG);
+                System.out.println("qiniuex");
+            } catch (IOException e) {
+                e.printStackTrace();
+                result.setCode(ResultCode.UPLOAD_FAIL);
+                result.setMessage(ResultCode.UPLOAD_FAIL_MSG);
+                System.out.println("ioex");
+            }
+        }
+
+
         try {
             Response response = uploadManager.put(image.getBytes(), key, upToken);
             //解析上传成功的结果
@@ -302,7 +390,7 @@ public class UManagmentController {
             System.out.println("ioex");
         }
 
-        int id=Integer.parseInt(request.getParameter("schoolid"));
+
        // System.out.println("学校id:"+id);
         school.setId(id);
 
@@ -344,14 +432,14 @@ public class UManagmentController {
         school.setSynopsis(synopsis);
 
 
-        String phone=request.getParameter("phone");
+       /* String phone=request.getParameter("phone");
         //System.out.println("phone:"+phone);
-        school.setPhone(phone);
+        school.setPhone(phone);*/
 
 
-        String motto=request.getParameter("motto").trim();
+       /* String motto=request.getParameter("motto").trim();
        // System.out.println("motto:"+motto);
-        school.setMotto(motto);
+        school.setMotto(motto);*/
 
         int phd =Integer.parseInt(request.getParameter("phd"));
        // System.out.println("phd；"+phd);

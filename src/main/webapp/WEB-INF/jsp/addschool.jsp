@@ -141,7 +141,7 @@
 <form  method="POST" name="myform" enctype="multipart/form-data" action="/um/upinfo.html" target="_self">
 </c:if>
 <c:if test="${school.id==0}">
-<form  method="POST" name="myform" enctype="multipart/form-data" action="/um/addinfo.html?" target="_self">
+<form  method="POST" name="myform" enctype="multipart/form-data" action="/um/addinfo.html" target="_self">
 
 </c:if>
 
@@ -258,14 +258,14 @@
                     </dl>
                 </div>
 
-                <div class="v52fmbx_dlbox">
+       <%--         <div class="v52fmbx_dlbox">
                     <dl>
                         <dt>电话：</dt>
                         <dd>
                             <input name="phone" required="required" type="text" min="0"  class="text mid" value="${school.phone}" />
                         </dd>
                     </dl>
-                </div>
+                </div>--%>
 
                 <div class="v52fmbx_dlbox">
                     <dl>
@@ -278,7 +278,7 @@
                     </dl>
                 </div>
 
-                <div class="v52fmbx_dlbox">
+          <%--      <div class="v52fmbx_dlbox">
                     <dl>
                         <dt>校训：</dt>
                         <dd>
@@ -287,7 +287,7 @@
                             </textarea>
                         </dd>
                     </dl>
-                </div>
+                </div>--%>
 
                 <div class="v52fmbx_dlbox">
                     <dl>
@@ -297,7 +297,7 @@
                         </dd>
                         <dt>博士费用：</dt>
                         <dd>
-                            <input name="ptuition" required="required" step="0.01" type="number" min="0"  class="text mid" value="${tuition.ptuition}" />
+                            <input name="ptuition" required="required" step="0.01"  type="text" min="0"  class="text mid" value="${tuition.ptuition}" />
                         </dd>
 
                     </dl>
@@ -311,7 +311,7 @@
                         </dd>
                         <dt>研究生费用：</dt>
                         <dd >
-                            <input name="gtuition" required="required" step="0.01"  type="number" min="0"  class="text mid" value="${tuition.gtuition}" />
+                            <input name="gtuition" required="required" step="0.01"  type="text" min="0"  class="text mid" value="${tuition.gtuition}" />
                         </dd>
                     </dl>
                 </div>
@@ -324,12 +324,12 @@
                         </dd>
                         <dt>本科费用：</dt>
                         <dd>
-                            <input name="utuition" required="required" step="0.01" type="number" min="0"  class="text mid" value="${tuition.utuition}" />
+                            <input name="utuition" required="required" step="0.01" type="text" min="0"  class="text mid" value="${tuition.utuition}" />
                         </dd>
                     </dl>
                 </div>
 
-                <div class="v52fmbx_dlbox">
+               <div class="v52fmbx_dlbox">
                     <dl>
                         <dt>语言中心专业数量：</dt>
                         <dd>
@@ -344,7 +344,7 @@
 
                 <div class="v52fmbx_dlbox">
                     <dl>
-                        <dt>图片：</dt>
+                        <dt>大学logo：</dt>
                         <dd>
                             <input name="met_upsql1" type="file" id="file_upload" />
                            <%-- <script type="text/javascript">
@@ -353,6 +353,34 @@
                                 });
                             </script>--%>
                         </dd>
+                    </dl>
+                </div>
+
+                <script language="javascript">
+                    function AddElement(){
+                        var TemO=document.getElementById("add");
+                        var newInput = document.createElement("input");
+                        newInput.type='file';
+                        newInput.name="picture";
+                        TemO.appendChild(newInput);
+                        var newline= document.createElement("br");//创建一个BR标签是为能够换行！
+                        TemO.appendChild(newline);
+                    }
+                </script>
+
+                <div  class="v52fmbx_dlbox">
+                    <dl>
+                        <dt>大学图片：</dt>
+                        <dd id="add">
+                            <input name="picture" type="file" id="file_upload" />
+                            <br/>
+                            <%-- <script type="text/javascript">
+                                 $(document).ready(function(){
+                                     metuploadify('#file_upload','upimage','weblogo');
+                                 });
+                             </script>--%>
+                        </dd>
+                        <input name="addfileinput" type="button" id="addfileinput"  onClick="AddElement()" value="添加大学图片"/>
                     </dl>
                 </div>
 

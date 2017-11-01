@@ -1,9 +1,6 @@
 package com.topweb.dao;
 
-import com.topweb.entity.Nature;
-import com.topweb.entity.Page;
-import com.topweb.entity.School;
-import com.topweb.entity.Tuition;
+import com.topweb.entity.*;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -23,4 +20,6 @@ public interface UManagementMapper {
     int uptuition(@Param("tuition")Tuition tuition);
     Tuition setuition(@Param("sid")int sid);
     int selectsid(@Param("uname")String uname);
+    int addshoolimg(@Param("simg")Schoolimg schoolimg);
+    int deletetuition(@Param("id")int id);
 }
