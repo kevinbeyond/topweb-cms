@@ -40,11 +40,11 @@
     </select>
 
     <update id="upinfo">
-            UPDATE university SET uname=#{school.uname},jpname=#{school.jpname},schooladress=#{school.schooladress},schoolnature=#{school.schoolnature},buldingschooltime=#{school.buldingschooltime},authentication=#{school.authentication},peoplecount=#{school.peoplecount},popularity=#{school.popularity},img=#{school.img},phone=#{school.phone},synopsis=#{school.synopsis},motto=#{school.motto},phd=#{school.phd},graduate=#{school.graduate},undergraduate=#{school.undergraduate},speechcenter=#{school.speechcenter} WHERE id=#{school.id}
+            UPDATE university SET uname=#{school.uname},jpname=#{school.jpname},schooladress=#{school.schooladress},schoolnature=#{school.schoolnature},buldingschooltime=#{school.buldingschooltime},authentication=#{school.authentication},peoplecount=#{school.peoplecount},popularity=#{school.popularity},img=#{school.img},synopsis=#{school.synopsis},phd=#{school.phd},graduate=#{school.graduate},undergraduate=#{school.undergraduate},speechcenter=#{school.speechcenter} WHERE id=#{school.id}
     </update>
 
     <insert id="addinfo">
-        INSERT into university(uname,jpname,schooladress,schoolnature,buldingschooltime,authentication,peoplecount,popularity,img,phone,synopsis,motto,phd,graduate,undergraduate,speechcenter)values(#{school.uname},#{school.jpname},#{school.schooladress},#{school.schoolnature},#{school.buldingschooltime},#{school.authentication},#{school.peoplecount},#{school.popularity},#{school.img},#{school.phone},#{school.synopsis},#{school.motto},#{school.phd},#{school.graduate},#{school.undergraduate},#{school.speechcenter});
+        INSERT into university(uname,jpname,schooladress,schoolnature,buldingschooltime,authentication,peoplecount,popularity,img,synopsis,phd,graduate,undergraduate,speechcenter)values(#{school.uname},#{school.jpname},#{school.schooladress},#{school.schoolnature},#{school.buldingschooltime},#{school.authentication},#{school.peoplecount},#{school.popularity},#{school.img},#{school.synopsis},#{school.phd},#{school.graduate},#{school.undergraduate},#{school.speechcenter});
     </insert>
 
     <insert id="addtuition">
@@ -62,5 +62,8 @@
     <select id="selectsid" resultType="int">
         SELECT id FROM university WHERE uname=#{uname}
     </select>
+    <delete id="deletetuition">
+         DELETE FROM tuition WHERE sid=#{id}
+    </delete>
 
 </mapper>

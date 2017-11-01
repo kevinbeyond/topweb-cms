@@ -21,4 +21,5 @@ public interface UManagementMapper {
     Tuition setuition(@Param("sid")int sid);
     int selectsid(@Param("uname")String uname);
     int addshoolimg(@Param("simg")Schoolimg schoolimg);
+    int deletetuition(@Param("id")int id);
 }

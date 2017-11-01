@@ -82,9 +82,10 @@ public class UManagmentController {
         ModelAndView view = new ModelAndView("forward:/um/uninersity.html");
 
             int id=Integer.parseInt(request.getParameter("deleteid"));
-        System.out.println(id);
+        //System.out.println(id);
            int num=  um.deleteschool(id);
-        System.out.println( num);
+           um.deletetuition(id);
+      //  System.out.println( num);
              return view;
     }
 
@@ -97,6 +98,7 @@ public class UManagmentController {
         for (String id:ids) {
             int sid=Integer.parseInt(id);
             result+=um.deleteschool(sid);
+            um.deletetuition(sid);
         }
         System.out.println(request);
         return view;
@@ -183,14 +185,14 @@ public class UManagmentController {
         school.setSynopsis(synopsis);
 
 
-        String phone=request.getParameter("phone");
+       /* String phone=request.getParameter("phone");
         // System.out.println("phone:"+phone);
-        school.setPhone(phone);
+        school.setPhone(phone);*/
 
 
-        String motto=request.getParameter("motto").trim();
+       /* String motto=request.getParameter("motto").trim();
         // System.out.println("motto:"+motto);
-        school.setMotto(motto);
+        school.setMotto(motto);*/
 
         int phd =Integer.parseInt(request.getParameter("phd"));
         // System.out.println("phd；"+phd);
@@ -430,14 +432,14 @@ public class UManagmentController {
         school.setSynopsis(synopsis);
 
 
-        String phone=request.getParameter("phone");
+       /* String phone=request.getParameter("phone");
         //System.out.println("phone:"+phone);
-        school.setPhone(phone);
+        school.setPhone(phone);*/
 
 
-        String motto=request.getParameter("motto").trim();
+       /* String motto=request.getParameter("motto").trim();
        // System.out.println("motto:"+motto);
-        school.setMotto(motto);
+        school.setMotto(motto);*/
 
         int phd =Integer.parseInt(request.getParameter("phd"));
        // System.out.println("phd；"+phd);

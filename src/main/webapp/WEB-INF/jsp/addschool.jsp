@@ -258,14 +258,14 @@
                     </dl>
                 </div>
 
-                <div class="v52fmbx_dlbox">
+       <%--         <div class="v52fmbx_dlbox">
                     <dl>
                         <dt>电话：</dt>
                         <dd>
                             <input name="phone" required="required" type="text" min="0"  class="text mid" value="${school.phone}" />
                         </dd>
                     </dl>
-                </div>
+                </div>--%>
 
                 <div class="v52fmbx_dlbox">
                     <dl>
@@ -278,7 +278,7 @@
                     </dl>
                 </div>
 
-                <div class="v52fmbx_dlbox">
+          <%--      <div class="v52fmbx_dlbox">
                     <dl>
                         <dt>校训：</dt>
                         <dd>
@@ -287,7 +287,7 @@
                             </textarea>
                         </dd>
                     </dl>
-                </div>
+                </div>--%>
 
                 <div class="v52fmbx_dlbox">
                     <dl>
@@ -297,7 +297,7 @@
                         </dd>
                         <dt>博士费用：</dt>
                         <dd>
-                            <input name="ptuition" required="required" step="0.01" type="number" min="0"  class="text mid" value="${tuition.ptuition}" />
+                            <input name="ptuition" required="required" step="0.01"  type="text" min="0"  class="text mid" value="${tuition.ptuition}" />
                         </dd>
 
                     </dl>
@@ -311,7 +311,7 @@
                         </dd>
                         <dt>研究生费用：</dt>
                         <dd >
-                            <input name="gtuition" required="required" step="0.01"  type="number" min="0"  class="text mid" value="${tuition.gtuition}" />
+                            <input name="gtuition" required="required" step="0.01"  type="text" min="0"  class="text mid" value="${tuition.gtuition}" />
                         </dd>
                     </dl>
                 </div>
@@ -324,12 +324,12 @@
                         </dd>
                         <dt>本科费用：</dt>
                         <dd>
-                            <input name="utuition" required="required" step="0.01" type="number" min="0"  class="text mid" value="${tuition.utuition}" />
+                            <input name="utuition" required="required" step="0.01" type="text" min="0"  class="text mid" value="${tuition.utuition}" />
                         </dd>
                     </dl>
                 </div>
 
-                <div class="v52fmbx_dlbox">
+               <div class="v52fmbx_dlbox">
                     <dl>
                         <dt>语言中心专业数量：</dt>
                         <dd>
