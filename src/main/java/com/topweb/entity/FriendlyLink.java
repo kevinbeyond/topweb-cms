@@ -14,6 +14,15 @@ public class FriendlyLink {
     int egis;
     String contactWay;
     int recommend;
+    int mediaOrInstitutions;
+
+    public int getMediaOrInstitutions() {
+        return mediaOrInstitutions;
+    }
+
+    public void setMediaOrInstitutions(int mediaOrInstitutions) {
+        this.mediaOrInstitutions = mediaOrInstitutions;
+    }
 
     public int getId() {
         return id;

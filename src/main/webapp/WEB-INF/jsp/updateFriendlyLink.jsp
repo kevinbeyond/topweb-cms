@@ -157,8 +157,29 @@
                                     <label><input name="link_type" type="radio" class="radio" value="2"   checked="checked"/>LOGO链接</label>
                                 </c:when>
                             </c:choose>
-
-
+                        </dd>
+                    </dl>
+                </div>
+                <div class="v52fmbx_dlbox">
+                    <dl>
+                        <dt>机构或媒体：</dt>
+                        <dd> <c:choose>
+                            <c:when test="${fl.mediaOrInstitutions==1}">
+                            <label><input name="jiormei" type="radio" class="radio" value="1"  checked="checked" />合作机构</label>
+                            <label><input name="jiormei" type="radio" class="radio" value="2"  />合作媒体</label>
+                                <input name="jiormei" type="hidden" value="0"/>
+                            </c:when>
+                            <c:when test="${fl.mediaOrInstitutions==2}">
+                                <label><input name="jiormei" type="radio" class="radio" value="1"    />合作机构</label>
+                                <label><input name="jiormei" type="radio" class="radio" value="2"  checked="checked"/>合作媒体</label>
+                                <input name="jiormei" type="hidden" value="0"/>
+                            </c:when>
+                            <c:otherwise>
+                                <label><input name="jiormei" type="radio" class="radio" value="1"    />合作机构</label>
+                                <label><input name="jiormei" type="radio" class="radio" value="2"    />合作媒体</label>
+                                <input name="jiormei" type="hidden" value="0"/>
+                            </c:otherwise>
+                        </c:choose>
                         </dd>
                     </dl>
                 </div>

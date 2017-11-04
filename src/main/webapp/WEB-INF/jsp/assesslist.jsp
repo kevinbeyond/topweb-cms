@@ -57,7 +57,7 @@
                 <ol class="breadcrumb position hidden-xs">
                     <li>简体中文</li>
                     <li>营销</li>
-                    <li><a href="/market/friendshiplink.html">友情链接</a></li>
+                    <li><a href="/ass/assess.html">评估管理</a></li>
                 </ol>
                 <div class="btn-group pull-right met-tool">
                     <button class="btn btn-default dropdown-toggle" type="button" id="adminuser" data-toggle="dropdown" aria-expanded="true">
@@ -185,97 +185,56 @@
 <div class="v52fmbx_tbmax v52fmbx_tbmaxmt">
     <div class="v52fmbx_tbbox">
         <h3 class="v52fmbx_hr">
-            <div class="formleft">
-                <a href="/market/addFriendshiplink.html" title="添加友情链接">+添加友情链接</a>
-            </div>
             <div class="formright">
 
                 链接类型
 
                 <select name="pnow" id="new" onChange="changes($(this));" style="position:relative; top:2px;">
-                    <c:forEach items="${linknames}" var="namenode">
-                        <c:choose>
-
-                            <c:when test="${namenode.id==linktype}">
-                                <option value="/market/friendshiplink.html?pnow=1&linktype=${namenode.id}" style='color:#FF0000' selected='selected' >${namenode.linkName}</option>
-                            </c:when>
-
-                            <c:otherwise>  <option value="/market/friendshiplink.html?pnow=1&linktype=${namenode.id}" >${namenode.linkName}</option></c:otherwise>
-                        </c:choose>
-
-                    </c:forEach>
+                    <option value="/ass/assess.html"  <c:if test="${chuli==0}">style='color:#FF0000' selected='selected'</c:if> >全部评估</option>
+                    <option value="/ass/assess.html?chuli=1"  <c:if test="${chuli==1}">style='color:#FF0000' selected='selected'</c:if> >未处理</option>
+                    <option value="/ass/assess.html?chuli=2"  <c:if test="${chuli==2}">style='color:#FF0000' selected='selected'</c:if> >已处理</option>
                   <%--  <option value="/market/nocheckedLink.html" >未审核链接</option>
                     <option value="/market/recommendLink.html" >推荐链接</option>
                     <option value="index.php?lang=cn&anyid=39" style='color:#FF0000' selected='selected'>全部链接</option>
                     <option value="index.php?lang=cn&anyid=39&link_type=0" >文字链接</option>
                     <option value="index.php?lang=cn&anyid=39&link_type=1" >LOGO链接</option>--%>
                 </select>
-
-                <form method="POST" name="myform" action="/market/friendshiplink.html?pnow=1&linktype=20" target="_self">
-                    <input name="guan" type="text" value="请输入网站标题关键字" class="text" style="width:150px!important;" id="searchtext" />
-                    <input type="submit" name="Submit2" value="搜索" class="submitmi" />
-                    <input name="show_ok" type="hidden" id="show_ok" value="">
-                    <input name="com_ok" type="hidden" id="com_ok" value="">
-                    <input name="link_type" type="hidden" id="link_type" value="">
-                </form>
             </div>
             <div class="clear"></div>
         </h3>
         <table cellpadding="0" cellspacing="1" class="table">
             <tr>
                 <td colspan="3" style="padding:0px!important;border:0px">
-                    <form name="del" method="Post" action="/market/alldeleteinfo.html">
+                    <form name="del" method="Post" action="/ass/alldeleteinfo.html">
                         <table cellpadding="0" cellspacing="1" class="table neitable">
                             <tr>
                                 <td width="40" class="list" style="padding:0px; text-align:center;">选择</td>
                                 <td width="50" class="list" style="padding:0px; text-align:center;">ID</td>
-                                <td width="80" class="list" style="padding:0px; text-align:center;">链接类型</td>
-                                <td class="list" >网站标题</td>
-                                <td class="list" >网站地址</td>
-                                <td width="50" class="list" style="padding:0px; text-align:center;">排序</td>
-                                <td width="50" class="list" style="padding:0px; text-align:center;">审核</td>
-                                <td width="50" class="list" style="padding:0px; text-align:center;">推荐</td>
+                                <td width="80" class="list" style="padding:0px; text-align:center;">姓名</td>
+                                <td width="50" class="list" style="padding:0px; text-align:center;">电话</td>
+                                <td width="50" class="list" style="padding:0px; text-align:center;">留言</td>
+                                <td width="50" class="list" style="padding:0px; text-align:center;">是否处理</td>
                                 <td width="10%" class="list" >操作</td>
                             </tr>
 
                                 <!-- 输出Map -->
-                            <c:forEach items="${fdl}" var="node">
+                            <c:forEach items="${asslist}" var="node">
                                 <tr class="mouse click">
                                     <td class="list-text"><input name='id' type='checkbox' id="id" value='${node.id}' /></td>
                                     <td class="list-text">${node.id}</td>
+                                    <td class="list-text alignleft">&nbsp;&nbsp;${node.aname}</td>
+                                    <td class="list-text">${node.phone}</td>
+                                    <td class="list-text">${node.content}</td>
                                     <c:choose>
-                                        <c:when test="${node.linkType== 1}">
-                                            <td class="list-text">文字链接</td>
-                                        </c:when>
-                                        <c:when test="${node.linkType== 2}">
-                                            <td class="list-text">LOGO链接</td>
-                                        </c:when>
-                                    </c:choose>
-
-                                    <td class="list-text alignleft">&nbsp;&nbsp;${node.webTitle}</td>
-                                    <td class="list-text alignleft">&nbsp;&nbsp;${node.webAddress}</td>
-                                    <td class="list-text">${node.sort}</td>
-
-                                    <c:choose>
-                                        <c:when test="${node.egis== 1}">
+                                        <c:when test="${node.chuli== 1}">
                                             <td class="list-text">是</td>
                                         </c:when>
-                                        <c:when test="${node.egis== 2}">
+                                        <c:when test="${node.chuli== 2}">
                                             <td class="list-text">否</td>
                                         </c:when>
                                     </c:choose>
 
-
-                                    <c:choose>
-                                        <c:when test="${node.recommend== 1}">
-                                            <td class="list-text">是</td>
-                                        </c:when>
-                                        <c:when test="${node.recommend== 2}">
-                                            <td class="list-text">否</td>
-                                        </c:when>
-                                    </c:choose>
-
-                                    <td class="list-text"><a href="/market/updateinfo.html?updateid=${node.id}" >编辑</a>&nbsp;&nbsp;<a href="/market/deletelink.html?deleteid=${node.id}" onClick="return linkSmit($(this),1);" >删除</a></td>
+                                    <td class="list-text"><a href="/ass/assone.html?id=${node.id}" >查看</a>&nbsp;&nbsp;<a href="/ass/deletenode.html?deleteid=${node.id}" onClick="return linkSmit($(this),1);" >删除</a></td>
                                 </tr>
                             </c:forEach>
 
@@ -330,12 +289,12 @@
                 </c:when>
                <c:when test="${page.pageNow== 1}">
                    <tr><td colspan="7" class="page_list">
-                       <form method='POST' name='page1'  action='/market/friendshiplink.html?linktype=${linktype}&guan=0' target='_self'><style>.digg4 a{ border:1px solid #ccdbe4; padding:2px 8px 2px 8px; background:#fff; background-position:50%; margin:2px; color:#666; text-decoration:none;}
+                       <form method='POST' name='page1'  action='/ass/assess.html?pnow=${page.pageNow+1}&chuli=${chuli}' target='_self'><style>.digg4 a{ border:1px solid #ccdbe4; padding:2px 8px 2px 8px; background:#fff; background-position:50%; margin:2px; color:#666; text-decoration:none;}
                    .digg4 a:hover { border:1px solid #999; color:#fff; background-color:#999;}
                    .digg4 a:active {border:1px solid #000099; color:#000000;}
                    .digg4 span.current { padding:2px 8px 2px 8px; margin:2px; text-decoration:none;}
                    .digg4 span.disabled { border:1px solid #ccc; background:#fff; padding:1px 8px 1px 8px; margin:2px; color:#999;}
-                   </style><div class='digg4'><span class='current'>${page.pageNow}</span><a  HREF="/market/friendshiplink.html?pnow=${page.pageNow+1}&linktype=${linktype}&guan=${guan}" style="cursor: pointer ;" onmouseover="this.style.backgroundColor='white'"><span class='disabled' style='font-family: Tahoma, Verdana;'>›</span></a><a HREF="/market/friendshiplink.html?pnow=${page.pageCount}&linktype=${linktype}&guan=${guan}" style="cursor: pointer ;" onmouseover="this.style.backgroundColor='white'"><span class='disabled' style='font-family: Tahoma, Verdana;'><b>»</b></span></a> 转到
+                   </style><div class='digg4'><span class='current'>${page.pageNow}</span><a  HREF="/ass/assess.html?pnow=${page.pageNow+1}&chuli=${chuli}" style="cursor: pointer ;" onmouseover="this.style.backgroundColor='white'"><span class='disabled' style='font-family: Tahoma, Verdana;'>›</span></a><a HREF="/ass/assess.html?pnow=${page.pageCount}&chuli=${chuli}" style="cursor: pointer ;" onmouseover="this.style.backgroundColor='white'"><span class='disabled' style='font-family: Tahoma, Verdana;'><b>»</b></span></a> 转到
 
                        <select name="pnow" id="pageX"  style="margin-bottom: 3px; padding: 0px; height: 25px ;font-size: 14px;">
                            <c:forEach  var="node" begin="1" end="${page.pageCount}">
@@ -353,12 +312,12 @@
 
                <c:when test="${page.pageNow== page.pageCount}">
                    <tr><td colspan="7" class="page_list">
-                       <form method='POST' name='page1'  action='/market/friendshiplink.html?linktype=${linktype}&guan=0' target='_self'><style>.digg4 a{ border:1px solid #ccdbe4; padding:2px 8px 2px 8px; background:#fff; background-position:50%; margin:2px; color:#666; text-decoration:none;}
+                       <form method='POST' name='page1'  action='/ass/assess.html?chuli=${chuli}' target='_self'><style>.digg4 a{ border:1px solid #ccdbe4; padding:2px 8px 2px 8px; background:#fff; background-position:50%; margin:2px; color:#666; text-decoration:none;}
                    .digg4 a:hover { border:1px solid #999; color:#fff; background-color:#999;}
                    .digg4 a:active {border:1px solid #000099; color:#000000;}
                    .digg4 span.current { padding:2px 8px 2px 8px; margin:2px; text-decoration:none;}
                    .digg4 span.disabled { border:1px solid #ccc; background:#fff; padding:1px 8px 1px 8px; margin:2px; color:#999;}
-                   </style><div class='digg4'><a HREF="/market/friendshiplink.html?pnow=1&linktype=${linktype}&guan=${guan}" style="cursor: pointer ;" onmouseover="this.style.backgroundColor='white'"><span  class='disabled' style='font-family: Tahoma, Verdana;'><b>«</b></span></a><a HREF="/market/friendshiplink.html?pnow=${page.pageNow-1}&linktype=${linktype}&guan=${guan}" style="cursor: pointer ;" onmouseover="this.style.backgroundColor='white'"><span class='disabled' style='font-family: Tahoma, Verdana;'>‹</span></a><span class='current'>${page.pageNow}</span>转到
+                   </style><div class='digg4'><a HREF="/ass/assess.html?pnow=1&chuli=${chuli}" style="cursor: pointer ;" onmouseover="this.style.backgroundColor='white'"><span  class='disabled' style='font-family: Tahoma, Verdana;'><b>«</b></span></a><a HREF="/ass/assess.html?pnow=${page.pageNow-1}&chuli=${chuli}" style="cursor: pointer ;" onmouseover="this.style.backgroundColor='white'"><span class='disabled' style='font-family: Tahoma, Verdana;'>‹</span></a><span class='current'>${page.pageNow}</span>转到
 
                        <select name="pnow" id="pageX"  style="margin-bottom: 3px; padding: 0px; height: 25px ;font-size: 14px;">
                            <c:forEach  var="node" begin="1" end="${page.pageCount}">
@@ -376,12 +335,12 @@
 
                 <c:otherwise>
           <tr><td colspan="7" class="page_list">
-                <form method='POST' name='page1'  action='/market/friendshiplink.html?linktype=3&guan=z 0' target='_self'><style>.digg4 a{ border:1px solid #ccdbe4; padding:2px 8px 2px 8px; background:#fff; background-position:50%; margin:2px; color:#666; text-decoration:none;}
+                <form method='POST' name='page1'  action='/ass/assess.html?chuli=${chuli}' target='_self'><style>.digg4 a{ border:1px solid #ccdbe4; padding:2px 8px 2px 8px; background:#fff; background-position:50%; margin:2px; color:#666; text-decoration:none;}
             .digg4 a:hover { border:1px solid #999; color:#fff; background-color:#999;}
             .digg4 a:active {border:1px solid #000099; color:#000000;}
             .digg4 span.current { padding:2px 8px 2px 8px; margin:2px; text-decoration:none;}
             .digg4 span.disabled { border:1px solid #ccc; background:#fff; padding:1px 8px 1px 8px; margin:2px; color:#999;}
-            </style><div class='digg4'><a HREF="/market/friendshiplink.html?pnow=1&linktype=${linktype}&guan=${guan}" style="cursor: pointer ;" onmouseover="this.style.backgroundColor='white'"><span  class='disabled' style='font-family: Tahoma, Verdana;'><b>«</b></span></a><a HREF="/market/friendshiplink.html?pnow=${page.pageNow-1}&linktype=${linktype}&guan=${guan}" style="cursor: pointer ;" onmouseover="this.style.backgroundColor='white'"><span class='disabled' style='font-family: Tahoma, Verdana;'>‹</span></a><span class='current'>${page.pageNow}</span><a  HREF="/market/friendshiplink.html?pnow=${page.pageNow+1}&linktype=${linktype}&guan=${guan}" style="cursor: pointer ;" onmouseover="this.style.backgroundColor='white'"><span class='disabled' style='font-family: Tahoma, Verdana;'>›</span></a><a HREF="/market/friendshiplink.html?pnow=${page.pageCount}&linktype=${linktype}&guan=${guan}" style="cursor: pointer ;" onmouseover="this.style.backgroundColor='white'"><span class='disabled' style='font-family: Tahoma, Verdana;'><b>»</b></span></a> 转到
+            </style><div class='digg4'><a HREF="/ass/assess.html?chuli=${chuli}" style="cursor: pointer ;" onmouseover="this.style.backgroundColor='white'"><span  class='disabled' style='font-family: Tahoma, Verdana;'><b>«</b></span></a><a HREF="/ass/assess.html?pnow=${page.pageNow-11}&chuli=${chuli}" style="cursor: pointer ;" onmouseover="this.style.backgroundColor='white'"><span class='disabled' style='font-family: Tahoma, Verdana;'>‹</span></a><span class='current'>${page.pageNow}</span><a  HREF="/ass/assess.html?pnow=${page.pageNow+1}&chuli=${chuli}" style="cursor: pointer ;" onmouseover="this.style.backgroundColor='white'"><span class='disabled' style='font-family: Tahoma, Verdana;'>›</span></a><a HREF="/ass/assess.html?pnow=${page.pageCount}&chuli=${chuli}" style="cursor: pointer ;" onmouseover="this.style.backgroundColor='white'"><span class='disabled' style='font-family: Tahoma, Verdana;'><b>»</b></span></a> 转到
 
                 <select name="pnow" id="pageX"  style="margin-bottom: 3px; padding: 0px; height: 25px ;font-size: 14px;">
                     <c:forEach  var="node" begin="1" end="${page.pageCount}">

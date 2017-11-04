@@ -61,8 +61,9 @@
                 <%--<a href="/admin/app/stat/index.php?anyid=34&lang=cn"  title="访问统计"  id="metinfo_metnav_34"><i class="fa fa-line-chart"></i>访问统计</a>
                 <a href="/admin/interface/online/index.php?anyid=71&lang=cn"  title="客服"  id="metinfo_metnav_71"><i class="fa fa-comments-o"></i>客服</a>
                 <a href="/admin/index.php?n=seo&c=seo&a=doindex&anyid=37&lang=cn"  title="SEO"  id="metinfo_metnav_37"><i class="fa fa-check"></i>SEO</a>--%>
-                <a href="market/friendshiplink.html?pnow=1&linktype=3&guan=0"  title="友情链接"  id="metinfo_metnav_39"><i class="fa fa-link"></i>友情链接</a>
-                <a href="um/uninersity.html?pnow=1&type=0&authentication=0  " title="大学管理" id="uninersity"><i style=" font-size: 14px;margin-left: 8px; display: inline;color: #A7C6DC" class="fa fa-link">&nbsp;&nbsp;&nbsp;&nbsp;大学管理</i></a>
+                <a href="/market/friendshiplink.html"  title="友情链接"  id="metinfo_metnav_39"><i class="fa fa-link"></i>友情链接</a>
+                <a href="/um/uninersity.html" title="大学管理" id="uninersity"><i style=" font-size: 14px;margin-left: 8px; display: inline;color: #A7C6DC" class="fa fa-link">&nbsp;&nbsp;&nbsp;&nbsp;大学管理</i></a>
+                    <a href="/ass/assess.html" title="评估管理" id="assess"><i style=" font-size: 14px;margin-left: 8px; display: inline;color: #A7C6DC" class="fa fa-link">&nbsp;&nbsp;&nbsp;&nbsp;评估管理</i></a>
             </dd>
         </dl>
 
