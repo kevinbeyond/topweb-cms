@@ -289,7 +289,7 @@ public class ManageController {
     public ModelAndView delPerImage(@RequestParam(value = "id") int imgId) {
         imageMapper.updateImageDelStatus(imgId);
 
-        return new ModelAndView("redirect:/content/modultList.html?module=3");
+        return new ModelAndView("forward:/content/modultList.html?module=3");
     }
 
     /**

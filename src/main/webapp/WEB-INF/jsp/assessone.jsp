@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -134,7 +135,7 @@
 </div>
 
 
-<form  method="POST" name="myform" enctype="multipart/form-data" action="/market/addinfo.html" target="_self">
+<form  method="POST" name="myform" enctype="multipart/form-data" action="/ass/upnoe.html" target="_self">
     <input name="lang" type="hidden"  value="cn">
     <input name="id" type="hidden"  value="">
     <div class="v52fmbx_tbmax v52fmbx_tbmaxmt">
@@ -142,91 +143,53 @@
             <div class="v52fmbx">
                 <div class="v52fmbx_dlbox">
                     <dl>
-                        <dt>链接类型：</dt>
+                        <dt>是否处理：</dt>
                         <dd>
-                            <label><input name="link_type" type="radio" class="radio" value="1"   checked />文字链接</label>
-                            <label><input name="link_type" type="radio" class="radio" value="2"  />LOGO链接</label>
+                            <label><input name="chuli" type="radio" class="radio" value="1"   <c:if test="${assess.chuli==1}">checked="checked"</c:if> />未处理</label>
+                            <label><input name="chuli" type="radio" class="radio" value="2"  <c:if test="${assess.chuli==2}">checked="checked"</c:if>/>已处理</label>
                         </dd>
                     </dl>
                 </div>
+
                 <div class="v52fmbx_dlbox">
                     <dl>
-                        <dt>机构或媒体：</dt>
+                        <dt>id：</dt>
                         <dd>
-                            <label><input name="jiormei" type="radio" class="radio" value="1"   checked />合作机构</label>
-                            <label><input name="jiormei" type="radio" class="radio" value="2"  />合作媒体</label>
-                            <input name="jiormei" type="hidden" value="0"/>
+                            <input readonly="readonly" name="aid" required="required" type="text" class="text nonull" value="${assess.id}" />
                         </dd>
                     </dl>
                 </div>
+
                 <div class="v52fmbx_dlbox">
                     <dl>
-                        <dt>网站地址：</dt>
+                        <dt>提交姓名：</dt>
                         <dd>
-                            <input name="weburl" required="required" type="text" class="text nonull" value="" />
+                            <input readonly="readonly" name="weburl" required="required" type="text" class="text nonull" value="${assess.aname}" />
                         </dd>
                     </dl>
                 </div>
+
+
                 <div class="v52fmbx_dlbox">
                     <dl>
-                        <dt>网站LOGO：</dt>
+                        <dt>手机号：</dt>
                         <dd>
-                            <input name="met_upsql1" type="file" id="file_upload" />
-                           <%-- <script type="text/javascript">
-                                $(document).ready(function(){
-                                    metuploadify('#file_upload','upimage','weblogo');
-                                });
-                            </script>--%>
+                            <input name="webname" readonly="readonly" required="required" type="text" class="text nonull" value="${assess.phone}" />
                         </dd>
                     </dl>
                 </div>
+
+
                 <div class="v52fmbx_dlbox">
                     <dl>
-                        <dt>网站标题：</dt>
+                        <dt>描述：</dt>
                         <dd>
-                            <input name="webname" required="required" type="text" class="text nonull" value="" />
-                        </dd>
-                    </dl>
-                </div>
-                <div class="v52fmbx_dlbox">
-                    <dl>
-                        <dt>网站关键词：</dt>
-                        <dd>
-                            <input name="info" required="required" type="text" class="text" value="" />
-                        </dd>
-                    </dl>
-                </div>
-                <div class="v52fmbx_dlbox">
-                    <dl>
-                        <dt>排序：</dt>
-                        <dd>
-                            <input name="orderno" required="required" type="number" min="0" max="1000" class="text mid" value="" />
-                            <span class="tips">数字越大排序越靠前</span>
-                        </dd>
-                    </dl>
-                </div>
-                <div class="v52fmbx_dlbox">
-                    <dl>
-                        <dt>可选属性：</dt>
-                        <dd>
-                            <label><input name="show_ok" type="checkbox" class="checkbox" value="1" checked>审核通过</label>
-                            <input name="show_ok" type="hidden" value="2"/>
-                            <label><input name="com_ok" type="checkbox" class="checkbox" value="1"  checked>推荐站点</label>
-                            <input name="com_ok" type="hidden" value="2"/>
-                        </dd>
-                    </dl>
-                </div>
-                <div class="v52fmbx_dlbox">
-                    <dl>
-                        <dt>联系方式：</dt>
-                        <dd>
-                            <textarea name="contact" cols="60" rows="5" class="textarea gen"></textarea>
+                            <textarea name="contact" cols="60" readonly="readonly" rows="5" class="textarea gen">${assess.content}</textarea>
                         </dd>
                     </dl>
                 </div>
                 <div class="v52fmbx_submit">
                     <input type="submit" name="Submit" value="保存" class="submit" />
-                    <input name="id" type="hidden" value="" />
                 </div>
             </div>
         </div>

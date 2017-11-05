@@ -71,7 +71,16 @@ public class FriendshipLinkController {
         }else if(linktype==5){
             fl.setLinkType(2);
             nodeCount=flm.nodeCount(linktype);
-        } else if (linktype==6) {
+        }else if (linktype==6) {
+            fl.setMediaOrInstitutions(1);
+            nodeCount=flm.nodeCount(linktype);
+        }
+        else if (linktype==7) {
+              fl.setMediaOrInstitutions(2);
+            nodeCount=flm.nodeCount(linktype);
+        }
+
+        else if (linktype==20) {
             nodeCount=flm.nodeCountGuan(guan);
             fl.setWebKeyWords(guan);
         }
@@ -182,6 +191,9 @@ public class FriendshipLinkController {
         friendlyLink.setLinkType(linktype);
         System.out.println("链接类型"+linktype);
 
+        int  jiormei=Integer.parseInt(request.getParameter("jiormei"));
+        friendlyLink.setMediaOrInstitutions(jiormei);
+
        String webaddress=request.getParameter("weburl");
        friendlyLink.setWebAddress(webaddress);
         System.out.println(webaddress);
@@ -227,7 +239,7 @@ public class FriendshipLinkController {
 
     @RequestMapping("/deletelink.html")
     public ModelAndView deletelink(HttpServletRequest request){
-        ModelAndView view = new ModelAndView("forward:market/friendshiplink.html");
+        ModelAndView view = new ModelAndView("forward:/market/friendshiplink.html");
         int id=Integer.parseInt(request.getParameter("deleteid"));
        // System.out.println(id);
         int deleteresult=flm.deleteinfo(id);
@@ -239,7 +251,7 @@ public class FriendshipLinkController {
     @RequestMapping("/alldeleteinfo.html")
     public ModelAndView alldeleteinfo(HttpServletRequest request){
 
-        ModelAndView view = new ModelAndView("forward:market/friendshiplink.html");
+        ModelAndView view = new ModelAndView("forward:/market/friendshiplink.html");
        String [] ids=request.getParameterValues("id");
        int result=0;
         for (String id:ids) {
@@ -299,6 +311,9 @@ public class FriendshipLinkController {
 
         int link_type=Integer.parseInt(request.getParameter("link_type"));
         friendlyLink.setLinkType(link_type);
+
+        int  jiormei=Integer.parseInt(request.getParameter("jiormei"));
+        friendlyLink.setMediaOrInstitutions(jiormei);
 
        String webaddress=request.getParameter("weburl");
         friendlyLink.setWebAddress(webaddress);

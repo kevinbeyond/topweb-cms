@@ -63,7 +63,7 @@
                 <ol class="breadcrumb position hidden-xs">
                     <li>简体中文</li>
                     <li>营销</li>
-                    <li><a href="/market/friendshiplink.html">友情链接</a></li>
+                    <li><a href="/um/uninersity.html">大学管理</a></li>
                 </ol>
                 <div class="btn-group pull-right met-tool">
                     <button class="btn btn-default dropdown-toggle" type="button" id="adminuser" data-toggle="dropdown" aria-expanded="true">
@@ -261,15 +261,6 @@
                 <td class="all" width="53" style="border-top:0px"><input name="chkAll" type="checkbox" id="chkAll" onclick="CheckAllx($(this),'del')" value="checkbox"/></td>
                 <td class="all-submit" align="left" style="padding:5px 10px;border-top:0px;" >
                     <input name="submit" type='submit' value='删除' class="submit li-submit" onclick="return met_modify($(this),'del','del');" />
-                    <div class="page_list">
-                        <form name="delform" method="Post" action="delete.php?anyid=39&lang=cn">
-                            <select name="action" id="deltype">
-                                <option value="delno" selected>未审核链接</option>
-                                <option value="delall">全部链接</option>
-                            </select>
-                            <input name="submit" type='submit' value='清空' class="submitmi" onclick="return linkSmit('',1,safesq());" />
-                        </form>
-                    </div>
                 </td>
             </tr>
 
