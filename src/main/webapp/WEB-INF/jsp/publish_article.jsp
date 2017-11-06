@@ -183,7 +183,7 @@
                         </div>
                     </dd>
                 </dl>
-                <dl>
+                <%--<dl>
                     <dt>链接至</dt>
                     <dd class="ftype_input">
                         <div class="fbox">
@@ -191,7 +191,7 @@
                         </div>
                         <span class="tips">请输入要链接到的网址，设置后访问该信息将直接跳转到设置的网址。</span>
                     </dd>
-                </dl>
+                </dl>--%>
                 <%--<dl>
                     <dt>访问权限</dt>
                     <dd class="ftype_select">
@@ -205,7 +205,7 @@
                         </div>
                     </dd>
                 </dl>--%>
-                <dl>
+                <%--<dl>
                     <dt>状态</dt>
                     <dd class="ftype_checkbox ftype_transverse">
                         <div class="fbox">
@@ -214,7 +214,7 @@
                             <label><input name="top" type="checkbox" value="${article.top}" <c:if test="${article.top==1}">checked</c:if>>置顶</label>
                         </div>
                     </dd>
-                </dl>
+                </dl>--%>
                 <%--<dl>
                     <dt>更新时间</dt>
                     <dd class="ftype_day">
@@ -251,15 +251,15 @@
 
                     </dd>
                 </dl>--%>
-                <dl>
+                <%--<dl>
                     <dt>封面图片</dt>
                     <dd class="ftype_upload">
                         <div class="fbox">
                             <input name="imgurl" type="text" data-upload-type="doupimg" value="${article.imgurl}"/>
                         </div>
-                        <%--<span class="tips">当没有手动上传图片时候，会自动提取您内容第一张图片作为封面（此功能需要模板支持）</span>--%>
+                        &lt;%&ndash;<span class="tips">当没有手动上传图片时候，会自动提取您内容第一张图片作为封面（此功能需要模板支持）</span>&ndash;%&gt;
                     </dd>
-                </dl>
+                </dl>--%>
             </div>
         </form>
         <div class="met_affix_save bg-success">
