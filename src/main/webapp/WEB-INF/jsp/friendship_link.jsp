@@ -229,7 +229,7 @@
                             <tr>
                                 <td width="40" class="list" style="padding:0px; text-align:center;">选择</td>
                                 <td width="50" class="list" style="padding:0px; text-align:center;">ID</td>
-                                <td width="80" class="list" style="padding:0px; text-align:center;">链接类型</td>
+                                <td width="80" class="list" style="padding:0px; text-align:center;">连接类型</td>
                                 <td class="list" >网站标题</td>
                                 <td class="list" >网站地址</td>
                                 <td width="50" class="list" style="padding:0px; text-align:center;">排序</td>
@@ -244,11 +244,11 @@
                                     <td class="list-text"><input name='id' type='checkbox' id="id" value='${node.id}' /></td>
                                     <td class="list-text">${node.id}</td>
                                     <c:choose>
-                                        <c:when test="${node.linkType== 1}">
-                                            <td class="list-text">文字链接</td>
+                                        <c:when test="${node.mediaOrInstitutions== 1}">
+                                            <td class="list-text">合作媒体</td>
                                         </c:when>
-                                        <c:when test="${node.linkType== 2}">
-                                            <td class="list-text">LOGO链接</td>
+                                        <c:when test="${node.mediaOrInstitutions== 2}">
+                                            <td class="list-text">合作机构</td>
                                         </c:when>
                                     </c:choose>
 
