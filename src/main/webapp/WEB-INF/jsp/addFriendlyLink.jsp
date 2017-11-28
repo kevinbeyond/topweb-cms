@@ -153,8 +153,8 @@
                     <dl>
                         <dt>机构或媒体：</dt>
                         <dd>
-                            <label><input name="jiormei" type="radio" class="radio" value="1"   checked />合作机构</label>
-                            <label><input name="jiormei" type="radio" class="radio" value="2"  />合作媒体</label>
+                            <label><input name="jiormei" type="radio" class="radio" value="1"   checked />合作媒体</label>
+                            <label><input name="jiormei" type="radio" class="radio" value="2"  />合作机构</label>
                             <input name="jiormei" type="hidden" value="0"/>
                         </dd>
                     </dl>

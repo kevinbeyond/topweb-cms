@@ -23,6 +23,7 @@ public class LoginController {
     @RequestMapping(value = "/")
     public ModelAndView loginPage() {
         ModelAndView view = new ModelAndView("login");
+
         view.addObject("user", new User());
         logger.trace("Welcome to TopWeb CMS!");
         return view;
@@ -34,6 +35,7 @@ public class LoginController {
      * @param result
      * @return
      */
+
     @RequestMapping(value = "/index.html", method = RequestMethod.POST)
     public String checkLogin(@Valid User user, BindingResult result) {
 
